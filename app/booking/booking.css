@@ -1,0 +1,70 @@
+/* Booking form styles */
+
+/* Enhance form inputs */
+.booking-input:focus {
+  box-shadow: 0 0 0 2px var(--gold);
+  outline: none;
+}
+
+/* Custom calendar & time input styling */
+input[type="date"],
+input[type="time"] {
+  appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+  cursor: pointer;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+  background: transparent;
+  color: transparent;
+  cursor: pointer;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 2.5rem;
+  z-index: 1;
+}
+
+/* Service option cards */
+.service-option {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.service-option:hover {
+  border-color: var(--primary);
+  background-color: var(--accent);
+}
+
+.service-option.selected {
+  border-color: var(--primary);
+  background-color: color-mix(in srgb, var(--primary) 5%, transparent);
+}
+
+/* Step transition animations */
+.step-enter {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.step-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.step-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.step-exit-active {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 300ms, transform 300ms;
+} 
