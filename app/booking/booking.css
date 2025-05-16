@@ -28,6 +28,25 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   z-index: 1;
 }
 
+/* Custom DatePicker styling */
+[data-slot="popover-content"] {
+  z-index: 100;
+  background-color: var(--background);
+  border-color: var(--border);
+}
+
+[data-slot="popover-trigger"] {
+  height: 44px;
+  padding: 0.75rem 1rem;
+  border-color: var(--border);
+  background-color: var(--background);
+}
+
+[data-slot="popover-trigger"]:focus-visible {
+  box-shadow: 0 0 0 2px var(--gold);
+  outline: none;
+}
+
 /* Service option cards */
 .service-option {
   border: 1px solid var(--border);

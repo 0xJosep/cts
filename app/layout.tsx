@@ -1,14 +1,12 @@
-import type { Metadata } from "next";
+'use client'
+
 import { Geist, Geist_Mono } from "next/font/google";
 import { Playfair_Display } from "next/font/google";
 import "./globals.css";
 import CustomCursor from "./components/CustomCursor";
 import { ThemeProvider } from "./providers/ThemeProvider";
-
-export const metadata: Metadata = {
-  title: "Luxury Transport Services | Morocco",
-  description: "Premium luxury transportation services across Morocco. Experience the perfect blend of comfort, style, and exceptional service.",
-};
+import { TranslationProvider } from "@/lib/i18n/TranslationContext";
+import { ParallaxProvider } from 'react-scroll-parallax';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,8 +35,12 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} antialiased`}
       >
         <ThemeProvider>
-          {children}
-          <CustomCursor />
+          <TranslationProvider>
+            <ParallaxProvider>
+              {children}
+              <CustomCursor />
+            </ParallaxProvider>
+          </TranslationProvider>
         </ThemeProvider>
       </body>
     </html>

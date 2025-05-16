@@ -3,7 +3,9 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { ArrowRightIcon, CheckIcon, SunIcon, MoonIcon } from '@heroicons/react/24/outline'
+import { ArrowLeftIcon } from '@heroicons/react/24/solid'
 import { useTheme } from '../providers/ThemeProvider'
+import Image from 'next/image'
 
 const vehicles = [
   {
@@ -86,7 +88,7 @@ export default function FleetPage() {
   const { darkMode, toggleDarkMode } = useTheme()
 
   return (
-    <div className="relative min-h-screen bg-background py-24">
+    <div className="relative bg-background py-16 sm:py-24 pb-24 min-h-screen">
       {/* Background gradient */}
       <div className="absolute inset-0 -z-10">
         <div
@@ -103,30 +105,28 @@ export default function FleetPage() {
         </div>
       </div>
 
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="flex justify-between items-center mb-16">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-16">
+        <div className="flex flex-col sm:flex-row justify-between items-center mb-16 gap-4">
           <Link
             href="/"
-            className="rounded-md bg-card border border-border px-4 py-2 text-sm font-medium text-foreground hover:bg-accent flex items-center whitespace-nowrap min-w-[120px] justify-center"
+            className="rounded-md bg-card border border-border px-4 py-2 text-sm font-medium text-foreground hover:bg-accent flex items-center whitespace-nowrap min-w-[120px] justify-center order-1 group"
           >
-            <svg className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-            </svg>
-            Back to Home
+            <ArrowLeftIcon className="h-6 w-6 sm:h-10 sm:w-10 mr-2 text-gold" aria-hidden="true" />
+            <span>Back to Home</span>
           </Link>
           
-          <div className="text-center flex-grow">
-            <h1 className="text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
+          <div className="text-center w-full sm:flex-grow order-3 sm:order-2">
+            <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
               Our <span className="accent-gold">Premium</span> Fleet
             </h1>
-            <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="mt-2 sm:mt-4 text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
               Experience Morocco in style with our meticulously maintained collection of luxury vehicles
             </p>
           </div>
           
           <button
             onClick={toggleDarkMode}
-            className="rounded-full p-2 text-foreground hover:bg-accent hover:text-accent-foreground transition-colors bg-card border border-border"
+            className="rounded-full p-2 text-foreground hover:bg-accent hover:text-accent-foreground transition-colors bg-card border border-border order-2 sm:order-3"
             aria-label="Toggle dark mode"
           >
             {darkMode ? (
@@ -139,7 +139,7 @@ export default function FleetPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           {/* Vehicle selector */}
-          <div className="md:col-span-1 space-y-3">
+          <div className="md:col-span-1 space-y-3 mb-6 md:mb-0">
             <h2 className="text-lg font-medium text-foreground mb-4">Select a Vehicle</h2>
             {vehicles.map(vehicle => (
               <div
@@ -174,11 +174,13 @@ export default function FleetPage() {
 
           {/* Vehicle details */}
           <div className="md:col-span-3 bg-card rounded-xl overflow-hidden border border-border">
-            <div className="h-64 overflow-hidden relative">
-              <img
+            <div className="h-48 sm:h-64 overflow-hidden relative">
+              <Image
                 src={selectedVehicle.image}
                 alt={selectedVehicle.name}
                 className="w-full h-full object-cover"
+                width={800}
+                height={400}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
                 <div className="p-6 text-white">
@@ -188,10 +190,10 @@ export default function FleetPage() {
               </div>
             </div>
             
-            <div className="p-6">
+            <div className="p-4 sm:p-6">
               <p className="text-muted-foreground">{selectedVehicle.description}</p>
               
-              <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="mt-4 sm:mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="bg-accent/50 p-4 rounded-lg">
                   <h3 className="font-medium text-foreground mb-2">Capacity</h3>
                   <div className="flex items-center text-muted-foreground">
@@ -243,9 +245,9 @@ export default function FleetPage() {
                 </div>
               </div>
               
-              <div className="mt-6">
+              <div className="mt-4 sm:mt-6">
                 <h3 className="font-medium text-foreground mb-2">Premium Features</h3>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 mt-3">
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 mt-2 sm:mt-3">
                   {selectedVehicle.features.map((feature, idx) => (
                     <li key={idx} className="flex items-start">
                       <svg className="h-5 w-5 text-gold flex-shrink-0 mr-1.5" viewBox="0 0 20 20" fill="currentColor">
@@ -257,7 +259,7 @@ export default function FleetPage() {
                 </ul>
               </div>
               
-              <div className="mt-8 flex justify-end">
+              <div className="mt-6 sm:mt-8 flex justify-end">
                 <Link
                   href={`/booking?service=${selectedVehicle.id}`}
                   className="rounded-md bg-gradient-to-r from-gold-dark via-gold to-gold-light px-4 py-2 text-sm font-medium text-primary-foreground hover:shadow-md flex items-center"

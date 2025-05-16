@@ -1,0 +1,39 @@
+{
+  "common": {
+    "home": "Inicio",
+    "about": "Nosotros",
+    "services": "Servicios",
+    "contact": "Contacto",
+    "booking": "Reservar Ahora",
+    "login": "Iniciar Sesión",
+    "register": "Registrarse",
+    "fleet": "Flota"
+  },
+  "home": {
+    "hero": {
+      "title": "Servicios de Transporte de Lujo",
+      "subtitle": "Transporte premium por todo Marruecos",
+      "cta": "Reserve Su Viaje"
+    },
+    "features": {
+      "title": "Por Qué Elegirnos",
+      "comfort": "Máxima Comodidad",
+      "luxury": "Experiencia de Lujo",
+      "reliability": "Servicio Confiable",
+      "professional": "Conductores Profesionales"
+    }
+  },
+  "booking": {
+    "title": "Reserve Su Transporte de Lujo",
+    "from": "Desde",
+    "to": "Hasta",
+    "date": "Fecha",
+    "passengers": "Pasajeros",
+    "submit": "Reservar Ahora",
+    "success": "¡Reserva Exitosa!"
+  },
+  "fleet": {
+    "title": "Nuestra Flota Premium",
+    "viewDetails": "Ver Detalles"
+  }
+}

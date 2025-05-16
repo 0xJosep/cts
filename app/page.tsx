@@ -2,11 +2,14 @@
 
 import { useState, useEffect } from 'react'
 import { Dialog, DialogPanel } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon, SunIcon, MoonIcon, ChevronDownIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, XMarkIcon, SunIcon, MoonIcon, ChevronDownIcon, CheckIcon } from '@heroicons/react/24/outline'
 import { useTheme } from './providers/ThemeProvider'
+import { useTranslation } from '@/lib/i18n/TranslationContext'
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 
 const languages = [
   { code: 'en', name: 'English', flag: '🇬🇧' },
+  { code: 'es', name: 'Español', flag: '🇪🇸' },
   { code: 'fr', name: 'Français', flag: '🇫🇷' },
   { code: 'ar', name: 'العربية', flag: '🇲🇦' },
 ]
@@ -23,7 +26,8 @@ export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { darkMode, toggleDarkMode } = useTheme()
   const [scrolled, setScrolled] = useState(false)
-  const [currentLanguage, setCurrentLanguage] = useState(languages[0])
+  const { locale, setLocale } = useTranslation()
+  const [currentLanguage, setCurrentLanguage] = useState(languages.find(lang => lang.code === locale) || languages[0])
   const [languageMenuOpen, setLanguageMenuOpen] = useState(false)
 
   useEffect(() => {
@@ -40,6 +44,12 @@ export default function Example() {
 
   const selectLanguage = (language: {code: string, name: string, flag: string}) => {
     setCurrentLanguage(language)
+    if (language.code === 'en' || language.code === 'es') {
+      setLocale(language.code)
+    } else {
+      // For languages not yet supported, default to English
+      setLocale('en')
+    }
     setLanguageMenuOpen(false)
   }
 
@@ -105,26 +115,29 @@ export default function Example() {
             <div className="relative">
               <button
                 type="button"
-                className="flex items-center gap-1 rounded-full p-1 text-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
+                className="flex items-center gap-2 rounded-full border border-border bg-background/80 backdrop-blur-sm px-3 py-1.5 text-foreground hover:bg-accent hover:border-primary transition-all"
                 onClick={() => setLanguageMenuOpen(!languageMenuOpen)}
                 aria-expanded={languageMenuOpen}
               >
                 <span className="text-xl" aria-hidden="true">{currentLanguage.flag}</span>
                 <span className="sr-only">Select language: {currentLanguage.name}</span>
-                <ChevronDownIcon className="h-4 w-4" aria-hidden="true" />
+                <ChevronDownIcon className={`h-4 w-4 transition-transform duration-200 ${languageMenuOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
               </button>
               
               {/* Language dropdown */}
               {languageMenuOpen && (
-                <div className="absolute right-0 mt-2 origin-top-right rounded-md bg-card shadow-lg ring-1 ring-border focus:outline-none z-10">
+                <div className="absolute right-0 mt-2 origin-top-right rounded-md bg-card shadow-lg ring-1 ring-border focus:outline-none z-10 animate-in fade-in-50 slide-in-from-top-5 duration-150">
                   <div className="py-1">
                     {languages.map((language) => (
                       <button
                         key={language.code}
                         onClick={() => selectLanguage(language)}
-                        className="flex items-center gap-2 px-4 py-2 text-sm text-foreground hover:bg-accent hover:text-accent-foreground"
+                        className="flex w-full items-center justify-between gap-2 px-4 py-2 text-sm text-foreground hover:bg-accent hover:text-accent-foreground"
                       >
                         <span className="text-xl">{language.flag}</span>
+                        {currentLanguage.code === language.code && (
+                          <CheckIcon className="h-4 w-4 text-primary" />
+                        )}
                       </button>
                     ))}
                   </div>
@@ -210,7 +223,9 @@ export default function Example() {
                           key={language.code}
                           onClick={() => selectLanguage(language)}
                           className={`flex items-center justify-center h-10 w-10 rounded-full text-xl ${
-                            currentLanguage.code === language.code ? 'ring-2 ring-primary' : 'hover:bg-accent'
+                            currentLanguage.code === language.code 
+                              ? 'ring-2 ring-primary bg-accent/30' 
+                              : 'hover:bg-accent'
                           }`}
                           aria-label={`Switch to ${language.name}`}
                         >
@@ -665,47 +680,63 @@ export default function Example() {
               Everything you need to know about our luxury transportation services
             </p>
           </div>
-          <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-2">
-            <div className="space-y-8">
-              <div>
-                <h3 className="text-lg font-semibold text-foreground">What types of vehicles do you offer?</h3>
-                <p className="mt-4 text-muted-foreground">
+          
+          <div className="mx-auto mt-16 max-w-3xl">
+            <Accordion type="single" collapsible className="w-full">
+              <AccordionItem value="item-1">
+                <AccordionTrigger className="text-lg font-semibold">
+                  What types of vehicles do you offer?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
                   Our premium fleet includes executive sedans, luxury SUVs, and spacious vans. All vehicles are latest models, meticulously maintained, and equipped with premium amenities for your comfort.
-                </p>
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold text-foreground">How far in advance should I book?</h3>
-                <p className="mt-4 text-muted-foreground">
+                </AccordionContent>
+              </AccordionItem>
+              
+              <AccordionItem value="item-2">
+                <AccordionTrigger className="text-lg font-semibold">
+                  How far in advance should I book?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
                   While we can accommodate last-minute requests, we recommend booking at least 24 hours in advance to ensure availability and allow time for any special arrangements.
-                </p>
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold text-foreground">What areas do you serve?</h3>
-                <p className="mt-4 text-muted-foreground">
+                </AccordionContent>
+              </AccordionItem>
+              
+              <AccordionItem value="item-3">
+                <AccordionTrigger className="text-lg font-semibold">
+                  What areas do you serve?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
                   We provide luxury transportation services throughout Morocco, with special focus on major cities and tourist destinations. Our chauffeurs are experts in navigating both urban and rural routes.
-                </p>
-              </div>
-            </div>
-            <div className="space-y-8">
-              <div>
-                <h3 className="text-lg font-semibold text-foreground">What is your cancellation policy?</h3>
-                <p className="mt-4 text-muted-foreground">
+                </AccordionContent>
+              </AccordionItem>
+              
+              <AccordionItem value="item-4">
+                <AccordionTrigger className="text-lg font-semibold">
+                  What is your cancellation policy?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
                   We offer flexible cancellation policies. Cancellations made 24 hours before the scheduled service are fully refundable. For special events and peak seasons, please refer to your booking confirmation.
-                </p>
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold text-foreground">Do you provide airport transfers?</h3>
-                <p className="mt-4 text-muted-foreground">
+                </AccordionContent>
+              </AccordionItem>
+              
+              <AccordionItem value="item-5">
+                <AccordionTrigger className="text-lg font-semibold">
+                  Do you provide airport transfers?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
                   Yes, we specialize in airport transfers with flight tracking and meet-and-greet services. Our chauffeurs monitor flight status to ensure timely pickup, regardless of delays.
-                </p>
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold text-foreground">What languages do your chauffeurs speak?</h3>
-                <p className="mt-4 text-muted-foreground">
-                  Our chauffeurs are fluent in multiple languages including English, French, Arabic, and Spanish. We ensure language compatibility for all our clients' needs.
-                </p>
-              </div>
-            </div>
+                </AccordionContent>
+              </AccordionItem>
+              
+              <AccordionItem value="item-6">
+                <AccordionTrigger className="text-lg font-semibold">
+                  What languages do your chauffeurs speak?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  Our chauffeurs are fluent in multiple languages including English, French, Arabic, and Spanish. We ensure language compatibility for all our clients&apos; needs.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
           </div>
         </div>
       </div>

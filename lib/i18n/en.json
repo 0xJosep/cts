@@ -1,0 +1,39 @@
+{
+  "common": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "contact": "Contact",
+    "booking": "Book Now",
+    "login": "Login",
+    "register": "Register",
+    "fleet": "Fleet"
+  },
+  "home": {
+    "hero": {
+      "title": "Luxury Transport Services",
+      "subtitle": "Premium transportation across Morocco",
+      "cta": "Book Your Ride"
+    },
+    "features": {
+      "title": "Why Choose Us",
+      "comfort": "Ultimate Comfort",
+      "luxury": "Luxury Experience",
+      "reliability": "Reliable Service",
+      "professional": "Professional Drivers"
+}
+  },
+  "booking": {
+    "title": "Book Your Luxury Transport",
+    "from": "From",
+    "to": "To",
+    "date": "Date",
+    "passengers": "Passengers",
+    "submit": "Book Now",
+    "success": "Booking Successful!"
+  },
+  "fleet": {
+    "title": "Our Premium Fleet",
+    "viewDetails": "View Details"
+  }
+}
