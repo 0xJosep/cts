@@ -2,8 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { CheckIcon, ChevronLeftIcon, ChevronRightIcon, ClockIcon, MapPinIcon, UserIcon, UsersIcon, SunIcon, MoonIcon } from '@heroicons/react/24/outline'
-import { ArrowLeftIcon } from '@heroicons/react/24/solid'
+import { Check, ChevronLeft, ChevronRight, Clock, MapPin, User, Users, Sun, Moon, ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import './booking.css'
 import { useTheme } from '../providers/ThemeProvider'
@@ -11,6 +10,11 @@ import { DatePicker } from '@/components/ui/date-picker'
 import { format, parse } from 'date-fns'
 import { DateTimePicker } from '@/components/ui/datetime-picker'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Textarea } from '@/components/ui/textarea'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 export default function BookingPage() {
   const router = useRouter()
@@ -255,7 +259,7 @@ export default function BookingPage() {
             href="/"
             className="rounded-md bg-card border border-border px-4 py-2 text-sm font-medium text-foreground hover:bg-accent flex items-center whitespace-nowrap min-w-[120px] justify-center order-1 group"
           >
-            <ArrowLeftIcon className="h-6 w-6 sm:h-12 sm:w-12 mr-2 text-gold" aria-hidden="true" />
+            <ArrowLeft className="h-6 w-6 sm:h-12 sm:w-12 mr-2 text-gold" aria-hidden="true" />
             <span>Back to Home</span>
           </Link>
           
@@ -274,9 +278,9 @@ export default function BookingPage() {
             aria-label="Toggle dark mode"
           >
             {darkMode ? (
-              <SunIcon className="h-5 w-5" />
+              <Sun className="h-5 w-5" />
             ) : (
-              <MoonIcon className="h-5 w-5" />
+              <Moon className="h-5 w-5" />
             )}
           </button>
         </div>
@@ -286,21 +290,21 @@ export default function BookingPage() {
           <div className="flex items-center justify-center">
             <div className="flex flex-col items-center">
               <div className={`flex h-10 w-10 items-center justify-center rounded-full ${step >= 1 ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'}`}>
-                <MapPinIcon className="h-5 w-5" />
+                <MapPin className="h-5 w-5" />
               </div>
               <span className="mt-2 text-sm">Route</span>
             </div>
             <div className={`h-1 w-20 mx-2 ${step > 1 ? 'bg-primary' : 'bg-muted'}`}></div>
             <div className="flex flex-col items-center">
               <div className={`flex h-10 w-10 items-center justify-center rounded-full ${step >= 2 ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'}`}>
-                <ClockIcon className="h-5 w-5" />
+                <Clock className="h-5 w-5" />
               </div>
               <span className="mt-2 text-sm">Schedule</span>
             </div>
             <div className={`h-1 w-20 mx-2 ${step > 2 ? 'bg-primary' : 'bg-muted'}`}></div>
             <div className="flex flex-col items-center">
               <div className={`flex h-10 w-10 items-center justify-center rounded-full ${step >= 3 ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'}`}>
-                <UserIcon className="h-5 w-5" />
+                <User className="h-5 w-5" />
               </div>
               <span className="mt-2 text-sm">Details</span>
             </div>
@@ -334,7 +338,7 @@ export default function BookingPage() {
                     </label>
                     <div className="mt-1">
                       <div className="relative">
-                        <input
+                        <Input
                           type="text"
                           name="pickupLocation"
                           id="pickupLocation"
@@ -343,7 +347,7 @@ export default function BookingPage() {
                           className={`block w-full rounded-md ${getBorderClass(validationState.showRouteErrors && !!errorMessages.pickupLocation)} bg-background px-4 py-3 pr-12 shadow-sm focus:border-primary focus:ring-primary booking-input`}
                           placeholder="Enter address, hotel, or airport"
                         />
-                        <button
+                        <Button
                           type="button"
                           onClick={handleGetCurrentLocation}
                           className="absolute inset-y-0 right-0 pr-3 flex items-center text-foreground hover:text-primary transition-colors"
@@ -358,7 +362,7 @@ export default function BookingPage() {
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
                           )}
-                        </button>
+                        </Button>
                       </div>
                       {validationState.showRouteErrors && errorMessages.pickupLocation && (
                         <p className="mt-1 text-sm text-gold-dark font-medium">{errorMessages.pickupLocation}</p>
@@ -372,7 +376,7 @@ export default function BookingPage() {
                       Dropoff Location
                     </label>
                     <div className="mt-1">
-                      <input
+                      <Input
                         type="text"
                         name="dropoffLocation"
                         id="dropoffLocation"
@@ -468,7 +472,7 @@ export default function BookingPage() {
                         </SelectContent>
                       </Select>
                       <div className="absolute inset-y-0 right-10 flex items-center pointer-events-none">
-                        <UsersIcon className="h-5 w-5 text-muted-foreground" />
+                        <Users className="h-5 w-5 text-muted-foreground" />
                       </div>
                     </div>
                   </div>
@@ -485,7 +489,7 @@ export default function BookingPage() {
                         <div className="flex justify-between items-center">
                           <h3 className="text-sm font-medium text-foreground">Executive Sedan</h3>
                           {formData.service === 'sedan' && (
-                            <CheckIcon className="h-5 w-5 text-primary" />
+                            <Check className="h-5 w-5 text-primary" />
                           )}
                         </div>
                         <p className="mt-1 text-xs text-muted-foreground">Luxury sedan for up to 3 passengers</p>
@@ -499,7 +503,7 @@ export default function BookingPage() {
                         <div className="flex justify-between items-center">
                           <h3 className="text-sm font-medium text-foreground">Luxury SUV</h3>
                           {formData.service === 'suv' && (
-                            <CheckIcon className="h-5 w-5 text-primary" />
+                            <Check className="h-5 w-5 text-primary" />
                           )}
                         </div>
                         <p className="mt-1 text-xs text-muted-foreground">Spacious SUV for up to 5 passengers</p>
@@ -513,7 +517,7 @@ export default function BookingPage() {
                         <div className="flex justify-between items-center">
                           <h3 className="text-sm font-medium text-foreground">Premium Van</h3>
                           {formData.service === 'van' && (
-                            <CheckIcon className="h-5 w-5 text-primary" />
+                            <Check className="h-5 w-5 text-primary" />
                           )}
                         </div>
                         <p className="mt-1 text-xs text-muted-foreground">Spacious van for up to 8 passengers</p>
@@ -527,7 +531,7 @@ export default function BookingPage() {
                         <div className="flex justify-between items-center">
                           <h3 className="text-sm font-medium text-foreground">Stretch Limousine</h3>
                           {formData.service === 'limousine' && (
-                            <CheckIcon className="h-5 w-5 text-primary" />
+                            <Check className="h-5 w-5 text-primary" />
                           )}
                         </div>
                         <p className="mt-1 text-xs text-muted-foreground">Luxury limousine for up to 6 passengers</p>
@@ -562,7 +566,7 @@ export default function BookingPage() {
                       Full Name
                     </label>
                     <div className="mt-1">
-                      <input
+                      <Input
                         type="text"
                         name="name"
                         id="name"
@@ -581,7 +585,7 @@ export default function BookingPage() {
                       Email
                     </label>
                     <div className="mt-1">
-                      <input
+                      <Input
                         type="email"
                         name="email"
                         id="email"
@@ -600,7 +604,7 @@ export default function BookingPage() {
                       Phone
                     </label>
                     <div className="mt-1">
-                      <input
+                      <Input
                         type="tel"
                         name="phone"
                         id="phone"
@@ -619,7 +623,7 @@ export default function BookingPage() {
                       Special Requests
                     </label>
                     <div className="mt-1">
-                      <textarea
+                      <Textarea
                         name="specialRequests"
                         id="specialRequests"
                         rows={3}
@@ -651,9 +655,9 @@ export default function BookingPage() {
                         
                                                 {/* From/To Header */}                        <div className="flex items-center mb-4">                          <span className="text-xs font-medium text-primary uppercase tracking-wider">Your Journey</span>                        </div>
                         
-                                                {/* Route Path */}                        <div className="flex relative z-10 mb-6">                          <div className="flex flex-col items-center mr-4">                            <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center p-2.5 relative z-10 ring-4 ring-background">                              <MapPinIcon className="h-5 w-5 text-primary" />                            </div>                            <div className="h-28 w-0.5 bg-gradient-to-b from-primary to-gold/80"></div>                            <div className="h-10 w-10 rounded-full bg-gold/10 flex items-center justify-center p-2.5 relative z-10 ring-4 ring-background">                              <MapPinIcon className="h-5 w-5 text-gold" />                            </div>                          </div>                                                    <div className="flex-1 flex flex-col justify-between">                            <div className="min-h-[64px] bg-card p-3 rounded-lg shadow-sm border border-border/40 mb-auto">                              <div className="flex items-center">                                <span className="text-xs font-bold uppercase text-primary tracking-wider pb-1">Pickup</span>                              </div>                              <p className="text-sm font-medium text-foreground line-clamp-2">{formData.pickupLocation || '(Not specified)'}</p>                            </div>                                                        <div className="min-h-[64px] bg-card p-3 rounded-lg shadow-sm border border-border/40 mt-auto">                              <div className="flex items-center">                                <span className="text-xs font-bold uppercase text-gold tracking-wider pb-1">Dropoff</span>                              </div>                              <p className="text-sm font-medium text-foreground line-clamp-2">{formData.dropoffLocation || '(Not specified)'}</p>                            </div>                          </div>                        </div>
+                                                {/* Route Path */}                        <div className="flex relative z-10 mb-6">                          <div className="flex flex-col items-center mr-4">                            <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center p-2.5 relative z-10 ring-4 ring-background">                              <MapPin className="h-5 w-5 text-primary" />                            </div>                            <div className="h-28 w-0.5 bg-gradient-to-b from-primary to-gold/80"></div>                            <div className="h-10 w-10 rounded-full bg-gold/10 flex items-center justify-center p-2.5 relative z-10 ring-4 ring-background">                              <MapPin className="h-5 w-5 text-gold" />                            </div>                          </div>                                                    <div className="flex-1 flex flex-col justify-between">                            <div className="min-h-[64px] bg-card p-3 rounded-lg shadow-sm border border-border/40 mb-auto">                              <div className="flex items-center">                                <span className="text-xs font-bold uppercase text-primary tracking-wider pb-1">Pickup</span>                              </div>                              <p className="text-sm font-medium text-foreground line-clamp-2">{formData.pickupLocation || '(Not specified)'}</p>                            </div>                                                        <div className="min-h-[64px] bg-card p-3 rounded-lg shadow-sm border border-border/40 mt-auto">                              <div className="flex items-center">                                <span className="text-xs font-bold uppercase text-gold tracking-wider pb-1">Dropoff</span>                              </div>                              <p className="text-sm font-medium text-foreground line-clamp-2">{formData.dropoffLocation || '(Not specified)'}</p>                            </div>                          </div>                        </div>
                         
-                                                {/* Service Details */}                        <div className="grid grid-cols-1 gap-4 mb-4">                          {/* Reorganized Details Section */}                          <div className="rounded-xl bg-card border border-border/50 shadow-sm overflow-hidden">                            <div className="bg-gradient-to-r from-primary/10 to-gold/10 px-4 py-2.5 border-b border-border/30">                              <h3 className="text-sm font-bold text-foreground">Journey Details</h3>                            </div>                            <div className="p-1">                              <div className="grid grid-cols-3 divide-x divide-border/30">                                {/* Vehicle Type */}                                <div className="p-3 flex flex-col">                                  <span className="text-xs uppercase tracking-wider font-bold text-primary/80 mb-2">Vehicle</span>                                  <div className="flex items-center">                                    {formData.service === 'sedan' && (                                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">                                        <path d="M5 10h14a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2z" />                                        <path d="M19 10V6a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v4" />                                        <circle cx="7" cy="16" r="2" />                                        <circle cx="17" cy="16" r="2" />                                      </svg>                                    )}                                    {formData.service === 'suv' && (                                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">                                        <path d="M5 14h14a2 2 0 0 0 2-2V8a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v4a2 2 0 0 0 2 2z" />                                        <path d="M5 14v2a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-2" />                                        <circle cx="7" cy="14" r="2" />                                        <circle cx="17" cy="14" r="2" />                                      </svg>                                    )}                                    {formData.service === 'van' && (                                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">                                        <rect x="2" y="8" width="20" height="8" rx="2" />                                        <path d="M2 12h20" />                                        <path d="M10 8V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3" />                                        <circle cx="7" cy="16" r="2" />                                        <circle cx="17" cy="16" r="2" />                                      </svg>                                    )}                                    {formData.service === 'limousine' && (                                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">                                        <rect x="2" y="10" width="20" height="6" rx="2" />                                        <path d="M2 13h20" />                                        <path d="M7 10V8a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2" />                                        <circle cx="5" cy="16" r="1" />                                        <circle cx="19" cy="16" r="1" />                                      </svg>                                    )}                                    <div>                                      <p className="text-sm font-bold">                                        {formData.service === 'sedan' ? 'Executive Sedan' :                                           formData.service === 'suv' ? 'Luxury SUV' :                                           formData.service === 'van' ? 'Premium Van' : 'Stretch Limousine'}                                      </p>                                    </div>                                  </div>                                </div>                                                                {/* Passengers */}                                <div className="p-3 flex flex-col">                                  <span className="text-xs uppercase tracking-wider font-bold text-primary/80 mb-2">Passengers</span>                                  <div className="flex items-center">                                    <UsersIcon className="h-6 w-6 mr-2 text-gold" />                                    <p className="text-sm font-bold">                                      {formData.passengers} {parseInt(formData.passengers) === 1 ? 'Person' : 'People'}                                    </p>                                  </div>                                </div>                                                                {/* Date & Time */}                                <div className="p-3 flex flex-col">                                  <span className="text-xs uppercase tracking-wider font-bold text-primary/80 mb-2">Date & Time</span>                                  <div className="flex items-center">                                    <ClockIcon className="h-6 w-6 mr-2 text-gold" />                                    <p className="text-sm font-bold whitespace-normal">                                      {formData.date                                         ? new Date(formData.date).toLocaleDateString('en-US', {weekday: 'short', month: 'short', day: 'numeric'})                                         : '(Not specified)'}                                       {formData.time ? ' at ' + formData.time : ''}                                    </p>                                  </div>                                </div>                              </div>                            </div>                          </div>                        </div>
+                                                {/* Service Details */}                        <div className="grid grid-cols-1 gap-4 mb-4">                          {/* Reorganized Details Section */}                          <div className="rounded-xl bg-card border border-border/50 shadow-sm overflow-hidden">                            <div className="bg-gradient-to-r from-primary/10 to-gold/10 px-4 py-2.5 border-b border-border/30">                              <h3 className="text-sm font-bold text-foreground">Journey Details</h3>                            </div>                            <div className="p-1">                              <div className="grid grid-cols-3 divide-x divide-border/30">                                {/* Vehicle Type */}                                <div className="p-3 flex flex-col">                                  <span className="text-xs uppercase tracking-wider font-bold text-primary/80 mb-2">Vehicle</span>                                  <div className="flex items-center">                                    {formData.service === 'sedan' && (                                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">                                        <path d="M5 10h14a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2z" />                                        <path d="M19 10V6a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v4" />                                        <circle cx="7" cy="16" r="2" />                                        <circle cx="17" cy="16" r="2" />                                      </svg>                                    )}                                    {formData.service === 'suv' && (                                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">                                        <path d="M5 14h14a2 2 0 0 0 2-2V8a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v4a2 2 0 0 0 2 2z" />                                        <path d="M5 14v2a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-2" />                                        <circle cx="7" cy="14" r="2" />                                        <circle cx="17" cy="14" r="2" />                                      </svg>                                    )}                                    {formData.service === 'van' && (                                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">                                        <rect x="2" y="8" width="20" height="8" rx="2" />                                        <path d="M2 12h20" />                                        <path d="M10 8V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3" />                                        <circle cx="7" cy="16" r="2" />                                        <circle cx="17" cy="16" r="2" />                                      </svg>                                    )}                                    {formData.service === 'limousine' && (                                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">                                        <rect x="2" y="10" width="20" height="6" rx="2" />                                        <path d="M2 13h20" />                                        <path d="M7 10V8a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2" />                                        <circle cx="5" cy="16" r="1" />                                        <circle cx="19" cy="16" r="1" />                                      </svg>                                    )}                                    <div>                                      <p className="text-sm font-bold">                                        {formData.service === 'sedan' ? 'Executive Sedan' :                                           formData.service === 'suv' ? 'Luxury SUV' :                                           formData.service === 'van' ? 'Premium Van' : 'Stretch Limousine'}                                      </p>                                    </div>                                  </div>                                </div>                                                                {/* Passengers */}                                <div className="p-3 flex flex-col">                                  <span className="text-xs uppercase tracking-wider font-bold text-primary/80 mb-2">Passengers</span>                                  <div className="flex items-center">                                    <Users className="h-6 w-6 mr-2 text-gold" />                                    <p className="text-sm font-bold">                                      {formData.passengers} {parseInt(formData.passengers) === 1 ? 'Person' : 'People'}                                    </p>                                  </div>                                </div>                                                                {/* Date & Time */}                                <div className="p-3 flex flex-col">                                  <span className="text-xs uppercase tracking-wider font-bold text-primary/80 mb-2">Date & Time</span>                                  <div className="flex items-center">                                    <Clock className="h-6 w-6 mr-2 text-gold" />                                    <p className="text-sm font-bold whitespace-normal">                                      {formData.date                                         ? new Date(formData.date).toLocaleDateString('en-US', {weekday: 'short', month: 'short', day: 'numeric'})                                         : '(Not specified)'}                                       {formData.time ? ' at ' + formData.time : ''}                                    </p>                                  </div>                                </div>                              </div>                            </div>                          </div>                        </div>
                         
                                                 {/* Booking ID */}                        <div className="flex items-center pt-2 border-t border-border/30">                          <div className="flex items-center">                            <div className="h-8 w-8 rounded-full bg-primary/5 flex items-center justify-center mr-2">                              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">                                <path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />                                <path d="M12 9v6" />                                <path d="M9 12h6" />                              </svg>                            </div>                            <div>                              <span className="text-xs text-muted-foreground">Booking reference</span>                              <div className="text-xs font-mono font-medium">{`DRP-${Math.floor(Math.random() * 900000) + 100000}`}</div>                            </div>                          </div>                        </div>
                       </div>
@@ -675,7 +679,7 @@ export default function BookingPage() {
                     : 'text-foreground hover:text-primary'
                 }`}
               >
-                <ChevronLeftIcon className="mr-1 h-5 w-5" />
+                <ChevronLeft className="mr-1 h-5 w-5" />
                 Back
               </button>
               {step < 3 ? (
@@ -685,7 +689,7 @@ export default function BookingPage() {
                   className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 flex items-center"
                 >
                   Next
-                  <ChevronRightIcon className="ml-1 h-5 w-5" />
+                  <ChevronRight className="ml-1 h-5 w-5" />
                 </button>
               ) : (
                 <button
@@ -693,7 +697,7 @@ export default function BookingPage() {
                   className="rounded-md bg-gradient-to-r from-gold-dark via-gold to-gold-light px-4 py-2 text-sm font-medium text-primary-foreground hover:shadow-md flex items-center"
                 >
                   Complete Booking
-                  <CheckIcon className="ml-1 h-5 w-5" />
+                  <Check className="ml-1 h-5 w-5" />
                 </button>
               )}
             </div>

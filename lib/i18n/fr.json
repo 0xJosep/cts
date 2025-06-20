@@ -97,6 +97,135 @@
       }
     }
   },
+  "services": {
+    "backToHome": "Retour à l'Accueil",
+    "title": "Nos Services Premium",
+    "subtitle": "Découvrez le transport de luxe adapté à vos besoins",
+    "learnMore": "En Savoir Plus",
+    "bookThisService": "Réserver Ce Service",
+    "getQuote": "Obtenir un Devis",
+    "keyFeatures": "Caractéristiques Clés",
+    "additionalServicesTitle": "Services Supplémentaires",
+    "additionalServicesSubtitle": "Solutions de transport complètes pour chaque occasion",
+    "whyChooseTitle": "Pourquoi Choisir Nos Services",
+    "whyChooseSubtitle": "Découvrez la différence du transport premium",
+    "reliability": "Fiabilité",
+    "reliabilityDesc": "Service ponctuel et fiable sur lequel vous pouvez compter",
+    "excellence": "Excellence",
+    "excellenceDesc": "Qualité premium dans chaque aspect de notre service",
+    "experience": "Expérience",
+    "experienceDesc": "Des années d'expertise dans le transport de luxe",
+    "availability": "Disponibilité",
+    "availabilityDesc": "Service 24/7 pour s'adapter à votre emploi du temps",
+    "bookYourService": "Réservez Votre Service",
+    "contactForQuote": "Contacter pour un Devis",
+    "mainServices": {
+      "airportTransfers": {
+        "name": "Transferts Aéroport",
+        "description": "Transport aéroportuaire porte-à-porte sans faille avec surveillance des vols et service d'accueil.",
+        "duration": "1-2 heures",
+        "features": {
+          "flightTracking": "Suivi des vols en temps réel",
+          "meetGreet": "Service d'accueil",
+          "waitingTime": "Temps d'attente gratuit",
+          "terminalPickup": "Service de prise en charge au terminal",
+          "luggageAssistance": "Assistance bagages",
+          "availability": "Disponibilité 24/7"
+        }
+      },
+      "cityTours": {
+        "name": "Visites de la Ville",
+        "description": "Découvrez la beauté et la culture du Maroc avec nos services de visites urbaines personnalisées.",
+        "duration": "4-8 heures",
+        "features": {
+          "customItineraries": "Itinéraires personnalisés",
+          "multilingualGuides": "Guides multilingues",
+          "historicalInsights": "Perspectives historiques",
+          "photoStops": "Arrêts photo aux monuments",
+          "flexibleTiming": "Horaires flexibles",
+          "localRecommendations": "Recommandations locales"
+        }
+      },
+      "corporateTravel": {
+        "name": "Voyage d'Affaires",
+        "description": "Solutions de transport professionnel pour les dirigeants d'entreprise et les événements corporatifs.",
+        "duration": "Selon les besoins",
+        "features": {
+          "executiveService": "Service de niveau exécutif",
+          "flexibleScheduling": "Planification flexible",
+          "corporateBilling": "Options de facturation d'entreprise",
+          "multiplePickups": "Multiples lieux de prise en charge",
+          "privacyGuaranteed": "Confidentialité garantie",
+          "wifiCharging": "WiFi et stations de charge"
+        }
+      },
+      "weddingServices": {
+        "name": "Services de Mariage",
+        "description": "Rendez votre jour spécial parfait avec nos élégants forfaits de transport de mariage.",
+        "duration": "Journée complète",
+        "features": {
+          "bridalTransport": "Transport nuptial",
+          "guestShuttle": "Service de navette pour invités",
+          "decoratedVehicles": "Véhicules décorés",
+          "professionalCoordination": "Coordination professionnelle",
+          "flexiblePackages": "Forfaits flexibles",
+          "photographyAssistance": "Assistance photographique"
+        }
+      },
+      "vipTransport": {
+        "name": "Transport VIP",
+        "description": "Transport de luxe exclusif pour VIPs, célébrités et clients de haut profil.",
+        "duration": "Selon les exigences",
+        "features": {
+          "maximumPrivacy": "Confidentialité maximale",
+          "securityCoordination": "Coordination sécuritaire",
+          "routePlanning": "Planification stratégique d'itinéraires",
+          "personalConcierge": "Service de conciergerie personnel",
+          "luxuryAmenities": "Équipements de luxe",
+          "redCarpetService": "Service tapis rouge"
+        }
+      },
+      "longDistance": {
+        "name": "Voyage Longue Distance",
+        "description": "Transport confortable longue distance entre villes et destinations touristiques.",
+        "duration": "Plusieurs jours",
+        "features": {
+          "intercityTransport": "Transport intercités",
+          "comfortStops": "Arrêts de confort",
+          "scenicRoutes": "Routes panoramiques",
+          "multipleDays": "Voyages de plusieurs jours",
+          "hotelCoordination": "Coordination hôtelière",
+          "culturalInsights": "Perspectives culturelles"
+        }
+      }
+    },
+    "additionalServices": {
+      "personalShopping": {
+        "name": "Shopping Personnel",
+        "description": "Transport pour excursions shopping et courses personnelles."
+      },
+      "eventTransport": {
+        "name": "Transport d'Événements",
+        "description": "Transport spécialisé pour conférences, réunions et événements spéciaux."
+      },
+      "medicalAppointments": {
+        "name": "Rendez-vous Médicaux",
+        "description": "Transport fiable pour rendez-vous médicaux et visites hospitalières."
+      },
+      "culturalExcursions": {
+        "name": "Excursions Culturelles",
+        "description": "Visites guidées de sites historiques, musées et attractions culturelles."
+      },
+      "golfTransport": {
+        "name": "Transport Golf",
+        "description": "Transport vers terrains de golf avec gestion d'équipement."
+      },
+      "conciergeServices": {
+        "name": "Services de Conciergerie",
+        "description": "Services d'assistant personnel incluant réservations et planification."
+      }
+    }
+  },
   "booking": {
     "title": "Réservez Votre Transport de Luxe",
     "from": "De",

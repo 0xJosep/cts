@@ -1,8 +1,11 @@
 'use client'
 
 import Link from 'next/link'
-import { CalendarIcon, CheckCircleIcon, ClockIcon, MapPinIcon, SunIcon, MoonIcon } from '@heroicons/react/24/outline'
+import { Calendar, CheckCircle, Clock, MapPin, Sun, Moon, CreditCard, Info } from 'lucide-react'
 import { useTheme } from '../../providers/ThemeProvider'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
 
 export default function ConfirmationPage() {
   const { darkMode, toggleDarkMode } = useTheme()
@@ -27,28 +30,37 @@ export default function ConfirmationPage() {
 
       <div className="mx-auto max-w-2xl px-6 lg:px-8">
         <div className="flex justify-end mb-6">
-          <button
+          <Button
+            variant="ghost"
+            size="icon"
             onClick={toggleDarkMode}
             className="rounded-full p-2 text-foreground hover:bg-accent hover:text-accent-foreground transition-colors bg-card border border-border"
             aria-label="Toggle dark mode"
           >
             {darkMode ? (
-              <SunIcon className="h-5 w-5" />
+              <Sun className="h-5 w-5" />
             ) : (
-              <MoonIcon className="h-5 w-5" />
+              <Moon className="h-5 w-5" />
             )}
-          </button>
+          </Button>
         </div>
 
-        <div className="rounded-lg bg-card shadow overflow-hidden">
-          <div className="p-6 sm:p-10">
+        <Card className="shadow-lg">
+          <CardContent className="p-6 sm:p-10">
             <div className="text-center">
-              <CheckCircleIcon className="mx-auto h-16 w-16 text-green-500" />
+              <div className="flex justify-center mb-6">
+                <img
+                  alt="CTS Logo"
+                  src="/logo-cts-sharpened.png"
+                  className="h-12 w-auto"
+                />
+              </div>
+              <CheckCircle className="mx-auto h-16 w-16 text-green-500" />
               <h1 className="mt-4 text-3xl font-semibold tracking-tight text-foreground">
                 Booking Confirmed!
               </h1>
               <p className="mt-2 text-lg text-muted-foreground">
-                Thank you for choosing our luxury transportation service
+                Thank you for choosing CTS luxury transportation service
               </p>
             </div>
 
@@ -57,7 +69,7 @@ export default function ConfirmationPage() {
               <div className="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2">
                 <div className="flex items-start">
                   <div className="flex-shrink-0">
-                    <MapPinIcon className="h-6 w-6 text-primary" />
+                    <MapPin className="h-6 w-6 text-primary" />
                   </div>
                   <div className="ml-3">
                     <h3 className="text-sm font-medium text-foreground">Route</h3>
@@ -70,7 +82,7 @@ export default function ConfirmationPage() {
 
                 <div className="flex items-start">
                   <div className="flex-shrink-0">
-                    <CalendarIcon className="h-6 w-6 text-primary" />
+                    <Calendar className="h-6 w-6 text-primary" />
                   </div>
                   <div className="ml-3">
                     <h3 className="text-sm font-medium text-foreground">Date & Time</h3>
@@ -83,7 +95,7 @@ export default function ConfirmationPage() {
 
                 <div className="flex items-start">
                   <div className="flex-shrink-0">
-                    <ClockIcon className="h-6 w-6 text-primary" />
+                    <Clock className="h-6 w-6 text-primary" />
                   </div>
                   <div className="ml-3">
                     <h3 className="text-sm font-medium text-foreground">Service Details</h3>
@@ -96,9 +108,7 @@ export default function ConfirmationPage() {
 
                 <div className="flex items-start">
                   <div className="flex-shrink-0">
-                    <svg className="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-                    </svg>
+                    <CreditCard className="h-6 w-6 text-primary" />
                   </div>
                   <div className="ml-3">
                     <h3 className="text-sm font-medium text-foreground">Payment</h3>
@@ -115,9 +125,7 @@ export default function ConfirmationPage() {
               <div className="rounded-md bg-accent/50 p-4">
                 <div className="flex">
                   <div className="flex-shrink-0">
-                    <svg className="h-5 w-5 text-primary" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-                    </svg>
+                    <Info className="h-5 w-5 text-primary" />
                   </div>
                   <div className="ml-3">
                     <h3 className="text-sm font-medium text-foreground">Important Information</h3>
@@ -134,15 +142,14 @@ export default function ConfirmationPage() {
             </div>
 
             <div className="mt-8 flex justify-center">
-              <Link
-                href="/"
-                className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
-              >
-                Return to Home
-              </Link>
+              <Button asChild>
+                <Link href="/">
+                  Return to Home
+                </Link>
+              </Button>
             </div>
-          </div>
-        </div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   )
