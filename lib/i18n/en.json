@@ -11,17 +11,220 @@
   },
   "home": {
     "hero": {
-      "title": "Luxury Transport Services",
-      "subtitle": "Premium transportation across Morocco",
-      "cta": "Book Your Ride"
+      "title": "The Art of Exceptional Travel",
+      "subtitle": "For over 10 years, we've been the choice of executives, celebrities, and travelers who demand the finest. Our world-class chauffeurs and luxury fleet deliver more than transportation – we provide peace of mind, privacy, and prestige with every journey.",
+      "cta": "Book Your Ride",
+      "learnMore": "Learn more",
+      "discoverMorocco": "Discover Morocco in depth",
+      "readMore": "Read more"
     },
     "features": {
-      "title": "Why Choose Us",
-      "comfort": "Ultimate Comfort",
-      "luxury": "Luxury Experience",
-      "reliability": "Reliable Service",
-      "professional": "Professional Drivers"
-}
+      "title": "Unparalleled Luxury & Service",
+      "subtitle": "Experience the perfect blend of comfort, style, and exceptional service",
+      "expertChauffeurs": {
+        "title": "Expert Chauffeurs",
+        "description": "Our professional chauffeurs are extensively trained in luxury service, local knowledge, and discreet professionalism.",
+        "multilingual": "Multilingual expertise",
+        "discrete": "Discrete & professional"
+      },
+      "premiumFleet": {
+        "title": "Premium Fleet",
+        "description": "Travel in style with our meticulously maintained fleet of luxury vehicles, from executive sedans to spacious SUVs.",
+        "latestModels": "Latest model vehicles",
+        "amenities": "Complimentary amenities"
+      },
+      "seamlessExperience": {
+        "title": "Seamless Experience",
+        "description": "From booking to arrival, enjoy a flawless journey with our comprehensive concierge service and attention to detail.",
+        "support": "24/7 concierge support",
+        "tracking": "Real-time tracking"
+      }
+    },
+    "socialProof": {
+      "title": "Trusted by Travelers Worldwide",
+      "subtitle": "Join thousands of satisfied clients who have experienced our premium service",
+      "yearsExperience": "Years of Excellence",
+      "yearsDesc": "Delivering premium travel experiences since 2014",
+      "clients": "Happy Clients",
+      "clientsDesc": "From executives to celebrities worldwide",
+      "rating": "Average Rating",
+      "ratingDesc": "Based on verified customer reviews"
+    },
+    "testimonials": {
+      "sarah": {
+        "name": "Sarah Johnson",
+        "title": "CEO, TechCorp",
+        "quote": "The attention to detail and professionalism of their service is unmatched. Every journey feels like a VIP experience."
+      },
+      "michael": {
+        "name": "Michael Chen",
+        "title": "International Business Traveler",
+        "quote": "Their fleet is immaculate, and the drivers are incredibly knowledgeable. They've become my go-to service for all my business trips."
+      }
+    },
+    "trustedBy": {
+      "title": "Trusted by Prestigious Establishments",
+      "subtitle": "Trusted partner of the most prestigious luxury hotels and destinations"
+    },
+    "cta": {
+      "title": "Ready for Your Next Luxury Journey?",
+      "subtitle": "Discover the difference of traveling with the best. Book your premium experience today.",
+      "reserve": "Reserve Your Experience",
+      "discover": "Discover Our Fleet"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Everything you need to know about our luxury transportation services",
+      "vehicles": {
+        "question": "What types of vehicles do you offer?",
+        "answer": "Our premium fleet includes executive sedans, luxury SUVs, and spacious vans. All vehicles are latest models, meticulously maintained, and equipped with premium amenities for your comfort."
+      },
+      "booking": {
+        "question": "How far in advance should I book?",
+        "answer": "While we can accommodate last-minute requests, we recommend booking at least 24 hours in advance to ensure availability and allow time for any special arrangements."
+      },
+      "coverage": {
+        "question": "What areas do you cover?",
+        "answer": "We operate throughout Morocco, including Marrakech, Casablanca, Rabat, Fez, and all major tourist destinations. We also provide long-distance transfers between cities."
+      },
+      "payment": {
+        "question": "What payment methods do you accept?",
+        "answer": "We accept cash, credit cards, bank transfers, and corporate payments. Payment can be made in advance or upon arrival according to your preference."
+      },
+      "cancellation": {
+        "question": "What is your cancellation policy?",
+        "answer": "We offer free cancellation up to 6 hours before the scheduled pickup time. For last-minute cancellations, charges may apply."
+      }
+    }
+  },
+  "services": {
+    "backToHome": "Back to Home",
+    "title": "Our Premium Services",
+    "subtitle": "Experience luxury transportation tailored to your needs",
+    "learnMore": "Learn More",
+    "bookThisService": "Book This Service",
+    "getQuote": "Get Quote",
+    "keyFeatures": "Key Features",
+    "additionalServicesTitle": "Additional Services",
+    "additionalServicesSubtitle": "Comprehensive transportation solutions for every occasion",
+    "whyChooseTitle": "Why Choose Our Services",
+    "whyChooseSubtitle": "Experience the difference of premium transportation",
+    "reliability": "Reliability",
+    "reliabilityDesc": "Punctual, dependable service you can count on",
+    "excellence": "Excellence",
+    "excellenceDesc": "Premium quality in every aspect of our service",
+    "experience": "Experience",
+    "experienceDesc": "Years of expertise in luxury transportation",
+    "availability": "Availability",
+    "availabilityDesc": "24/7 service to meet your schedule",
+    "bookYourService": "Book Your Service",
+    "contactForQuote": "Contact for Quote",
+    "mainServices": {
+      "airportTransfers": {
+        "name": "Airport Transfers",
+        "description": "Seamless door-to-door airport transportation with flight monitoring and meet & greet service.",
+        "duration": "1-2 hours",
+        "features": {
+          "flightTracking": "Real-time flight tracking",
+          "meetGreet": "Meet & greet service",
+          "waitingTime": "Complimentary waiting time",
+          "terminalPickup": "Terminal pickup service",
+          "luggageAssistance": "Luggage assistance",
+          "availability": "24/7 availability"
+        }
+      },
+      "cityTours": {
+        "name": "City Tours",
+        "description": "Discover the beauty and culture of Morocco with our customized city tour services.",
+        "duration": "4-8 hours",
+        "features": {
+          "customItineraries": "Custom itineraries",
+          "multilingualGuides": "Multilingual guides",
+          "historicalInsights": "Historical insights",
+          "photoStops": "Photo stops at landmarks",
+          "flexibleTiming": "Flexible timing",
+          "localRecommendations": "Local recommendations"
+        }
+      },
+      "corporateTravel": {
+        "name": "Corporate Travel",
+        "description": "Professional transportation solutions for business executives and corporate events.",
+        "duration": "As needed",
+        "features": {
+          "executiveService": "Executive-level service",
+          "flexibleScheduling": "Flexible scheduling",
+          "corporateBilling": "Corporate billing options",
+          "multiplePickups": "Multiple pickup locations",
+          "privacyGuaranteed": "Privacy guaranteed",
+          "wifiCharging": "WiFi and charging stations"
+        }
+      },
+      "weddingServices": {
+        "name": "Wedding Services",
+        "description": "Make your special day perfect with our elegant wedding transportation packages.",
+        "duration": "Full day",
+        "features": {
+          "bridalTransport": "Bridal transportation",
+          "guestShuttle": "Guest shuttle service",
+          "decoratedVehicles": "Decorated vehicles",
+          "professionalCoordination": "Professional coordination",
+          "flexiblePackages": "Flexible packages",
+          "photographyAssistance": "Photography assistance"
+        }
+      },
+      "vipTransport": {
+        "name": "VIP Transport",
+        "description": "Exclusive luxury transportation for VIPs, celebrities, and high-profile clients.",
+        "duration": "As required",
+        "features": {
+          "maximumPrivacy": "Maximum privacy",
+          "securityCoordination": "Security coordination",
+          "routePlanning": "Strategic route planning",
+          "personalConcierge": "Personal concierge service",
+          "luxuryAmenities": "Luxury amenities",
+          "redCarpetService": "Red carpet service"
+        }
+      },
+      "longDistance": {
+        "name": "Long Distance Travel",
+        "description": "Comfortable long-distance transportation between cities and tourist destinations.",
+        "duration": "Multi-day",
+        "features": {
+          "intercityTransport": "Intercity transport",
+          "comfortStops": "Comfort stops",
+          "scenicRoutes": "Scenic routes",
+          "multipleDays": "Multiple day trips",
+          "hotelCoordination": "Hotel coordination",
+          "culturalInsights": "Cultural insights"
+        }
+      }
+    },
+    "additionalServices": {
+      "personalShopping": {
+        "name": "Personal Shopping",
+        "description": "Transportation for shopping excursions and personal errands."
+      },
+      "eventTransport": {
+        "name": "Event Transport",
+        "description": "Specialized transportation for conferences, meetings, and special events."
+      },
+      "medicalAppointments": {
+        "name": "Medical Appointments",
+        "description": "Reliable transportation for medical appointments and hospital visits."
+      },
+      "culturalExcursions": {
+        "name": "Cultural Excursions",
+        "description": "Guided tours to historical sites, museums, and cultural attractions."
+      },
+      "golfTransport": {
+        "name": "Golf Transport",
+        "description": "Transportation to golf courses with equipment handling."
+      },
+      "conciergeServices": {
+        "name": "Concierge Services",
+        "description": "Personal assistant services including reservations and planning."
+      }
+    }
   },
   "booking": {
     "title": "Book Your Luxury Transport",
@@ -34,6 +237,130 @@
   },
   "fleet": {
     "title": "Our Premium Fleet",
-    "viewDetails": "View Details"
+    "subtitle": "Experience Morocco in style with our meticulously maintained collection of luxury vehicles",
+    "backToHome": "Back to Home",
+    "selectVehicle": "Select a Vehicle",
+    "bookNow": "Book Now",
+    "capacity": "Capacity",
+    "passengers": "passengers",
+    "idealFor": "Ideal For",
+    "premiumFeatures": "Premium Features",
+    "bookThisVehicle": "Book this Vehicle",
+    "toggleDarkMode": "Toggle dark mode",
+    "vehicles": {
+      "executiveSedan": {
+        "name": "Executive Sedan",
+        "description": "Perfect for business travel and airport transfers, our executive sedans offer premium comfort for up to 3 passengers.",
+        "price": "From 850 MAD",
+        "passengers": "1-3",
+        "luggage": "3 medium suitcases",
+        "idealFor": {
+          "airportTransfers": "Airport transfers",
+          "businessTravel": "Business travel",
+          "cityTours": "City tours"
+        },
+        "features": {
+          "premiumLeatherSeats": "Premium leather seats",
+          "privacyGlass": "Privacy glass",
+          "climateControl": "Climate control",
+          "complimentaryRefreshments": "Complimentary water and refreshments",
+          "wifiAvailable": "WiFi available",
+          "professionalChauffeur": "Professional chauffeur"
+        }
+      },
+      "luxurySUV": {
+        "name": "Luxury SUV",
+        "description": "Combining style and space, our luxury SUVs provide ample room for up to 5 passengers with extra luggage capacity.",
+        "price": "From 1250 MAD",
+        "passengers": "1-5",
+        "luggage": "5 medium suitcases",
+        "idealFor": {
+          "familyTravel": "Family travel",
+          "executiveGroups": "Executive groups",
+          "extendedTours": "Extended tours"
+        },
+        "features": {
+          "premiumLeatherSeats": "Premium leather seats",
+          "privacyGlass": "Privacy glass",
+          "climateControl": "Climate control",
+          "complimentaryRefreshments": "Complimentary water and refreshments",
+          "wifiAvailable": "WiFi available",
+          "professionalChauffeur": "Professional chauffeur",
+          "additionalLegroom": "Additional legroom"
+        }
+      },
+      "premiumVan": {
+        "name": "Premium Van",
+        "description": "Ideal for group travel, our premium vans offer spacious comfort for up to 8 passengers with generous luggage space.",
+        "price": "From 1450 MAD",
+        "passengers": "1-8",
+        "luggage": "8 medium suitcases",
+        "idealFor": {
+          "groupTravel": "Group travel",
+          "corporateEvents": "Corporate events",
+          "multiDayExcursions": "Multi-day excursions"
+        },
+        "features": {
+          "premiumLeatherSeats": "Premium leather seats",
+          "privacyGlass": "Privacy glass",
+          "climateControl": "Climate control",
+          "complimentaryRefreshments": "Complimentary water and refreshments",
+          "wifiAvailable": "WiFi available",
+          "professionalChauffeur": "Professional chauffeur",
+          "individualSeating": "Individual seating",
+          "extraLargeLuggageCapacity": "Extra-large luggage capacity"
+        }
+      },
+      "stretchLimousine": {
+        "name": "Stretch Limousine",
+        "description": "Make a statement with our premium stretch limousines, perfect for VIP travel, special occasions, and high-profile events.",
+        "price": "From 2200 MAD",
+        "passengers": "1-6",
+        "luggage": "4 medium suitcases",
+        "idealFor": {
+          "vipTransport": "VIP transport",
+          "specialOccasions": "Special occasions",
+          "luxuryEvents": "Luxury events"
+        },
+        "features": {
+          "premiumLeatherSeating": "Premium leather seating",
+          "privacyPartition": "Privacy partition",
+          "advancedClimateControl": "Advanced climate control",
+          "premiumRefreshmentBar": "Premium refreshment bar",
+          "entertainmentSystem": "Entertainment system",
+          "professionalChauffeur": "Professional chauffeur",
+          "redCarpetService": "Red carpet service",
+          "champagneService": "Champagne service"
+        }
+      }
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Get in touch for bookings, quotes, or any questions about our services",
+    "name": "Full Name",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "message": "Message",
+    "send": "Send Message",
+    "success": "Message sent successfully!",
+    "info": {
+      "title": "Get in Touch",
+      "description": "Ready to experience luxury transportation? Contact us for bookings, custom quotes, or any questions about our premium services.",
+      "phone": "+212 XXX-XXXXXX",
+      "email": "info@cts-morocco.com",
+      "address": "Marrakech, Morocco"
+    }
+  },
+  "login": {
+    "title": "Welcome Back",
+    "subtitle": "Sign in to your account",
+    "email": "Email",
+    "password": "Password",
+    "rememberMe": "Remember me",
+    "forgotPassword": "Forgot password?",
+    "signIn": "Sign In",
+    "noAccount": "Don't have an account?",
+    "signUp": "Sign up"
   }
 }

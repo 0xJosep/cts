@@ -3,8 +3,9 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import en from './en.json';
 import es from './es.json';
+import fr from './fr.json';
 
-type Locale = 'en' | 'es';
+type Locale = 'en' | 'es' | 'fr';
 type Translations = typeof en;
 
 interface TranslationContextType {
@@ -16,7 +17,8 @@ interface TranslationContextType {
 
 const translations = {
   en,
-  es
+  es,
+  fr
 };
 
 const TranslationContext = createContext<TranslationContextType | undefined>(undefined);
@@ -31,10 +33,12 @@ export const TranslationProvider: React.FC<{
     const savedLocale = localStorage.getItem('locale') as Locale | null;
     const browserLocale = navigator.language.split('-')[0] as Locale;
     
-    if (savedLocale && (savedLocale === 'en' || savedLocale === 'es')) {
+    if (savedLocale && (savedLocale === 'en' || savedLocale === 'es' || savedLocale === 'fr')) {
       setLocale(savedLocale);
     } else if (browserLocale === 'es') {
       setLocale('es');
+    } else if (browserLocale === 'fr') {
+      setLocale('fr');
     }
     
     // Update html lang attribute
