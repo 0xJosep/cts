@@ -1,14 +1,18 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, lazy, Suspense, useMemo, useCallback } from 'react'
 import { Sheet, SheetContent } from '@/components/ui/sheet'
 import { Menu, X, Sun, Moon, ChevronDown, Check } from 'lucide-react'
 import { useTheme } from './providers/ThemeProvider'
 import { useTranslation } from '@/lib/i18n/TranslationContext'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import { Button } from '@/components/ui/button'
-import { Marquee } from '@/components/ui/marquee'
 import LanguageSwitcher from './components/LanguageSwitcher'
+
+// Lazy load heavy components
+const Marquee = lazy(() => import('@/components/ui/marquee').then(module => ({ default: module.Marquee })))
+const WorldMap = lazy(() => import('@/src/components/ui/world-map'))
+const AnimatedTestimonials = lazy(() => import('@/src/components/ui/animated-testimonials').then(module => ({ default: module.AnimatedTestimonials })))
 
 const languages = [
   { code: 'en', name: 'English', flag: '🇬🇧' },
@@ -16,13 +20,14 @@ const languages = [
   { code: 'fr', name: 'Français', flag: '🇫🇷' },
 ]
 
-const getNavigation = (t: (key: string) => string) => [
+// Memoize navigation to prevent recreation on every render
+const useNavigation = (t: (key: string) => string) => useMemo(() => [
   { name: t('common.home'), href: '/' },
   { name: t('common.fleet'), href: '/fleet' },
   { name: t('common.services'), href: '/services' },
   { name: t('common.about'), href: '#' },
   { name: t('common.contact'), href: '/contact' },
-]
+], [t])
 
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -31,6 +36,88 @@ export default function Example() {
   const { locale, setLocale, t } = useTranslation()
   const [currentLanguage, setCurrentLanguage] = useState(languages.find(lang => lang.code === locale) || languages[0])
   const [languageMenuOpen, setLanguageMenuOpen] = useState(false)
+  
+  const navigation = useNavigation(t)
+  
+  // Memoize WorldMap props to prevent recreation
+  const worldMapDots = useMemo(() => [
+    {
+      start: { lat: 30.7128, lng: -74.0060, label: "New York" },
+      end: { lat: 12.0, lng: -9.0, label: "Morocco" },
+    },
+    {
+      start: { lat: 51.5074, lng: -6.0, label: "London" },
+      end: { lat: 12.0, lng: -9.0, label: "Morocco" },
+    },
+    {
+      start: { lat: 30.0, lng: -4.0, label: "Paris" },
+      end: { lat: 12.0, lng: -9.0, label: "Morocco" },
+    },
+    {
+      start: { lat: 35.6762, lng: 139.6503, label: "Tokyo" },
+      end: { lat: 12.0, lng: -9.0, label: "Morocco" },
+    },
+    {
+      start: { lat: 8.0, lng: 50.0, label: "Dubai" },
+      end: { lat: 12.0, lng: -9.0, label: "Morocco" },
+    },
+    {
+      start: { lat: -40.0, lng: 140.2093, label: "Sydney" },
+      end: { lat: 12.0, lng: -9.0, label: "Morocco" },
+    },
+    {
+      start: { lat: -50.0, lng: 25.0, label: "Johannesburg" },
+      end: { lat: 12.0, lng: -9.0, label: "Morocco" },
+    },
+    {
+      start: { lat: 50.0, lng: 40.0, label: "Moscow" },
+      end: { lat: 12.0, lng: -9.0, label: "Morocco" },
+    },
+    {
+      start: { lat: -30.0, lng: -50.0, label: "South America" },
+      end: { lat: 12.0, lng: -9.0, label: "Morocco" },
+    },
+  ], [])
+
+  // Memoize testimonials data
+  const testimonialsData = useMemo(() => [
+    {
+      quote: t('home.testimonials.sarah.quote'),
+      name: t('home.testimonials.sarah.name'),
+      designation: t('home.testimonials.sarah.title'),
+      src: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+    },
+    {
+      quote: t('home.testimonials.michael.quote'),
+      name: t('home.testimonials.michael.name'),
+      designation: t('home.testimonials.michael.title'),
+      src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+    },
+    {
+      quote: t('home.testimonials.elena.quote'),
+      name: t('home.testimonials.elena.name'),
+      designation: t('home.testimonials.elena.title'),
+      src: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+    },
+    {
+      quote: t('home.testimonials.david.quote'),
+      name: t('home.testimonials.david.name'),
+      designation: t('home.testimonials.david.title'),
+      src: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+    },
+    {
+      quote: t('home.testimonials.yuki.quote'),
+      name: t('home.testimonials.yuki.name'),
+      designation: t('home.testimonials.yuki.title'),
+      src: "https://images.unsplash.com/photo-1507591064344-4c6ce005b128?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+    },
+    {
+      quote: t('home.testimonials.alexandra.quote'),
+      name: t('home.testimonials.alexandra.name'),
+      designation: t('home.testimonials.alexandra.title'),
+      src: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+    },
+  ], [t])
 
   // Update currentLanguage when locale changes
   useEffect(() => {
@@ -52,7 +139,7 @@ export default function Example() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [scrolled])
 
-  const selectLanguage = (language: {code: string, name: string, flag: string}) => {
+  const selectLanguage = useCallback((language: {code: string, name: string, flag: string}) => {
     setCurrentLanguage(language)
     if (language.code === 'en' || language.code === 'es' || language.code === 'fr') {
       setLocale(language.code as 'en' | 'es' | 'fr')
@@ -61,7 +148,7 @@ export default function Example() {
       setLocale('en')
     }
     setLanguageMenuOpen(false)
-  }
+  }, [setLocale])
 
   return (
     <div className="relative min-h-screen bg-background">
@@ -108,7 +195,7 @@ export default function Example() {
           
           {/* Desktop navigation */}
           <div className="hidden lg:flex lg:gap-x-8">
-            {getNavigation(t).map((item) => (
+            {navigation.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
@@ -213,7 +300,7 @@ export default function Example() {
             <div className="mt-6 flow-root">
               <div className="-my-6 divide-y divide-border">
                 <div className="space-y-2 py-6">
-                  {getNavigation(t).map((item) => (
+                  {navigation.map((item) => (
                     <a
                       key={item.name}
                       href={item.href}
@@ -459,39 +546,48 @@ export default function Example() {
             </div>
           </div>
 
-          {/* Testimonials */}
-          <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-2">
-            <div className="flex flex-col rounded-2xl bg-card p-8 shadow-sm ring-1 ring-border">
-              <div className="flex items-center gap-x-4">
-                <img
-                  className="h-10 w-10 rounded-full bg-muted"
-                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                  alt=""
-                />
-                <div>
-                  <div className="font-semibold text-foreground">{t('home.testimonials.sarah.name')}</div>
-                  <div className="text-sm text-muted-foreground">{t('home.testimonials.sarah.title')}</div>
-                </div>
+          {/* Animated Testimonials */}
+          <div className="mt-16">
+            <Suspense fallback={
+              <div className="animate-pulse bg-muted rounded-lg h-96 mx-auto max-w-4xl flex items-center justify-center">
+                <div className="text-muted-foreground">Loading testimonials...</div>
               </div>
-              <p className="mt-4 text-muted-foreground">
-                "{t('home.testimonials.sarah.quote')}"
-              </p>
-            </div>
-            <div className="flex flex-col rounded-2xl bg-card p-8 shadow-sm ring-1 ring-border">
-              <div className="flex items-center gap-x-4">
-                <img
-                  className="h-10 w-10 rounded-full bg-muted"
-                  src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                  alt=""
-                />
-                <div>
-                  <div className="font-semibold text-foreground">{t('home.testimonials.michael.name')}</div>
-                  <div className="text-sm text-muted-foreground">{t('home.testimonials.michael.title')}</div>
+            }>
+              <AnimatedTestimonials testimonials={testimonialsData} autoplay={true} />
+            </Suspense>
+          </div>
+        </div>
+      </div>
+
+      {/* Global Trust Section - NEW */}
+      <div className="relative py-24 bg-gradient-to-br from-background via-background/50 to-background">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl relative inline-block">
+              {t('home.globalTrust.title')}
+              <span className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 h-0.5 w-16 gold-gradient"></span>
+            </h2>
+            <p className="mt-6 text-lg text-muted-foreground">
+              {t('home.globalTrust.subtitle')}
+            </p>
+          </div>
+          
+          <div className="mx-auto mt-16 max-w-6xl">
+            <div className="relative h-[200px] sm:h-[300px] md:h-[400px] lg:h-auto">
+              <Suspense fallback={
+                <div className="w-full h-full flex items-center justify-center">
+                  <div className="animate-pulse bg-muted rounded-lg w-full h-full flex items-center justify-center">
+                    <div className="text-muted-foreground">Loading map...</div>
+                  </div>
                 </div>
-              </div>
-              <p className="mt-4 text-muted-foreground">
-                "{t('home.testimonials.michael.quote')}"
-              </p>
+              }>
+                <WorldMap
+                  dots={worldMapDots}
+                  lineColor="#D4AF37"
+                  dotColor="#D4AF37"
+                  darkMode={darkMode}
+                />
+              </Suspense>
             </div>
           </div>
         </div>
@@ -507,14 +603,20 @@ export default function Example() {
             </p>
           </div>
           <div className="relative mt-6">
-            <Marquee speed="normal" gap="6rem" className="mx-auto max-w-5xl">
-              <div className="flex items-center gap-24">
+            <Suspense fallback={
+              <div className="animate-pulse bg-muted rounded-lg h-16 mx-auto max-w-5xl flex items-center justify-center">
+                <div className="text-muted-foreground">Loading partners...</div>
+              </div>
+            }>
+              <Marquee speed="normal" gap="6rem" className="mx-auto max-w-5xl">
+                <div className="flex items-center gap-24">
                 <img
                   className="h-12 w-auto object-contain grayscale opacity-90 hover:opacity-100 transition-all duration-300 dark:brightness-200 invert dark:invert-0 hover:[filter:brightness(0)_contrast(200%)_sepia(100%)_saturate(1000%)_hue-rotate(0deg)_brightness(100%)] clickable"
                   src="https://mamounia.com/bundles/apiciuswebsite/images/logo-white.svg"
                   alt="La Mamounia Marrakech"
                   width={200}
                   height={60}
+                  loading="lazy"
                 />
                 <img
                   className="h-12 w-auto object-contain grayscale opacity-90 hover:opacity-100 transition-all duration-300 dark:brightness-200 invert dark:invert-0 hover:[filter:brightness(0)_contrast(200%)_sepia(100%)_saturate(1000%)_hue-rotate(0deg)_brightness(100%)] clickable"
@@ -522,6 +624,7 @@ export default function Example() {
                   alt="Mövenpick Marrakech"
                   width={158}
                   height={48}
+                  loading="lazy"
                 />
                 <img
                   className="h-16 w-auto object-contain grayscale opacity-90 hover:opacity-100 transition-all duration-300 dark:brightness-200 invert dark:invert-0 hover:[filter:brightness(0)_contrast(200%)_sepia(100%)_saturate(1000%)_hue-rotate(0deg)_brightness(100%)] clickable"
@@ -529,6 +632,7 @@ export default function Example() {
                   alt="Es Saadi Marrakech"
                   width={200}
                   height={64}
+                  loading="lazy"
                 />
                 <img
                   className="h-12 w-auto object-contain grayscale opacity-90 hover:opacity-100 transition-all duration-300 max-w-[100px] dark:brightness-200 dark:invert-0 [filter:brightness(0)_contrast(200%)] hover:[filter:brightness(0)_contrast(200%)_sepia(100%)_saturate(1000%)_hue-rotate(0deg)_brightness(100%)] clickable"
@@ -536,6 +640,7 @@ export default function Example() {
                   alt="Sofitel"
                   width={100}
                   height={48}
+                  loading="lazy"
                 />
                 <img
                   className="h-12 w-auto object-contain grayscale opacity-90 hover:opacity-100 transition-all duration-300 dark:brightness-200 invert dark:invert-0 hover:[filter:brightness(0)_contrast(200%)_sepia(100%)_saturate(1000%)_hue-rotate(0deg)_brightness(100%)] clickable"
@@ -543,6 +648,7 @@ export default function Example() {
                   alt="Agafay Desert Luxury Camp"
                   width={158}
                   height={48}
+                  loading="lazy"
                 />
                 <img
                   className="h-12 w-auto object-contain grayscale opacity-90 hover:opacity-100 transition-all duration-300 dark:brightness-200 invert dark:invert-0 hover:[filter:brightness(0)_contrast(200%)_sepia(100%)_saturate(1000%)_hue-rotate(0deg)_brightness(100%)] clickable"
@@ -550,9 +656,11 @@ export default function Example() {
                   alt="Kenzi Menara Palace"
                   width={158}
                   height={48}
+                  loading="lazy"
                 />
               </div>
-            </Marquee>
+              </Marquee>
+            </Suspense>
           </div>
         </div>
       </div>
@@ -699,6 +807,164 @@ export default function Example() {
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
+          </div>
+        </div>
+      </div>
+
+      {/* About Our Team Section - NEW */}
+      <div className="relative py-24 bg-background/50">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl relative inline-block">
+              {t('home.team.title')}
+              <span className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 h-0.5 w-16 gold-gradient"></span>
+            </h2>
+            <p className="mt-6 text-lg text-muted-foreground">
+              {t('home.team.subtitle')}
+            </p>
+          </div>
+          
+          <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+            <div className="flex flex-col items-center text-center">
+              <div className="relative">
+                <img
+                  className="h-32 w-32 rounded-full object-cover shadow-lg ring-4 ring-gold/20"
+                  src="/WhatsApp Image 2025-06-21 at 23.39.18 (1).jpeg"
+                  alt="Professional chauffeur"
+                  loading="lazy"
+                  width="128"
+                  height="128"
+                />
+                <div className="absolute -bottom-2 -right-2 h-8 w-8 rounded-full bg-primary flex items-center justify-center">
+                  <svg className="h-4 w-4 text-primary-foreground" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
+                  </svg>
+                </div>
+              </div>
+              <h3 className="mt-6 text-lg font-semibold text-foreground">{t('home.team.professional.title')}</h3>
+              <p className="mt-2 text-sm text-muted-foreground">{t('home.team.professional.description')}</p>
+            </div>
+            
+            <div className="flex flex-col items-center text-center">
+              <div className="relative">
+                <img
+                  className="h-32 w-32 rounded-full object-cover shadow-lg ring-4 ring-gold/20"
+                  src="/WhatsApp Image 2025-06-22 at 00.48.58.jpeg"
+                  alt="Customer service team"
+                  loading="lazy"
+                  width="128"
+                  height="128"
+                />
+                <div className="absolute -bottom-2 -right-2 h-8 w-8 rounded-full bg-primary flex items-center justify-center">
+                  <svg className="h-4 w-4 text-primary-foreground" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M2 10a8 8 0 1116 0 8 8 0 01-16 0zm6.39-2.908a.75.75 0 01.766.027l3.5 2.25a.75.75 0 010 1.262l-3.5 2.25A.75.75 0 018 12.25v-4.5a.75.75 0 01.39-.658z" clipRule="evenodd" />
+                  </svg>
+                </div>
+              </div>
+              <h3 className="mt-6 text-lg font-semibold text-foreground">{t('home.team.service.title')}</h3>
+              <p className="mt-2 text-sm text-muted-foreground">{t('home.team.service.description')}</p>
+            </div>
+            
+            <div className="flex flex-col items-center text-center">
+              <div className="relative">
+                <img
+                  className="h-32 w-32 rounded-full object-cover shadow-lg ring-4 ring-gold/20"
+                  src="/WhatsApp Image 2025-06-22 at 06.37.17.jpeg"
+                  alt="Management team"
+                  loading="lazy"
+                  width="128"
+                  height="128"
+                />
+                <div className="absolute -bottom-2 -right-2 h-8 w-8 rounded-full bg-primary flex items-center justify-center">
+                  <svg className="h-4 w-4 text-primary-foreground" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M15.988 3.012A2.25 2.25 0 0118 5.25v6.5A2.25 2.25 0 0115.75 14H13.5v1.25a2.25 2.25 0 01-2.25 2.25h-6.5A2.25 2.25 0 012.5 15.25v-6.5A2.25 2.25 0 014.75 6.5H7V5.25A2.25 2.25 0 019.25 3h6.738zm-13 1.5A.75.75 0 003 5.25v6.5c0 .414.336.75.75.75h6.5a.75.75 0 00.75-.75v-6.5A.75.75 0 0010.25 4.5H9.25A2.25 2.25 0 007 6.75V8.5h1.25a.75.75 0 010 1.5H7v1.25c0 .414.336.75.75.75h2.5v-1.25a.75.75 0 011.5 0V12.5h2.25a.75.75 0 00.75-.75V5.25a.75.75 0 00-.75-.75h-6.5z" clipRule="evenodd" />
+                  </svg>
+                </div>
+              </div>
+              <h3 className="mt-6 text-lg font-semibold text-foreground">{t('home.team.management.title')}</h3>
+              <p className="mt-2 text-sm text-muted-foreground">{t('home.team.management.description')}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Behind the Scenes Section - NEW */}
+      <div className="relative py-24">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl relative inline-block">
+              {t('home.behindScenes.title')}
+              <span className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 h-0.5 w-16 gold-gradient"></span>
+            </h2>
+            <p className="mt-6 text-lg text-muted-foreground">
+              {t('home.behindScenes.subtitle')}
+            </p>
+          </div>
+          
+          <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+            <div className="relative overflow-hidden rounded-2xl shadow-lg group">
+              <img
+                className="h-64 w-full object-cover group-hover:scale-105 transition-transform duration-300"
+                src="/WhatsApp Image 2025-06-22 at 06.37.17 (1).jpeg"
+                alt="Professional service in action"
+                loading="lazy"
+                width="400"
+                height="256"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              <div className="absolute bottom-6 left-6 text-white">
+                <h3 className="text-xl font-semibold">{t('home.behindScenes.service.title')}</h3>
+                <p className="mt-2 text-sm opacity-90">{t('home.behindScenes.service.description')}</p>
+              </div>
+            </div>
+            
+            <div className="relative overflow-hidden rounded-2xl shadow-lg group">
+              <img
+                className="h-64 w-full object-cover group-hover:scale-105 transition-transform duration-300"
+                src="/WhatsApp Image 2025-06-22 at 06.37.17 (2).jpeg"
+                alt="Team preparation"
+                loading="lazy"
+                width="400"
+                height="256"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              <div className="absolute bottom-6 left-6 text-white">
+                <h3 className="text-xl font-semibold">{t('home.behindScenes.preparation.title')}</h3>
+                <p className="mt-2 text-sm opacity-90">{t('home.behindScenes.preparation.description')}</p>
+              </div>
+            </div>
+            
+            <div className="relative overflow-hidden rounded-2xl shadow-lg group">
+              <img
+                className="h-64 w-full object-cover group-hover:scale-105 transition-transform duration-300"
+                src="/WhatsApp Image 2025-06-22 at 06.37.18.jpeg"
+                alt="Quality assurance"
+                loading="lazy"
+                width="400"
+                height="256"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              <div className="absolute bottom-6 left-6 text-white">
+                <h3 className="text-xl font-semibold">{t('home.behindScenes.quality.title')}</h3>
+                <p className="mt-2 text-sm opacity-90">{t('home.behindScenes.quality.description')}</p>
+              </div>
+            </div>
+            
+            <div className="relative overflow-hidden rounded-2xl shadow-lg group">
+              <img
+                className="h-64 w-full object-cover group-hover:scale-105 transition-transform duration-300"
+                src="/WhatsApp Image 2025-06-22 at 06.37.18 (1).jpeg"
+                alt="Customer experience"
+                loading="lazy"
+                width="400"
+                height="256"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              <div className="absolute bottom-6 left-6 text-white">
+                <h3 className="text-xl font-semibold">{t('home.behindScenes.experience.title')}</h3>
+                <p className="mt-2 text-sm opacity-90">{t('home.behindScenes.experience.description')}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
