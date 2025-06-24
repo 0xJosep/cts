@@ -223,6 +223,14 @@
       "cancellation": {
         "question": "¿Cuál es su política de cancelación?",
         "answer": "Ofrecemos cancelación gratuita hasta 6 horas antes de la hora programada de recogida. Para cancelaciones de último minuto, pueden aplicar cargos."
+      },
+      "airportTransfers": {
+        "question": "¿Proporcionan transferencias al aeropuerto?",
+        "answer": "Sí, nos especializamos en transferencias al aeropuerto con seguimiento de vuelos y servicios de recepción. Nuestros choferes monitorean el estado de los vuelos para asegurar recogida puntual, sin importar los retrasos."
+      },
+      "languages": {
+        "question": "¿Qué idiomas hablan sus choferes?",
+        "answer": "Nuestros choferes son fluidos en múltiples idiomas incluyendo inglés, francés, árabe y español. Aseguramos compatibilidad de idiomas para todas las necesidades de nuestros clientes."
       }
     }
   },
@@ -362,5 +370,28 @@
     "signIn": "Iniciar Sesión",
     "noAccount": "¿No tiene una cuenta?",
     "signUp": "Registrarse"
+  },
+  "footer": {
+    "services": {
+      "title": "Servicios",
+      "airport": "Transferencias Aeroportuarias",
+      "tours": "Tours Urbanos",
+      "corporate": "Viajes Corporativos",
+      "wedding": "Servicios de Bodas"
+    },
+    "company": {
+      "title": "Empresa",
+      "about": "Acerca de Nosotros",
+      "fleet": "Nuestra Flota",
+      "contact": "Contacto",
+      "careers": "Carreras"
+    },
+    "contact": {
+      "title": "Información de Contacto",
+      "location": "Marrakech, Marruecos",
+      "phone": "+212 XXX-XXXXXX",
+      "email": "info@cts-morocco.com"
+    },
+    "copyright": "Todos los derechos reservados."
   }
 }

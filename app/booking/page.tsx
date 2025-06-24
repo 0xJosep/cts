@@ -14,6 +14,8 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
+import { PhoneInput } from '@/components/ui/phone-input'
+import { AddressAutocomplete } from '@/components/ui/address-autocomplete'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 export default function BookingPage() {
@@ -46,10 +48,12 @@ export default function BookingPage() {
     date: '',
     time: '',
     passengers: '1',
-    service: 'sedan',
+    service: 'airport-transfers',
+    vehicle: 'mercedes-class-e',
     name: '',
     email: '',
     phone: '',
+    countryCode: '+1',
     specialRequests: ''
   })
 
@@ -70,10 +74,34 @@ export default function BookingPage() {
     // Reset errors visibility when changing steps
     if (step === 1) {
       setValidationState(prev => ({ ...prev, showRouteErrors: false }));
+      // Clear route-related error messages
+      setErrorMessages(prev => ({ 
+        ...prev, 
+        pickupLocation: '',
+        dropoffLocation: ''
+      }));
     } else if (step === 2) {
       setValidationState(prev => ({ ...prev, showScheduleErrors: false }));
+      // Clear schedule-related error messages
+      setErrorMessages(prev => ({ ...prev, date: '' }));
     } else if (step === 3) {
       setValidationState(prev => ({ ...prev, showDetailsErrors: false }));
+      setErrorMessages(prev => ({ 
+        ...prev, 
+        name: '',
+        email: '',
+        phone: ''
+      }));
+      // Ensure state is properly reset with a timeout
+      setTimeout(() => {
+        setValidationState(prev => ({ ...prev, showDetailsErrors: false }));
+        setErrorMessages(prev => ({ 
+          ...prev, 
+          name: '',
+          email: '',
+          phone: ''
+        }));
+      }, 0);
     }
   }, [step]);
 
@@ -95,7 +123,14 @@ export default function BookingPage() {
   const nextStep = () => {
     // Validate step 1 fields (route information)
     if (step === 1) {
-      const newErrors = { ...errorMessages }
+      const newErrors = {
+        pickupLocation: '',
+        dropoffLocation: '',
+        date: errorMessages.date,
+        name: errorMessages.name,
+        email: errorMessages.email,
+        phone: errorMessages.phone
+      }
       let hasErrors = false
       
       if (!formData.pickupLocation) {
@@ -138,7 +173,14 @@ export default function BookingPage() {
     e.preventDefault()
     
     // Validate required fields for step 3
-    const newErrors = { ...errorMessages }
+    const newErrors = {
+      pickupLocation: errorMessages.pickupLocation,
+      dropoffLocation: errorMessages.dropoffLocation,
+      date: errorMessages.date,
+      name: '',
+      email: '',
+      phone: ''
+    }
     let hasErrors = false
     
     if (!formData.name) {
@@ -159,11 +201,10 @@ export default function BookingPage() {
       hasErrors = true
     }
     
-    // Show validation errors only after submit attempt
-    setValidationState(prev => ({ ...prev, showDetailsErrors: true }))
-    setErrorMessages(newErrors)
-    
+    // Only show validation errors if there are actual errors
     if (hasErrors) {
+      setValidationState(prev => ({ ...prev, showDetailsErrors: true }))
+      setErrorMessages(newErrors)
       return
     }
     
@@ -182,8 +223,136 @@ export default function BookingPage() {
     router.push('/booking/confirmation')
   }
 
+  // Services data from services page
+  const services = [
+    {
+      id: 'airport-transfers',
+      name: 'Airport Transfers',
+      description: 'Professional airport pickup and drop-off services with flight tracking and meet & greet.',
+      price: 'From 850 MAD'
+    },
+    {
+      id: 'city-tours',
+      name: 'City Tours',
+      description: 'Guided city tours with multilingual drivers and customizable itineraries.',
+      price: 'From 1200 MAD'
+    },
+    {
+      id: 'corporate-travel',
+      name: 'Corporate Travel',
+      description: 'Executive transportation for business meetings and corporate events.',
+      price: 'From 950 MAD'
+    },
+    {
+      id: 'wedding-services',
+      name: 'Wedding Services',
+      description: 'Elegant transportation for weddings with decorated vehicles and professional coordination.',
+      price: 'From 1800 MAD'
+    },
+    {
+      id: 'vip-transport',
+      name: 'VIP Transport',
+      description: 'Premium VIP service with maximum privacy and luxury amenities.',
+      price: 'From 2500 MAD'
+    },
+    {
+      id: 'long-distance',
+      name: 'Long Distance',
+      description: 'Intercity transportation with comfort stops and scenic route options.',
+      price: 'From 2000 MAD'
+    }
+  ]
+
+  // Vehicles data from fleet page
+  const vehicles = [
+    {
+      id: 'range-rover-vogue',
+      name: 'Range Rover Vogue',
+      description: 'The epitome of luxury and performance for executive travel.',
+      price: 'From 1850 MAD',
+      passengers: '1-4',
+      image: 'https://images.unsplash.com/photo-1566473965997-3de9c817e938?q=80&w=400&auto=format&fit=crop'
+    },
+    {
+      id: 'mercedes-class-e',
+      name: 'Mercedes Class E',
+      description: 'Sophisticated elegance meets cutting-edge technology.',
+      price: 'From 1200 MAD',
+      passengers: '1-3',
+      image: 'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=400&auto=format&fit=crop'
+    },
+    {
+      id: 'mercedes-class-s',
+      name: 'Mercedes Class S',
+      description: 'The pinnacle of luxury sedans for discerning travelers.',
+      price: 'From 1650 MAD',
+      passengers: '1-3',
+      image: 'https://images.unsplash.com/photo-1563720223185-11003d516935?q=80&w=400&auto=format&fit=crop'
+    },
+    {
+      id: 'mercedes-v-vito',
+      name: 'Mercedes Class V Vito',
+      description: 'Spacious van perfect for small group transportation.',
+      price: 'From 1100 MAD',
+      passengers: '1-6',
+      image: 'https://images.unsplash.com/photo-1544967919-b4ba4ac5700c?q=80&w=400&auto=format&fit=crop'
+    },
+    {
+      id: 'mercedes-v-viano',
+      name: 'Mercedes Class V Viano',
+      description: 'Premium MPV offering luxurious group travel.',
+      price: 'From 1300 MAD',
+      passengers: '1-7',
+      image: 'https://images.unsplash.com/photo-1622559924472-2c2adb3f3abd?q=80&w=400&auto=format&fit=crop'
+    },
+    {
+      id: 'mercedes-sprinter',
+      name: 'Mercedes Sprinter',
+      description: 'Spacious minibus ideal for larger groups.',
+      price: 'From 1800 MAD',
+      passengers: '1-17',
+      image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=400&auto=format&fit=crop'
+    },
+    {
+      id: 'audi-a6',
+      name: 'Audi A6',
+      description: 'German engineering excellence with sophisticated design.',
+      price: 'From 1150 MAD',
+      passengers: '1-3',
+      image: 'https://images.unsplash.com/photo-1610882800473-aaa2b25e8488?q=80&w=400&auto=format&fit=crop'
+    },
+    {
+      id: 'toyota-land-cruiser',
+      name: 'Toyota Land Cruiser',
+      description: 'Robust luxury SUV perfect for city and adventure travel.',
+      price: 'From 1400 MAD',
+      passengers: '1-7',
+      image: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=400&auto=format&fit=crop'
+    },
+    {
+      id: 'kia-sorento',
+      name: 'Kia Sorento',
+      description: 'Modern and reliable SUV offering comfortable travel.',
+      price: 'From 950 MAD',
+      passengers: '1-5',
+      image: 'https://images.unsplash.com/photo-1606016159991-3e6d972b4d1d?q=80&w=400&auto=format&fit=crop'
+    },
+    {
+      id: 'bus-king-long',
+      name: 'Bus King Long',
+      description: 'Large capacity luxury coach for group tours.',
+      price: 'From 2800 MAD',
+      passengers: '1-48',
+      image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=400&auto=format&fit=crop'
+    }
+  ]
+
   const selectService = (service: string) => {
     setFormData(prev => ({ ...prev, service }))
+  }
+
+  const selectVehicle = (vehicle: string) => {
+    setFormData(prev => ({ ...prev, vehicle }))
   }
 
   const handleGetCurrentLocation = () => {
@@ -200,10 +369,14 @@ export default function BookingPage() {
         try {
           const { latitude, longitude } = position.coords
           
-          // Use reverse geocoding to get address from coordinates
+          // Use OpenStreetMap Nominatim reverse geocoding to get address from coordinates
           const response = await fetch(
-            `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&addressdetails=1`,
-            { headers: { 'Accept-Language': 'en' } }
+            `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&addressdetails=1&accept-language=en`,
+            { 
+              headers: { 
+                'User-Agent': 'CTSTransport/1.0 (contact@ctstransport.com)'
+              } 
+            }
           )
           
           if (response.ok) {
@@ -211,22 +384,45 @@ export default function BookingPage() {
             const address = data.display_name
             
             setFormData(prev => ({ ...prev, pickupLocation: address }))
+            // Clear any existing error
+            setErrorMessages(prev => ({ ...prev, pickupLocation: '' }))
           } else {
-            throw new Error('Failed to get address')
+            throw new Error('Failed to get address from coordinates')
           }
         } catch (error) {
           console.error('Error getting address:', error)
-          alert('Unable to retrieve your location address. Please enter it manually.')
+          // Fallback to showing coordinates
+          const { latitude, longitude } = position.coords
+          const fallbackLocation = `Current Location (${latitude.toFixed(6)}, ${longitude.toFixed(6)})`
+          setFormData(prev => ({ ...prev, pickupLocation: fallbackLocation }))
+          setErrorMessages(prev => ({ ...prev, pickupLocation: '' }))
         } finally {
           setIsLoadingLocation(false)
         }
       },
       (error) => {
         console.error('Geolocation error:', error)
-        alert(`Error getting your location: ${error.message}`)
+        let errorMessage = 'Unable to get your location'
+        
+        switch (error.code) {
+          case error.PERMISSION_DENIED:
+            errorMessage = 'Location access denied. Please enable location permissions and try again.'
+            break
+          case error.POSITION_UNAVAILABLE:
+            errorMessage = 'Location information unavailable. Please enter your location manually.'
+            break
+          case error.TIMEOUT:
+            errorMessage = 'Location request timed out. Please try again or enter your location manually.'
+            break
+          default:
+            errorMessage = `Error getting your location: ${error.message}`
+            break
+        }
+        
+        alert(errorMessage)
         setIsLoadingLocation(false)
       },
-      { enableHighAccuracy: true, timeout: 7000, maximumAge: 0 }
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 }
     )
   }
 
@@ -337,38 +533,48 @@ export default function BookingPage() {
                       Pickup Location
                     </label>
                     <div className="mt-1">
-                      <div className="relative">
-                        <Input
-                          type="text"
-                          name="pickupLocation"
-                          id="pickupLocation"
-                          value={formData.pickupLocation}
-                          onChange={handleChange}
-                          className={`block w-full rounded-md ${getBorderClass(validationState.showRouteErrors && !!errorMessages.pickupLocation)} bg-background px-4 py-3 pr-12 shadow-sm focus:border-primary focus:ring-primary booking-input`}
-                          placeholder="Enter address, hotel, or airport"
-                        />
+                      <AddressAutocomplete
+                        name="pickupLocation"
+                        id="pickupLocation"
+                        value={formData.pickupLocation}
+                        onChange={(address, placeDetails) => {
+                          setFormData(prev => ({ ...prev, pickupLocation: address }));
+                          // Clear pickup location error when user selects an address
+                          setErrorMessages(prev => ({ ...prev, pickupLocation: '' }));
+                          // Store place details if needed
+                          if (placeDetails) {
+                            console.log('Pickup place details:', placeDetails);
+                          }
+                        }}
+                        error={validationState.showRouteErrors && !!errorMessages.pickupLocation}
+                        className={`block w-full rounded-md ${getBorderClass(validationState.showRouteErrors && !!errorMessages.pickupLocation)} bg-background px-4 py-3 shadow-sm focus:border-primary focus:ring-primary booking-input`}
+                        placeholder="Enter pickup address, hotel, or airport"
+                        countryRestrict={['ma', 'es', 'fr']} // Morocco, Spain, France
+                      />
+                      {validationState.showRouteErrors && errorMessages.pickupLocation && (
+                        <p className="mt-1 text-sm text-gold-dark font-medium">{errorMessages.pickupLocation}</p>
+                      )}
+                      <div className="mt-2 flex items-center gap-2">
                         <Button
                           type="button"
                           onClick={handleGetCurrentLocation}
-                          className="absolute inset-y-0 right-0 pr-3 flex items-center text-foreground hover:text-primary transition-colors"
+                          variant="outline"
+                          size="sm"
                           disabled={isLoadingLocation}
-                          title="Use my current location"
+                          className="text-xs"
                         >
                           {isLoadingLocation ? (
-                            <div className="h-5 w-5 border-2 border-t-transparent border-primary rounded-full animate-spin"></div>
+                            <div className="h-4 w-4 border-2 border-t-transparent border-primary rounded-full animate-spin mr-2"></div>
                           ) : (
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
                           )}
+                          Use my location
                         </Button>
                       </div>
-                      {validationState.showRouteErrors && errorMessages.pickupLocation && (
-                        <p className="mt-1 text-sm text-gold-dark font-medium">{errorMessages.pickupLocation}</p>
-                      )}
                     </div>
-                    <p className="mt-1 text-xs text-muted-foreground">Click the pin icon to use your current location</p>
                   </div>
 
                   <div className="sm:col-span-6">
@@ -376,14 +582,23 @@ export default function BookingPage() {
                       Dropoff Location
                     </label>
                     <div className="mt-1">
-                      <Input
-                        type="text"
+                      <AddressAutocomplete
                         name="dropoffLocation"
                         id="dropoffLocation"
                         value={formData.dropoffLocation}
-                        onChange={handleChange}
+                        onChange={(address, placeDetails) => {
+                          setFormData(prev => ({ ...prev, dropoffLocation: address }));
+                          // Clear dropoff location error when user selects an address
+                          setErrorMessages(prev => ({ ...prev, dropoffLocation: '' }));
+                          // Store place details if needed
+                          if (placeDetails) {
+                            console.log('Dropoff place details:', placeDetails);
+                          }
+                        }}
+                        error={validationState.showRouteErrors && !!errorMessages.dropoffLocation}
                         className={`block w-full rounded-md ${getBorderClass(validationState.showRouteErrors && !!errorMessages.dropoffLocation)} bg-background px-4 py-3 shadow-sm focus:border-primary focus:ring-primary booking-input`}
                         placeholder="Enter destination address or location"
+                        countryRestrict={['ma', 'es', 'fr']} // Morocco, Spain, France
                       />
                       {validationState.showRouteErrors && errorMessages.dropoffLocation && (
                         <p className="mt-1 text-sm text-gold-dark font-medium">{errorMessages.dropoffLocation}</p>
@@ -430,6 +645,12 @@ export default function BookingPage() {
                             // Clear the date error when user selects a date
                             setErrorMessages(prev => ({ ...prev, date: '' }));
                           }
+                        }}
+                        disabled={(date) => {
+                          // Disable dates before today
+                          const today = new Date()
+                          today.setHours(0, 0, 0, 0)
+                          return date < today
                         }}
                         className={`w-full booking-input ${getBorderClass(validationState.showScheduleErrors && !!errorMessages.date)}`}
                       />
@@ -482,61 +703,56 @@ export default function BookingPage() {
                       Service Type
                     </label>
                     <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                      <div 
-                        className={`service-option p-4 cursor-pointer ${formData.service === 'sedan' ? 'selected' : ''}`}
-                        onClick={() => selectService('sedan')}
-                      >
-                        <div className="flex justify-between items-center">
-                          <h3 className="text-sm font-medium text-foreground">Executive Sedan</h3>
-                          {formData.service === 'sedan' && (
-                            <Check className="h-5 w-5 text-primary" />
-                          )}
+                      {services.map((service) => (
+                        <div 
+                          key={service.id}
+                          className={`service-option p-4 cursor-pointer ${formData.service === service.id ? 'selected' : ''}`}
+                          onClick={() => selectService(service.id)}
+                        >
+                          <div className="flex justify-between items-center">
+                            <h3 className="text-sm font-medium text-foreground">{service.name}</h3>
+                            {formData.service === service.id && (
+                              <Check className="h-5 w-5 text-primary" />
+                            )}
+                          </div>
+                          <p className="mt-1 text-xs text-muted-foreground line-clamp-2">{service.description}</p>
+                          <p className="mt-2 text-sm font-medium text-gold">{service.price}</p>
                         </div>
-                        <p className="mt-1 text-xs text-muted-foreground">Luxury sedan for up to 3 passengers</p>
-                        <p className="mt-2 text-sm font-medium text-gold">From 850 MAD</p>
-                      </div>
+                      ))}
+                    </div>
+                  </div>
 
-                      <div 
-                        className={`service-option p-4 cursor-pointer ${formData.service === 'suv' ? 'selected' : ''}`}
-                        onClick={() => selectService('suv')}
-                      >
-                        <div className="flex justify-between items-center">
-                          <h3 className="text-sm font-medium text-foreground">Luxury SUV</h3>
-                          {formData.service === 'suv' && (
-                            <Check className="h-5 w-5 text-primary" />
-                          )}
+                  <div className="sm:col-span-6">
+                    <label className="block text-sm font-medium text-foreground mb-2">
+                      Select Vehicle
+                    </label>
+                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                      {vehicles.map((vehicle) => (
+                        <div 
+                          key={vehicle.id}
+                          className={`service-option p-4 cursor-pointer ${formData.vehicle === vehicle.id ? 'selected' : ''}`}
+                          onClick={() => selectVehicle(vehicle.id)}
+                        >
+                          <div className="flex justify-between items-center mb-2">
+                            <h3 className="text-sm font-medium text-foreground">{vehicle.name}</h3>
+                            {formData.vehicle === vehicle.id && (
+                              <Check className="h-5 w-5 text-primary" />
+                            )}
+                          </div>
+                          <div className="mb-3 h-24 overflow-hidden rounded-md">
+                            <img 
+                              src={vehicle.image} 
+                              alt={vehicle.name}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                          <p className="text-xs text-muted-foreground line-clamp-2 mb-2">{vehicle.description}</p>
+                          <div className="flex justify-between items-center text-xs">
+                            <span className="text-muted-foreground">{vehicle.passengers} passengers</span>
+                            <span className="font-medium text-gold">{vehicle.price}</span>
+                          </div>
                         </div>
-                        <p className="mt-1 text-xs text-muted-foreground">Spacious SUV for up to 5 passengers</p>
-                        <p className="mt-2 text-sm font-medium text-gold">From 1250 MAD</p>
-                      </div>
-
-                      <div 
-                        className={`service-option p-4 cursor-pointer ${formData.service === 'van' ? 'selected' : ''}`}
-                        onClick={() => selectService('van')}
-                      >
-                        <div className="flex justify-between items-center">
-                          <h3 className="text-sm font-medium text-foreground">Premium Van</h3>
-                          {formData.service === 'van' && (
-                            <Check className="h-5 w-5 text-primary" />
-                          )}
-                        </div>
-                        <p className="mt-1 text-xs text-muted-foreground">Spacious van for up to 8 passengers</p>
-                        <p className="mt-2 text-sm font-medium text-gold">From 1450 MAD</p>
-                      </div>
-
-                      <div 
-                        className={`service-option p-4 cursor-pointer ${formData.service === 'limousine' ? 'selected' : ''}`}
-                        onClick={() => selectService('limousine')}
-                      >
-                        <div className="flex justify-between items-center">
-                          <h3 className="text-sm font-medium text-foreground">Stretch Limousine</h3>
-                          {formData.service === 'limousine' && (
-                            <Check className="h-5 w-5 text-primary" />
-                          )}
-                        </div>
-                        <p className="mt-1 text-xs text-muted-foreground">Luxury limousine for up to 6 passengers</p>
-                        <p className="mt-2 text-sm font-medium text-gold">From 2200 MAD</p>
-                      </div>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -604,13 +820,13 @@ export default function BookingPage() {
                       Phone
                     </label>
                     <div className="mt-1">
-                      <Input
-                        type="tel"
-                        name="phone"
-                        id="phone"
+                      <PhoneInput
                         value={formData.phone}
-                        onChange={handleChange}
-                        className={`block w-full rounded-md ${getBorderClass(validationState.showDetailsErrors && !!errorMessages.phone)} bg-background px-4 py-3 shadow-sm focus:border-primary focus:ring-primary booking-input`}
+                        countryCode={formData.countryCode}
+                        onPhoneChange={(phone) => setFormData(prev => ({ ...prev, phone }))}
+                        onCountryChange={(countryCode) => setFormData(prev => ({ ...prev, countryCode }))}
+                        error={validationState.showDetailsErrors && !!errorMessages.phone}
+                        className="w-full"
                       />
                       {validationState.showDetailsErrors && errorMessages.phone && (
                         <p className="mt-1 text-sm text-gold-dark font-medium">{errorMessages.phone}</p>
@@ -657,7 +873,78 @@ export default function BookingPage() {
                         
                                                 {/* Route Path */}                        <div className="flex relative z-10 mb-6">                          <div className="flex flex-col items-center mr-4">                            <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center p-2.5 relative z-10 ring-4 ring-background">                              <MapPin className="h-5 w-5 text-primary" />                            </div>                            <div className="h-28 w-0.5 bg-gradient-to-b from-primary to-gold/80"></div>                            <div className="h-10 w-10 rounded-full bg-gold/10 flex items-center justify-center p-2.5 relative z-10 ring-4 ring-background">                              <MapPin className="h-5 w-5 text-gold" />                            </div>                          </div>                                                    <div className="flex-1 flex flex-col justify-between">                            <div className="min-h-[64px] bg-card p-3 rounded-lg shadow-sm border border-border/40 mb-auto">                              <div className="flex items-center">                                <span className="text-xs font-bold uppercase text-primary tracking-wider pb-1">Pickup</span>                              </div>                              <p className="text-sm font-medium text-foreground line-clamp-2">{formData.pickupLocation || '(Not specified)'}</p>                            </div>                                                        <div className="min-h-[64px] bg-card p-3 rounded-lg shadow-sm border border-border/40 mt-auto">                              <div className="flex items-center">                                <span className="text-xs font-bold uppercase text-gold tracking-wider pb-1">Dropoff</span>                              </div>                              <p className="text-sm font-medium text-foreground line-clamp-2">{formData.dropoffLocation || '(Not specified)'}</p>                            </div>                          </div>                        </div>
                         
-                                                {/* Service Details */}                        <div className="grid grid-cols-1 gap-4 mb-4">                          {/* Reorganized Details Section */}                          <div className="rounded-xl bg-card border border-border/50 shadow-sm overflow-hidden">                            <div className="bg-gradient-to-r from-primary/10 to-gold/10 px-4 py-2.5 border-b border-border/30">                              <h3 className="text-sm font-bold text-foreground">Journey Details</h3>                            </div>                            <div className="p-1">                              <div className="grid grid-cols-3 divide-x divide-border/30">                                {/* Vehicle Type */}                                <div className="p-3 flex flex-col">                                  <span className="text-xs uppercase tracking-wider font-bold text-primary/80 mb-2">Vehicle</span>                                  <div className="flex items-center">                                    {formData.service === 'sedan' && (                                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">                                        <path d="M5 10h14a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2z" />                                        <path d="M19 10V6a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v4" />                                        <circle cx="7" cy="16" r="2" />                                        <circle cx="17" cy="16" r="2" />                                      </svg>                                    )}                                    {formData.service === 'suv' && (                                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">                                        <path d="M5 14h14a2 2 0 0 0 2-2V8a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v4a2 2 0 0 0 2 2z" />                                        <path d="M5 14v2a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-2" />                                        <circle cx="7" cy="14" r="2" />                                        <circle cx="17" cy="14" r="2" />                                      </svg>                                    )}                                    {formData.service === 'van' && (                                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">                                        <rect x="2" y="8" width="20" height="8" rx="2" />                                        <path d="M2 12h20" />                                        <path d="M10 8V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3" />                                        <circle cx="7" cy="16" r="2" />                                        <circle cx="17" cy="16" r="2" />                                      </svg>                                    )}                                    {formData.service === 'limousine' && (                                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">                                        <rect x="2" y="10" width="20" height="6" rx="2" />                                        <path d="M2 13h20" />                                        <path d="M7 10V8a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2" />                                        <circle cx="5" cy="16" r="1" />                                        <circle cx="19" cy="16" r="1" />                                      </svg>                                    )}                                    <div>                                      <p className="text-sm font-bold">                                        {formData.service === 'sedan' ? 'Executive Sedan' :                                           formData.service === 'suv' ? 'Luxury SUV' :                                           formData.service === 'van' ? 'Premium Van' : 'Stretch Limousine'}                                      </p>                                    </div>                                  </div>                                </div>                                                                {/* Passengers */}                                <div className="p-3 flex flex-col">                                  <span className="text-xs uppercase tracking-wider font-bold text-primary/80 mb-2">Passengers</span>                                  <div className="flex items-center">                                    <Users className="h-6 w-6 mr-2 text-gold" />                                    <p className="text-sm font-bold">                                      {formData.passengers} {parseInt(formData.passengers) === 1 ? 'Person' : 'People'}                                    </p>                                  </div>                                </div>                                                                {/* Date & Time */}                                <div className="p-3 flex flex-col">                                  <span className="text-xs uppercase tracking-wider font-bold text-primary/80 mb-2">Date & Time</span>                                  <div className="flex items-center">                                    <Clock className="h-6 w-6 mr-2 text-gold" />                                    <p className="text-sm font-bold whitespace-normal">                                      {formData.date                                         ? new Date(formData.date).toLocaleDateString('en-US', {weekday: 'short', month: 'short', day: 'numeric'})                                         : '(Not specified)'}                                       {formData.time ? ' at ' + formData.time : ''}                                    </p>                                  </div>                                </div>                              </div>                            </div>                          </div>                        </div>
+                                                {/* Service Details */}
+                        <div className="grid grid-cols-1 gap-4 mb-4">
+                          {/* Reorganized Details Section */}
+                          <div className="rounded-xl bg-card border border-border/50 shadow-sm overflow-hidden">
+                            <div className="bg-gradient-to-r from-primary/10 to-gold/10 px-4 py-2.5 border-b border-border/30">
+                              <h3 className="text-sm font-bold text-foreground">Journey Details</h3>
+                            </div>
+                            <div className="p-1">
+                              <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-border/30">
+                                {/* Service Type */}
+                                <div className="p-3 flex flex-col">
+                                  <span className="text-xs uppercase tracking-wider font-bold text-primary/80 mb-2">Service</span>
+                                  <div className="flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                      <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8z"/>
+                                      <path d="m3.27 6.96 8.73 5.04 8.73-5.04"/>
+                                      <path d="M12 22.08V12"/>
+                                    </svg>
+                                    <div>
+                                      <p className="text-sm font-bold">
+                                        {services.find(s => s.id === formData.service)?.name || 'Airport Transfers'}
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                {/* Vehicle Type */}
+                                <div className="p-3 flex flex-col">
+                                  <span className="text-xs uppercase tracking-wider font-bold text-primary/80 mb-2">Vehicle</span>
+                                  <div className="flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                      <path d="M5 10h14a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2z" />
+                                      <path d="M19 10V6a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v4" />
+                                      <circle cx="7" cy="16" r="2" />
+                                      <circle cx="17" cy="16" r="2" />
+                                    </svg>
+                                    <div>
+                                      <p className="text-sm font-bold">
+                                        {vehicles.find(v => v.id === formData.vehicle)?.name || 'Mercedes Class E'}
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                {/* Passengers */}
+                                <div className="p-3 flex flex-col">
+                                  <span className="text-xs uppercase tracking-wider font-bold text-primary/80 mb-2">Passengers</span>
+                                  <div className="flex items-center">
+                                    <Users className="h-6 w-6 mr-2 text-gold" />
+                                    <p className="text-sm font-bold">
+                                      {formData.passengers} {parseInt(formData.passengers) === 1 ? 'Person' : 'People'}
+                                    </p>
+                                  </div>
+                                </div>
+
+                                {/* Date & Time */}
+                                <div className="p-3 flex flex-col">
+                                  <span className="text-xs uppercase tracking-wider font-bold text-primary/80 mb-2">Date & Time</span>
+                                  <div className="flex items-center">
+                                    <Clock className="h-6 w-6 mr-2 text-gold" />
+                                    <p className="text-sm font-bold whitespace-normal">
+                                      {formData.date
+                                        ? new Date(formData.date).toLocaleDateString('en-US', {weekday: 'short', month: 'short', day: 'numeric'})
+                                        : '(Not specified)'}
+                                      {formData.time ? ' at ' + formData.time : ''}
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                         
                                                 {/* Booking ID */}                        <div className="flex items-center pt-2 border-t border-border/30">                          <div className="flex items-center">                            <div className="h-8 w-8 rounded-full bg-primary/5 flex items-center justify-center mr-2">                              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">                                <path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />                                <path d="M12 9v6" />                                <path d="M9 12h6" />                              </svg>                            </div>                            <div>                              <span className="text-xs text-muted-foreground">Booking reference</span>                              <div className="text-xs font-mono font-medium">{`DRP-${Math.floor(Math.random() * 900000) + 100000}`}</div>                            </div>                          </div>                        </div>
                       </div>

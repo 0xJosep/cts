@@ -66,16 +66,15 @@ const CustomCursor = () => {
   }, [])
   
   const dotStyle = {
-    transform: `translate(${position.x}px, ${position.y}px)`,
-    opacity: visible ? 1 : 0,
-    scale: clicked ? 0.8 : 1
+    transform: `translate(${position.x}px, ${position.y}px) translate(-50%, -50%) scale(${clicked ? 0.8 : 1})`,
+    opacity: visible ? 1 : 0
   }
   
   const ringStyle = {
-    transform: `translate(${position.x}px, ${position.y}px)`,
+    transform: `translate(${position.x}px, ${position.y}px) translate(-50%, -50%)`,
     opacity: visible ? (linkHovered ? 0.3 : 0.5) : 0,
-    width: linkHovered ? '50px' : 'var(--cursor-size)',
-    height: linkHovered ? '50px' : 'var(--cursor-size)'
+    width: linkHovered ? '40px' : 'var(--cursor-size)',
+    height: linkHovered ? '40px' : 'var(--cursor-size)'
   }
   
   return (

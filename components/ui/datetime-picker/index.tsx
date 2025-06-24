@@ -109,9 +109,10 @@ interface DateTimePickerProps {
   date?: Date
   setDate: (date: Date | undefined) => void
   className?: string
+  disabled?: (date: Date) => boolean
 }
 
-export function DateTimePicker({ date, setDate, className }: DateTimePickerProps) {
+export function DateTimePicker({ date, setDate, className, disabled }: DateTimePickerProps) {
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(date)
 
   const handleSelect = (date: Date | undefined) => {
@@ -146,6 +147,7 @@ export function DateTimePicker({ date, setDate, className }: DateTimePickerProps
           selected={selectedDate}
           onSelect={handleSelect}
           initialFocus
+          disabled={disabled}
           className="rounded-t-md border-b border-border"
         />
         <div className="p-4 flex justify-center">

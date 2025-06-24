@@ -94,6 +94,14 @@
       "cancellation": {
         "question": "What is your cancellation policy?",
         "answer": "We offer free cancellation up to 6 hours before the scheduled pickup time. For last-minute cancellations, charges may apply."
+      },
+      "airportTransfers": {
+        "question": "Do you provide airport transfers?",
+        "answer": "Yes, we specialize in airport transfers with flight tracking and meet-and-greet services. Our chauffeurs monitor flight status to ensure timely pickup, regardless of delays."
+      },
+      "languages": {
+        "question": "What languages do your chauffeurs speak?",
+        "answer": "Our chauffeurs are fluent in multiple languages including English, French, Arabic, and Spanish. We ensure language compatibility for all our clients' needs."
       }
     }
   },
@@ -362,5 +370,28 @@
     "signIn": "Sign In",
     "noAccount": "Don't have an account?",
     "signUp": "Sign up"
+  },
+  "footer": {
+    "services": {
+      "title": "Services",
+      "airport": "Airport Transfers",
+      "tours": "City Tours",
+      "corporate": "Corporate Travel",
+      "wedding": "Wedding Services"
+    },
+    "company": {
+      "title": "Company",
+      "about": "About Us",
+      "fleet": "Our Fleet",
+      "contact": "Contact",
+      "careers": "Careers"
+    },
+    "contact": {
+      "title": "Contact Info",
+      "location": "Marrakech, Morocco",
+      "phone": "+212 XXX-XXXXXX",
+      "email": "info@cts-morocco.com"
+    },
+    "copyright": "All rights reserved."
   }
 }

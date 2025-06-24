@@ -94,6 +94,14 @@
       "cancellation": {
         "question": "Quelle est votre politique d'annulation ?",
         "answer": "Nous offrons une annulation gratuite jusqu'à 6 heures avant l'heure de prise en charge prévue. Pour les annulations de dernière minute, des frais peuvent s'appliquer."
+      },
+      "airportTransfers": {
+        "question": "Fournissez-vous des transferts aéroport ?",
+        "answer": "Oui, nous nous spécialisons dans les transferts aéroport avec suivi des vols et services d'accueil. Nos chauffeurs surveillent l'état des vols pour assurer une prise en charge ponctuelle, peu importe les retards."
+      },
+      "languages": {
+        "question": "Quelles langues parlent vos chauffeurs ?",
+        "answer": "Nos chauffeurs parlent couramment plusieurs langues incluant l'anglais, le français, l'arabe et l'espagnol. Nous assurons la compatibilité linguistique pour tous les besoins de nos clients."
       }
     }
   },

@@ -14,99 +14,246 @@ export default function FleetPage() {
   const { t } = useTranslation()
   const { darkMode, toggleDarkMode } = useTheme()
 
-  // Create vehicles array using translations
+  // Create vehicles array with the actual fleet
   const vehicles = [
     {
-      id: 'sedan',
-      name: t('fleet.vehicles.executiveSedan.name'),
-      description: t('fleet.vehicles.executiveSedan.description'),
-      image: 'https://images.unsplash.com/photo-1549399542-7e38945b4d69?q=80&w=1000&auto=format&fit=crop',
-      price: t('fleet.vehicles.executiveSedan.price'),
-      passengers: t('fleet.vehicles.executiveSedan.passengers'),
-      luggage: t('fleet.vehicles.executiveSedan.luggage'),
+      id: 'range-rover-vogue',
+      name: 'Range Rover Vogue',
+      description: 'The epitome of luxury and performance, offering unparalleled comfort and presence for executive travel.',
+      image: '/images/fleet/range-rover.png',
+      price: 'From 1850 MAD',
+      passengers: '1-4',
+      luggage: '4 large suitcases',
       features: [
-        t('fleet.vehicles.executiveSedan.features.premiumLeatherSeats'),
-        t('fleet.vehicles.executiveSedan.features.privacyGlass'),
-        t('fleet.vehicles.executiveSedan.features.climateControl'),
-        t('fleet.vehicles.executiveSedan.features.complimentaryRefreshments'),
-        t('fleet.vehicles.executiveSedan.features.wifiAvailable'),
-        t('fleet.vehicles.executiveSedan.features.professionalChauffeur')
+        'Premium leather seats with massage function',
+        'Panoramic sunroof',
+        'Advanced climate control',
+        'Premium sound system',
+        'WiFi connectivity',
+        'Professional chauffeur',
+        'Privacy glass',
+        'Complimentary refreshments'
       ],
       idealFor: [
-        t('fleet.vehicles.executiveSedan.idealFor.airportTransfers'),
-        t('fleet.vehicles.executiveSedan.idealFor.businessTravel'),
-        t('fleet.vehicles.executiveSedan.idealFor.cityTours')
+        'Executive travel',
+        'VIP transport',
+        'Special occasions'
       ]
     },
     {
-      id: 'suv',
-      name: t('fleet.vehicles.luxurySUV.name'),
-      description: t('fleet.vehicles.luxurySUV.description'),
-      image: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=1000&auto=format&fit=crop',
-      price: t('fleet.vehicles.luxurySUV.price'),
-      passengers: t('fleet.vehicles.luxurySUV.passengers'),
-      luggage: t('fleet.vehicles.luxurySUV.luggage'),
+      id: 'mercedes-class-e',
+      name: 'Mercedes Class E',
+      description: 'Sophisticated elegance meets cutting-edge technology in this premium business sedan.',
+      image: '/images/fleet/mercedec-class-E.jpeg',
+      price: 'From 1200 MAD',
+      passengers: '1-3',
+      luggage: '3 medium suitcases',
       features: [
-        t('fleet.vehicles.luxurySUV.features.premiumLeatherSeats'),
-        t('fleet.vehicles.luxurySUV.features.privacyGlass'),
-        t('fleet.vehicles.luxurySUV.features.climateControl'),
-        t('fleet.vehicles.luxurySUV.features.complimentaryRefreshments'),
-        t('fleet.vehicles.luxurySUV.features.wifiAvailable'),
-        t('fleet.vehicles.luxurySUV.features.professionalChauffeur'),
-        t('fleet.vehicles.luxurySUV.features.additionalLegroom')
+        'Premium leather interior',
+        'Advanced safety systems',
+        'Climate control',
+        'Premium audio system',
+        'WiFi available',
+        'Professional chauffeur',
+        'Privacy glass',
+        'Complimentary water'
       ],
       idealFor: [
-        t('fleet.vehicles.luxurySUV.idealFor.familyTravel'),
-        t('fleet.vehicles.luxurySUV.idealFor.executiveGroups'),
-        t('fleet.vehicles.luxurySUV.idealFor.extendedTours')
+        'Business travel',
+        'Airport transfers',
+        'City tours'
       ]
     },
     {
-      id: 'van',
-      name: t('fleet.vehicles.premiumVan.name'),
-      description: t('fleet.vehicles.premiumVan.description'),
-      image: 'https://images.unsplash.com/photo-1622559924472-2c2adb3f3abd?q=80&w=1000&auto=format&fit=crop',
-      price: t('fleet.vehicles.premiumVan.price'),
-      passengers: t('fleet.vehicles.premiumVan.passengers'),
-      luggage: t('fleet.vehicles.premiumVan.luggage'),
+      id: 'mercedes-class-s',
+      name: 'Mercedes Class S',
+      description: 'The pinnacle of luxury sedans, delivering exceptional comfort and prestige for discerning travelers.',
+      image: '/images/fleet/mercedes-class-S.png',
+      price: 'From 1650 MAD',
+      passengers: '1-3',
+      luggage: '3 large suitcases',
       features: [
-        t('fleet.vehicles.premiumVan.features.premiumLeatherSeats'),
-        t('fleet.vehicles.premiumVan.features.privacyGlass'),
-        t('fleet.vehicles.premiumVan.features.climateControl'),
-        t('fleet.vehicles.premiumVan.features.complimentaryRefreshments'),
-        t('fleet.vehicles.premiumVan.features.wifiAvailable'),
-        t('fleet.vehicles.premiumVan.features.professionalChauffeur'),
-        t('fleet.vehicles.premiumVan.features.individualSeating'),
-        t('fleet.vehicles.premiumVan.features.extraLargeLuggageCapacity')
+        'Executive leather seats with massage',
+        'Advanced infotainment system',
+        'Multi-zone climate control',
+        'Premium Burmester sound system',
+        'WiFi connectivity',
+        'Professional chauffeur',
+        'Privacy partition available',
+        'Premium refreshment service'
       ],
       idealFor: [
-        t('fleet.vehicles.premiumVan.idealFor.groupTravel'),
-        t('fleet.vehicles.premiumVan.idealFor.corporateEvents'),
-        t('fleet.vehicles.premiumVan.idealFor.multiDayExcursions')
+        'Executive travel',
+        'VIP occasions',
+        'Luxury events'
       ]
     },
     {
-      id: 'limousine',
-      name: t('fleet.vehicles.stretchLimousine.name'),
-      description: t('fleet.vehicles.stretchLimousine.description'),
-      image: 'https://images.unsplash.com/photo-1566633806327-68e152aaf26d?q=80&w=1000&auto=format&fit=crop',
-      price: t('fleet.vehicles.stretchLimousine.price'),
-      passengers: t('fleet.vehicles.stretchLimousine.passengers'),
-      luggage: t('fleet.vehicles.stretchLimousine.luggage'),
+      id: 'mercedes-v-vito',
+      name: 'Mercedes Class V Vito',
+      description: 'Spacious and comfortable van perfect for small group transportation with premium amenities.',
+      image: '/images/fleet/mercredes-vito.png',
+      price: 'From 1100 MAD',
+      passengers: '1-6',
+      luggage: '6 medium suitcases',
       features: [
-        t('fleet.vehicles.stretchLimousine.features.premiumLeatherSeating'),
-        t('fleet.vehicles.stretchLimousine.features.privacyPartition'),
-        t('fleet.vehicles.stretchLimousine.features.advancedClimateControl'),
-        t('fleet.vehicles.stretchLimousine.features.premiumRefreshmentBar'),
-        t('fleet.vehicles.stretchLimousine.features.entertainmentSystem'),
-        t('fleet.vehicles.stretchLimousine.features.wifiAndChargingPorts'),
-        t('fleet.vehicles.stretchLimousine.features.professionalChauffeur'),
-        t('fleet.vehicles.stretchLimousine.features.redCarpetService')
+        'Comfortable seating configuration',
+        'Air conditioning',
+        'Individual climate control',
+        'Entertainment system',
+        'USB charging ports',
+        'Professional chauffeur',
+        'Ample luggage space',
+        'Complimentary refreshments'
       ],
       idealFor: [
-        t('fleet.vehicles.stretchLimousine.idealFor.vipTransport'),
-        t('fleet.vehicles.stretchLimousine.idealFor.specialOccasions'),
-        t('fleet.vehicles.stretchLimousine.idealFor.luxuryEvents')
+        'Group travel',
+        'Family trips',
+        'Corporate shuttles'
+      ]
+    },
+    {
+      id: 'mercedes-v-viano',
+      name: 'Mercedes Class V Viano',
+      description: 'Premium MPV offering luxurious group travel with sophisticated comfort and style.',
+      image: '/images/fleet/mercedes-viano.jpeg',
+      price: 'From 1300 MAD',
+      passengers: '1-7',
+      luggage: '7 medium suitcases',
+      features: [
+        'Premium leather seating',
+        'Individual captain chairs',
+        'Advanced climate control',
+        'Entertainment screens',
+        'WiFi connectivity',
+        'Professional chauffeur',
+        'Privacy glass',
+        'Refreshment service'
+      ],
+      idealFor: [
+        'Executive groups',
+        'Family luxury travel',
+        'Corporate events'
+      ]
+    },
+    {
+      id: 'mercedes-sprinter-17',
+      name: 'Mercedes Sprinter',
+      description: 'Spacious and comfortable minibus ideal for larger group transportation with premium features.',
+      image: '/images/fleet/mercedes-sprinter.jpeg',
+      price: 'From 1800 MAD',
+      passengers: '1-17',
+      luggage: '17 medium suitcases',
+      features: [
+        'Comfortable passenger seating',
+        'Air conditioning throughout',
+        'Entertainment system',
+        'USB charging stations',
+        'Large luggage compartment',
+        'Professional driver',
+        'Safety equipment',
+        'Refreshment service'
+      ],
+      idealFor: [
+        'Group excursions',
+        'Corporate shuttles',
+        'Team travel'
+      ]
+    },
+    {
+      id: 'audi-a6',
+      name: 'Audi A6',
+      description: 'German engineering excellence with sophisticated design and premium comfort features.',
+      image: '/images/fleet/audi-a6.jpeg',
+      price: 'From 1150 MAD',
+      passengers: '1-3',
+      luggage: '3 medium suitcases',
+      features: [
+        'Premium leather interior',
+        'Virtual cockpit display',
+        'Quattro all-wheel drive',
+        'Advanced driver assistance',
+        'WiFi hotspot',
+        'Professional chauffeur',
+        'Climate control',
+        'Complimentary amenities'
+      ],
+      idealFor: [
+        'Business travel',
+        'Executive transport',
+        'Airport transfers'
+      ]
+    },
+    {
+      id: 'toyota-land-cruiser',
+      name: 'Toyota Land Cruiser',
+      description: 'Robust luxury SUV perfect for both city travel and adventurous excursions with unmatched reliability.',
+      image: '/images/fleet/toyota.jpeg',
+      price: 'From 1400 MAD',
+      passengers: '1-7',
+      luggage: '7 medium suitcases',
+      features: [
+        'Premium leather seating',
+        'All-terrain capability',
+        'Advanced 4WD system',
+        'Climate control',
+        'Entertainment system',
+        'Professional chauffeur',
+        'Safety features',
+        'Refreshment service'
+      ],
+      idealFor: [
+        'Desert excursions',
+        'Mountain trips',
+        'Adventure travel'
+      ]
+    },
+    {
+      id: 'kia-sorento',
+      name: 'Kia Sorento',
+      description: 'Modern and reliable SUV offering comfortable travel with contemporary features and excellent value.',
+      image: '/images/fleet/kia-sorrento.jpeg',
+      price: 'From 950 MAD',
+      passengers: '1-5',
+      luggage: '5 medium suitcases',
+      features: [
+        'Comfortable cloth/leather seating',
+        'Modern infotainment system',
+        'Dual-zone climate control',
+        'Safety features',
+        'USB connectivity',
+        'Professional driver',
+        'Ample cargo space',
+        'Complimentary water'
+      ],
+      idealFor: [
+        'Family travel',
+        'City tours',
+        'Airport transfers'
+      ]
+    },
+    {
+      id: 'bus-king-long-48',
+      name: 'Bus King Long',
+      description: 'Large capacity luxury coach perfect for group tours and events with premium comfort features.',
+      image: '/images/fleet/bus.jpeg',
+      price: 'From 2800 MAD',
+      passengers: '1-48',
+      luggage: '48 medium suitcases',
+      features: [
+        'Comfortable reclining seats',
+        'Air conditioning system',
+        'Entertainment system',
+        'Onboard restroom',
+        'Large luggage compartments',
+        'Professional driver',
+        'Safety equipment',
+        'Refreshment service'
+      ],
+      idealFor: [
+        'Large group tours',
+        'Corporate events',
+        'Extended excursions'
       ]
     }
   ]
@@ -138,28 +285,22 @@ export default function FleetPage() {
             className="rounded-md bg-card border border-border px-4 py-2 text-sm font-medium text-foreground hover:bg-accent flex items-center whitespace-nowrap min-w-[120px] justify-center order-1 group"
           >
             <ArrowLeft className="h-6 w-6 sm:h-10 sm:w-10 mr-2 text-gold" aria-hidden="true" />
-            <span>{t('fleet.backToHome')}</span>
+            <span>Back to Home</span>
           </Link>
           
           <div className="text-center w-full sm:flex-grow order-3 sm:order-2">
             <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-              {t('fleet.title').split(' ').map((word, index, array) => 
-                index === array.length - 1 ? (
-                  <span key={index} className="accent-gold">{word}</span>
-                ) : (
-                  <span key={index}>{word} </span>
-                )
-              )}
+              Our Premium <span className="accent-gold">Fleet</span>
             </h1>
             <p className="mt-2 sm:mt-4 text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
-              {t('fleet.subtitle')}
+              Experience Morocco in style with our meticulously maintained collection of luxury vehicles
             </p>
           </div>
           
           <button
             onClick={toggleDarkMode}
             className="rounded-full p-2 text-foreground hover:bg-accent hover:text-accent-foreground transition-colors bg-card border border-border order-2 sm:order-3"
-            aria-label={t('fleet.toggleDarkMode')}
+            aria-label="Toggle dark mode"
           >
             {darkMode ? (
               <Sun className="h-5 w-5" />
@@ -172,7 +313,7 @@ export default function FleetPage() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           {/* Vehicle selector */}
           <div className="md:col-span-1 space-y-3 mb-6 md:mb-0">
-            <h2 className="text-lg font-medium text-foreground mb-4">{t('fleet.selectVehicle')}</h2>
+            <h2 className="text-lg font-medium text-foreground mb-4">Select a Vehicle</h2>
             {vehicles.map(vehicle => (
               <div
                 key={vehicle.id}
@@ -198,7 +339,7 @@ export default function FleetPage() {
                 href="/booking"
                 className="w-full inline-flex justify-center items-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
               >
-                {t('fleet.bookNow')}
+                Book Now
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </div>
@@ -206,7 +347,7 @@ export default function FleetPage() {
 
           {/* Vehicle details */}
           <div className="md:col-span-3 bg-card rounded-xl overflow-hidden border border-border">
-            <div className="h-48 sm:h-64 overflow-hidden relative">
+            <div className="h-96 sm:h-[28rem] overflow-hidden relative">
               <Image
                 src={selectedVehicle.image}
                 alt={selectedVehicle.name}
@@ -227,12 +368,12 @@ export default function FleetPage() {
               
               <div className="mt-4 sm:mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="bg-accent/50 p-4 rounded-lg">
-                  <h3 className="font-medium text-foreground mb-2">{t('fleet.capacity')}</h3>
+                  <h3 className="font-medium text-foreground mb-2">Capacity</h3>
                   <div className="flex items-center text-muted-foreground">
                     <svg className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>
-                    <span>{selectedVehicle.passengers} {t('fleet.passengers')}</span>
+                    <span>{selectedVehicle.passengers} passengers</span>
                   </div>
                   <div className="flex items-center text-muted-foreground mt-2">
                     <svg className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -243,7 +384,7 @@ export default function FleetPage() {
                 </div>
                 
                 <div className="bg-accent/50 p-4 rounded-lg">
-                  <h3 className="font-medium text-foreground mb-2">{t('fleet.idealFor')}</h3>
+                  <h3 className="font-medium text-foreground mb-2">Ideal For</h3>
                   <ul className="text-muted-foreground space-y-1">
                     {selectedVehicle.idealFor.map((item, idx) => (
                       <li key={idx}>• {item}</li>
@@ -253,7 +394,7 @@ export default function FleetPage() {
               </div>
               
               <div className="mt-4 sm:mt-6">
-                <h3 className="font-medium text-foreground mb-2">{t('fleet.premiumFeatures')}</h3>
+                <h3 className="font-medium text-foreground mb-2">Premium Features</h3>
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 mt-2 sm:mt-3">
                   {selectedVehicle.features.map((feature, idx) => (
                     <li key={idx} className="flex items-start">
@@ -271,7 +412,7 @@ export default function FleetPage() {
                   href={`/booking?service=${selectedVehicle.id}`}
                   className="rounded-md bg-gradient-to-r from-gold-dark via-gold to-gold-light px-4 py-2 text-sm font-medium text-primary-foreground hover:shadow-md flex items-center"
                 >
-                  {t('fleet.bookThisVehicle')}
+                  Book this Vehicle
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </div>

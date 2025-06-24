@@ -14,7 +14,6 @@ const languages = [
   { code: 'en', name: 'English', flag: '🇬🇧' },
   { code: 'es', name: 'Español', flag: '🇪🇸' },
   { code: 'fr', name: 'Français', flag: '🇫🇷' },
-  { code: 'ar', name: 'العربية', flag: '🇲🇦' },
 ]
 
 const getNavigation = (t: (key: string) => string) => [
@@ -684,19 +683,19 @@ export default function Example() {
               
               <AccordionItem value="item-5">
                 <AccordionTrigger className="text-lg font-semibold">
-                  Do you provide airport transfers?
+                  {t('home.faq.airportTransfers.question')}
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground">
-                  Yes, we specialize in airport transfers with flight tracking and meet-and-greet services. Our chauffeurs monitor flight status to ensure timely pickup, regardless of delays.
+                  {t('home.faq.airportTransfers.answer')}
                 </AccordionContent>
               </AccordionItem>
               
               <AccordionItem value="item-6">
                 <AccordionTrigger className="text-lg font-semibold">
-                  What languages do your chauffeurs speak?
+                  {t('home.faq.languages.question')}
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground">
-                  Our chauffeurs are fluent in multiple languages including English, French, Arabic, and Spanish. We ensure language compatibility for all our clients&apos; needs.
+                  {t('home.faq.languages.answer')}
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
