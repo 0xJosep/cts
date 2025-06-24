@@ -549,7 +549,7 @@ export default function BookingPage() {
                         error={validationState.showRouteErrors && !!errorMessages.pickupLocation}
                         className={`block w-full rounded-md ${getBorderClass(validationState.showRouteErrors && !!errorMessages.pickupLocation)} bg-background px-4 py-3 shadow-sm focus:border-primary focus:ring-primary booking-input`}
                         placeholder="Enter pickup address, hotel, or airport"
-                        countryRestrict={['ma', 'es', 'fr']} // Morocco, Spain, France
+                        countryRestrict={['ma']} // Morocco only
                       />
                       {validationState.showRouteErrors && errorMessages.pickupLocation && (
                         <p className="mt-1 text-sm text-gold-dark font-medium">{errorMessages.pickupLocation}</p>
@@ -598,7 +598,7 @@ export default function BookingPage() {
                         error={validationState.showRouteErrors && !!errorMessages.dropoffLocation}
                         className={`block w-full rounded-md ${getBorderClass(validationState.showRouteErrors && !!errorMessages.dropoffLocation)} bg-background px-4 py-3 shadow-sm focus:border-primary focus:ring-primary booking-input`}
                         placeholder="Enter destination address or location"
-                        countryRestrict={['ma', 'es', 'fr']} // Morocco, Spain, France
+                        countryRestrict={['ma']} // Morocco only
                       />
                       {validationState.showRouteErrors && errorMessages.dropoffLocation && (
                         <p className="mt-1 text-sm text-gold-dark font-medium">{errorMessages.dropoffLocation}</p>
