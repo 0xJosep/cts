@@ -141,7 +141,7 @@
   "home": {
     "hero": {
       "title": "El Arte del Viaje Excepcional",
-      "subtitle": "Durante más de 10 años, hemos sido la elección de ejecutivos, celebridades y viajeros que exigen lo mejor. Nuestros choferes de clase mundial y flota de lujo ofrecen más que transporte: brindamos tranquilidad, privacidad y prestigio en cada viaje.",
+      "subtitle": "Durante más de 20 años, hemos sido la elección de ejecutivos, celebridades y viajeros que exigen lo mejor. Nuestros choferes de clase mundial y flota de lujo ofrecen más que transporte: brindamos tranquilidad, privacidad y prestigio en cada viaje.",
       "cta": "Reserve Su Viaje",
       "learnMore": "Saber más",
       "discoverMorocco": "Descubra Marruecos en profundidad",
@@ -169,6 +169,10 @@
         "tracking": "Seguimiento en tiempo real"
       }
     },
+    "gallery": {
+      "title": "Descubre Marruecos",
+      "subtitle": "Explora los destinos encantadores a los que te llevaremos por todo el Reino"
+    },
     "socialProof": {
       "title": "Confianza de Viajeros de Todo el Mundo",
       "subtitle": "Únase a miles de clientes satisfechos que han experimentado nuestro servicio premium",
@@ -182,14 +186,77 @@
     "testimonials": {
       "sarah": {
         "name": "Sarah Johnson",
-        "title": "CEO, TechCorp",
-        "quote": "La atención al detalle y el profesionalismo de su servicio son incomparables. Cada viaje se siente como una experiencia VIP."
+        "title": "Nueva York, EE.UU.",
+        "quote": "¡Desde el momento en que bajé del avión en Marrakech, me sentí como la realeza! Nuestro conductor Hassan compartió las historias más hermosas sobre las montañas del Atlas durante nuestro viaje a La Mamounia. La forma en que manejan cada detalle con tanto cuidado hizo que mi primer viaje a Marruecos fuera absolutamente mágico."
       },
       "michael": {
         "name": "Michael Chen",
-        "title": "Viajero de Negocios Internacional",
-        "quote": "Su flota es impecable, y los conductores son increíblemente conocedores. Se han convertido en mi servicio preferido para todos mis viajes de negocios."
+        "title": "Singapur",
+        "quote": "He viajado por todo el mundo, pero nada me preparó para la belleza de Marruecos. Nuestro chofer no solo nos condujo: se convirtió en nuestro guía cultural, explicando la historia de las murallas de la medina e incluso recomendando los mejores lugares de té de menta. Pura clase y autenticidad."
+      },
+      "elena": {
+        "name": "Elena Rodriguez",
+        "title": "Madrid, España",
+        "quote": "¡Increíble! Nuestro conductor Ahmed fue como tener un amigo marroquí mostrándonos los alrededores. Esperó pacientemente mientras explorábamos los zocos de Fez, y sus historias sobre las tradiciones bereberes durante nuestro viaje al desierto hicieron que todo cobrara vida. Así es como se experimenta el verdadero Marruecos."
+      },
+      "david": {
+        "name": "David Thompson",
+        "title": "Londres, Reino Unido",
+        "quote": "Honestamente, estaba nervioso por navegar por las carreteras de Marruecos, pero esta gente lo hizo sin esfuerzo. Ver el amanecer sobre el Sahara desde nuestro cómodo vehículo mientras nuestro conductor compartía leyendas tuareg... no puede ser mejor. Saben cómo mostrar el alma de Marruecos."
+      },
+      "yuki": {
+        "name": "Yuki Tanaka",
+        "title": "Tokio, Japón",
+        "quote": "Marruecos se robó mi corazón, y este servicio me ayudó a enamorarme de cada momento. Desde los colores vibrantes de Chefchaouen hasta la energía bulliciosa de Jemaa el-Fnaa, nuestro conductor se aseguró de que no perdiéramos ni una sola oportunidad de foto. La calidez de la hospitalidad marroquí brilla a través de todo lo que hacen."
+      },
+      "alexandra": {
+        "name": "Alexandra Dubois",
+        "title": "París, Francia",
+        "quote": "Viajar con niños en Marruecos parecía desalentador hasta que conocimos a este increíble equipo. Tenían agua fría lista para los pequeños, conocían restaurantes amigables para niños en cada medina, e incluso nos ayudaron a encontrar las babuchas perfectas en los mercados. Marruecos se convirtió en el destino favorito de nuestra familia gracias a ellos."
       }
+    },
+    "team": {
+      "title": "Conozca a Nuestro Equipo Profesional",
+      "subtitle": "Los profesionales dedicados que hacen que su viaje sea excepcional",
+      "professional": {
+        "title": "Choferes Profesionales",
+        "description": "Experimentados, licenciados y capacitados para brindar un servicio excepcional con la máxima discreción y profesionalismo."
+      },
+      "service": {
+        "title": "Excelencia en Servicio al Cliente",
+        "description": "Nuestro equipo dedicado de servicio al cliente asegura que cada detalle de su viaje esté perfectamente coordinado."
+      },
+      "management": {
+        "title": "Gestión Experta",
+        "description": "Profesionales experimentados supervisando las operaciones para mantener nuestros altos estándares de lujo y confiabilidad."
+      }
+    },
+    "behindScenes": {
+      "title": "Detrás de Escena",
+      "subtitle": "Vea cómo entregamos excelencia en cada aspecto de nuestro servicio",
+      "service": {
+        "title": "Excelencia en el Servicio",
+        "description": "Cada interacción refleja nuestro compromiso de brindar transporte de lujo de clase mundial."
+      },
+      "preparation": {
+        "title": "Preparación Meticulosa",
+        "description": "Nuestro equipo asegura que cada vehículo y detalle sea perfecto antes de que comience su viaje."
+      },
+      "quality": {
+        "title": "Aseguramiento de Calidad",
+        "description": "Estándares rigurosos e inspecciones regulares garantizan el más alto nivel de calidad de servicio."
+      },
+      "experience": {
+        "title": "Experiencia del Cliente",
+        "description": "Creando momentos memorables y superando expectativas en cada interacción con el cliente."
+      }
+    },
+    "globalTrust": {
+      "title": "Confianza Mundial",
+      "subtitle": "Clientes de todo el mundo eligen nuestros servicios de transporte premium cuando visitan Marruecos",
+      "morocco": "Marruecos",
+      "destination": "Destino Premium",
+      "clients": "Clientes Satisfechos"
     },
     "trustedBy": {
       "title": "Confianza de Establecimientos Prestigiosos",
@@ -231,6 +298,135 @@
       "languages": {
         "question": "¿Qué idiomas hablan sus choferes?",
         "answer": "Nuestros choferes son fluidos en múltiples idiomas incluyendo inglés, francés, árabe y español. Aseguramos compatibilidad de idiomas para todas las necesidades de nuestros clientes."
+      }
+    }
+  },
+  "services": {
+    "backToHome": "Volver al Inicio",
+    "title": "Nuestros Servicios Premium",
+    "subtitle": "Experimente el transporte de lujo adaptado a sus necesidades",
+    "learnMore": "Saber Más",
+    "bookThisService": "Reservar Este Servicio",
+    "getQuote": "Obtener Cotización",
+    "keyFeatures": "Características Clave",
+    "additionalServicesTitle": "Servicios Adicionales",
+    "additionalServicesSubtitle": "Soluciones integrales de transporte para cada ocasión",
+    "whyChooseTitle": "Por Qué Elegir Nuestros Servicios",
+    "whyChooseSubtitle": "Experimente la diferencia del transporte premium",
+    "reliability": "Confiabilidad",
+    "reliabilityDesc": "Servicio puntual y confiable en el que puede confiar",
+    "excellence": "Excelencia",
+    "excellenceDesc": "Calidad premium en cada aspecto de nuestro servicio",
+    "experience": "Experiencia",
+    "experienceDesc": "Años de experiencia en transporte de lujo",
+    "availability": "Disponibilidad",
+    "availabilityDesc": "Servicio 24/7 para adaptarse a su horario",
+    "bookYourService": "Reserve Su Servicio",
+    "contactForQuote": "Contactar para Cotización",
+    "mainServices": {
+      "airportTransfers": {
+        "name": "Transferencias al Aeropuerto",
+        "description": "Transporte aeroportuario puerta a puerta sin problemas con monitoreo de vuelos y servicio de recepción.",
+        "duration": "1-2 horas",
+        "features": {
+          "flightTracking": "Seguimiento de vuelos en tiempo real",
+          "meetGreet": "Servicio de recepción",
+          "waitingTime": "Tiempo de espera gratuito",
+          "terminalPickup": "Servicio de recogida en terminal",
+          "luggageAssistance": "Asistencia con equipaje",
+          "availability": "Disponibilidad 24/7"
+        }
+      },
+      "cityTours": {
+        "name": "Tours de la Ciudad",
+        "description": "Descubra la belleza y cultura de Marruecos con nuestros servicios personalizados de tours urbanos.",
+        "duration": "4-8 horas",
+        "features": {
+          "customItineraries": "Itinerarios personalizados",
+          "multilingualGuides": "Guías multilingües",
+          "historicalInsights": "Perspectivas históricas",
+          "photoStops": "Paradas fotográficas en lugares emblemáticos",
+          "flexibleTiming": "Horarios flexibles",
+          "localRecommendations": "Recomendaciones locales"
+        }
+      },
+      "corporateTravel": {
+        "name": "Viajes Corporativos",
+        "description": "Soluciones de transporte profesional para ejecutivos de negocios y eventos corporativos.",
+        "duration": "Según necesidad",
+        "features": {
+          "executiveService": "Servicio de nivel ejecutivo",
+          "flexibleScheduling": "Programación flexible",
+          "corporateBilling": "Opciones de facturación corporativa",
+          "multiplePickups": "Múltiples ubicaciones de recogida",
+          "privacyGuaranteed": "Privacidad garantizada",
+          "wifiCharging": "WiFi y estaciones de carga"
+        }
+      },
+      "weddingServices": {
+        "name": "Servicios de Boda",
+        "description": "Haga que su día especial sea perfecto con nuestros elegantes paquetes de transporte para bodas.",
+        "duration": "Día completo",
+        "features": {
+          "bridalTransport": "Transporte nupcial",
+          "guestShuttle": "Servicio de transporte para invitados",
+          "decoratedVehicles": "Vehículos decorados",
+          "professionalCoordination": "Coordinación profesional",
+          "flexiblePackages": "Paquetes flexibles",
+          "photographyAssistance": "Asistencia fotográfica"
+        }
+      },
+      "vipTransport": {
+        "name": "Transporte VIP",
+        "description": "Transporte de lujo exclusivo para VIPs, celebridades y clientes de alto perfil.",
+        "duration": "Según requerimiento",
+        "features": {
+          "maximumPrivacy": "Máxima privacidad",
+          "securityCoordination": "Coordinación de seguridad",
+          "routePlanning": "Planificación estratégica de rutas",
+          "personalConcierge": "Servicio de conserjería personal",
+          "luxuryAmenities": "Comodidades de lujo",
+          "redCarpetService": "Servicio de alfombra roja"
+        }
+      },
+      "longDistance": {
+        "name": "Viajes de Larga Distancia",
+        "description": "Transporte cómodo de larga distancia entre ciudades y destinos turísticos.",
+        "duration": "Múltiples días",
+        "features": {
+          "intercityTransport": "Transporte interurbano",
+          "comfortStops": "Paradas de descanso",
+          "scenicRoutes": "Rutas panorámicas",
+          "multipleDays": "Viajes de múltiples días",
+          "hotelCoordination": "Coordinación hotelera",
+          "culturalInsights": "Perspectivas culturales"
+        }
+      }
+    },
+    "additionalServices": {
+      "personalShopping": {
+        "name": "Compras Personales",
+        "description": "Transporte para excursiones de compras y diligencias personales."
+      },
+      "eventTransport": {
+        "name": "Transporte de Eventos",
+        "description": "Transporte especializado para conferencias, reuniones y eventos especiales."
+      },
+      "medicalAppointments": {
+        "name": "Citas Médicas",
+        "description": "Transporte confiable para citas médicas y visitas hospitalarias."
+      },
+      "culturalExcursions": {
+        "name": "Excursiones Culturales",
+        "description": "Tours guiados a sitios históricos, museos y atracciones culturales."
+      },
+      "golfTransport": {
+        "name": "Transporte de Golf",
+        "description": "Transporte a campos de golf con manejo de equipos."
+      },
+      "conciergeServices": {
+        "name": "Servicios de Conserjería",
+        "description": "Servicios de asistente personal incluyendo reservas y planificación."
       }
     }
   },

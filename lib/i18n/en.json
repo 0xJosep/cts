@@ -12,7 +12,7 @@
   "home": {
     "hero": {
       "title": "The Art of Exceptional Travel",
-      "subtitle": "For over 10 years, we've been the choice of executives, celebrities, and travelers who demand the finest. Our world-class chauffeurs and luxury fleet deliver more than transportation – we provide peace of mind, privacy, and prestige with every journey.",
+      "subtitle": "For over 20 years, we've been the choice of executives, celebrities, and travelers who demand the finest. Our world-class chauffeurs and luxury fleet deliver more than transportation – we provide peace of mind, privacy, and prestige with every journey.",
       "cta": "Book Your Ride",
       "learnMore": "Learn more",
       "discoverMorocco": "Discover Morocco in depth",
@@ -40,6 +40,10 @@
         "tracking": "Real-time tracking"
       }
     },
+    "gallery": {
+      "title": "Discover Morocco",
+      "subtitle": "Explore the enchanting destinations we'll take you to across the Kingdom"
+    },
     "socialProof": {
       "title": "Trusted by Travelers Worldwide",
       "subtitle": "Join thousands of satisfied clients who have experienced our premium service",
@@ -53,14 +57,77 @@
     "testimonials": {
       "sarah": {
         "name": "Sarah Johnson",
-        "title": "CEO, TechCorp",
-        "quote": "The attention to detail and professionalism of their service is unmatched. Every journey feels like a VIP experience."
+        "title": "New York, USA",
+        "quote": "From the moment I stepped off the plane in Marrakech, I felt like royalty! Our driver Hassan shared the most beautiful stories about the Atlas Mountains during our ride to La Mamounia. The way they handle every detail with such care made my first trip to Morocco absolutely magical."
       },
       "michael": {
         "name": "Michael Chen",
-        "title": "International Business Traveler",
-        "quote": "Their fleet is immaculate, and the drivers are incredibly knowledgeable. They've become my go-to service for all my business trips."
+        "title": "Singapore",
+        "quote": "I've traveled all over the world, but nothing prepared me for Morocco's beauty. Our chauffeur didn't just drive us – he became our cultural guide, explaining the history of the medina walls and even recommending the best mint tea spots. Pure class and authenticity."
+      },
+      "elena": {
+        "name": "Elena Rodriguez",
+        "title": "Madrid, Spain",
+        "quote": "¡Increíble! Our driver Ahmed was like having a Moroccan friend show us around. He waited patiently while we explored the souks in Fez, and his stories about Berber traditions during our desert trip made everything come alive. This is how you experience the real Morocco."
+      },
+      "david": {
+        "name": "David Thompson",
+        "title": "London, UK",
+        "quote": "Honestly, I was nervous about navigating Morocco's roads, but these folks made it effortless. Watching the sunrise over the Sahara from our comfortable vehicle while our driver shared Tuareg legends... it doesn't get better than this. They know how to showcase Morocco's soul."
+      },
+      "yuki": {
+        "name": "Yuki Tanaka",
+        "title": "Tokyo, Japan",
+        "quote": "Morocco stole my heart, and this service helped me fall in love with every moment. From the vibrant colors of Chefchaouen to the bustling energy of Jemaa el-Fnaa, our driver made sure we didn't miss a single photo opportunity. The warmth of Moroccan hospitality shines through everything they do."
+      },
+      "alexandra": {
+        "name": "Alexandra Dubois",
+        "title": "Paris, France",
+        "quote": "Traveling with kids in Morocco seemed daunting until we met this incredible team. They had cold water ready for the little ones, knew child-friendly restaurants in every medina, and even helped us find the perfect babouches at the markets. Morocco became our family's favorite destination thanks to them."
       }
+    },
+    "team": {
+      "title": "Meet Our Professional Team",
+      "subtitle": "The dedicated professionals who make your journey exceptional",
+      "professional": {
+        "title": "Professional Chauffeurs",
+        "description": "Experienced, licensed, and trained to deliver exceptional service with the utmost discretion and professionalism."
+      },
+      "service": {
+        "title": "Customer Service Excellence",
+        "description": "Our dedicated customer service team ensures every detail of your journey is perfectly coordinated."
+      },
+      "management": {
+        "title": "Expert Management",
+        "description": "Seasoned professionals overseeing operations to maintain our high standards of luxury and reliability."
+      }
+    },
+    "behindScenes": {
+      "title": "Behind the Scenes",
+      "subtitle": "See how we deliver excellence in every aspect of our service",
+      "service": {
+        "title": "Service Excellence",
+        "description": "Every interaction reflects our commitment to providing world-class luxury transportation."
+      },
+      "preparation": {
+        "title": "Meticulous Preparation",
+        "description": "Our team ensures every vehicle and detail is perfect before your journey begins."
+      },
+      "quality": {
+        "title": "Quality Assurance",
+        "description": "Rigorous standards and regular inspections guarantee the highest level of service quality."
+      },
+      "experience": {
+        "title": "Customer Experience",
+        "description": "Creating memorable moments and exceeding expectations in every customer interaction."
+      }
+    },
+    "globalTrust": {
+      "title": "Trusted Worldwide",
+      "subtitle": "Clients from around the globe choose our premium transportation services when visiting Morocco",
+      "morocco": "Morocco",
+      "destination": "Premium Destination",
+      "clients": "Satisfied Clients"
     },
     "trustedBy": {
       "title": "Trusted by Prestigious Establishments",

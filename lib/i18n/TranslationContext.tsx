@@ -1,12 +1,12 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react';
 import en from './en.json';
 import es from './es.json';
 import fr from './fr.json';
 
 type Locale = 'en' | 'es' | 'fr';
-type Translations = typeof en;
+type Translations = Record<string, any>;
 
 interface TranslationContextType {
   t: (key: string) => string;
@@ -27,25 +27,36 @@ export const TranslationProvider: React.FC<{
   children: React.ReactNode;
 }> = ({ children }) => {
   const [locale, setLocale] = useState<Locale>('en');
+  const [isInitialized, setIsInitialized] = useState(false);
 
+  // Initialize locale only once
   useEffect(() => {
-    // Get saved locale from localStorage or use browser language
     const savedLocale = localStorage.getItem('locale') as Locale | null;
     const browserLocale = navigator.language.split('-')[0] as Locale;
     
+    let initialLocale: Locale = 'en';
+    
     if (savedLocale && (savedLocale === 'en' || savedLocale === 'es' || savedLocale === 'fr')) {
-      setLocale(savedLocale);
+      initialLocale = savedLocale;
     } else if (browserLocale === 'es') {
-      setLocale('es');
+      initialLocale = 'es';
     } else if (browserLocale === 'fr') {
-      setLocale('fr');
+      initialLocale = 'fr';
     }
     
-    // Update html lang attribute
-    document.documentElement.lang = locale;
-  }, [locale]);
+    setLocale(initialLocale);
+    setIsInitialized(true);
+    document.documentElement.lang = initialLocale;
+  }, []);
 
-  const t = (key: string): string => {
+  // Update html lang when locale changes
+  useEffect(() => {
+    if (isInitialized) {
+      document.documentElement.lang = locale;
+    }
+  }, [locale, isInitialized]);
+
+  const t = useCallback((key: string): string => {
     const keys = key.split('.');
     let current: Record<string, unknown> = translations[locale];
     
@@ -58,20 +69,27 @@ export const TranslationProvider: React.FC<{
     }
     
     return current as unknown as string;
-  };
+  }, [locale]);
 
-  const changeLocale = (newLocale: Locale) => {
+  const changeLocale = useCallback((newLocale: Locale) => {
     localStorage.setItem('locale', newLocale);
     setLocale(newLocale);
-  };
+  }, []);
+
+  const contextValue = useMemo(() => ({
+    t,
+    locale,
+    setLocale: changeLocale,
+    translations
+  }), [t, locale, changeLocale]);
+
+  // Don't render children until locale is properly initialized
+  if (!isInitialized) {
+    return null;
+  }
 
   return (
-    <TranslationContext.Provider value={{ 
-      t, 
-      locale, 
-      setLocale: changeLocale,
-      translations
-    }}>
+    <TranslationContext.Provider value={contextValue}>
       {children}
     </TranslationContext.Provider>
   );

@@ -12,7 +12,7 @@
   "home": {
     "hero": {
       "title": "L'Art du Voyage Exceptionnel",
-      "subtitle": "Depuis plus de 10 ans, nous sommes le choix des dirigeants, célébrités et voyageurs qui exigent le meilleur. Nos chauffeurs de classe mondiale et notre flotte de luxe offrent plus que du transport – nous apportons tranquillité d'esprit, intimité et prestige à chaque voyage.",
+      "subtitle": "Depuis plus de 20 ans, nous sommes le choix des dirigeants, célébrités et voyageurs qui exigent le meilleur. Nos chauffeurs de classe mondiale et notre flotte de luxe offrent plus que du transport – nous apportons tranquillité d'esprit, intimité et prestige à chaque voyage.",
       "cta": "Réservez Votre Trajet",
       "learnMore": "En savoir plus",
       "discoverMorocco": "Découvrez le Maroc en profondeur",
@@ -40,6 +40,10 @@
         "tracking": "Suivi en temps réel"
       }
     },
+    "gallery": {
+      "title": "Découvrez le Maroc",
+      "subtitle": "Explorez les destinations enchanteresses où nous vous emmènerons à travers le Royaume"
+    },
     "socialProof": {
       "title": "Reconnus par les Voyageurs du Monde Entier",
       "subtitle": "Rejoignez des milliers de clients satisfaits qui ont vécu notre service premium",
@@ -53,14 +57,77 @@
     "testimonials": {
       "sarah": {
         "name": "Sarah Johnson",
-        "title": "PDG, TechCorp",
-        "quote": "L'attention aux détails et le professionnalisme de leur service sont inégalés. Chaque voyage ressemble à une expérience VIP."
+        "title": "New York, États-Unis",
+        "quote": "Dès l'instant où j'ai posé le pied hors de l'avion à Marrakech, je me suis sentie comme une reine ! Notre chauffeur Hassan a partagé les plus belles histoires sur les montagnes de l'Atlas pendant notre trajet vers La Mamounia. La façon dont ils gèrent chaque détail avec tant de soin a rendu mon premier voyage au Maroc absolument magique."
       },
       "michael": {
         "name": "Michael Chen",
-        "title": "Voyageur d'Affaires International",
-        "quote": "Leur flotte est impeccable, et les chauffeurs sont incroyablement compétents. Ils sont devenus mon service de référence pour tous mes voyages d'affaires."
+        "title": "Singapour",
+        "quote": "J'ai voyagé partout dans le monde, mais rien ne m'a préparé à la beauté du Maroc. Notre chauffeur ne nous a pas seulement conduits - il est devenu notre guide culturel, expliquant l'histoire des remparts de la médina et même recommandant les meilleurs endroits pour le thé à la menthe. Pure classe et authenticité."
+      },
+      "elena": {
+        "name": "Elena Rodriguez",
+        "title": "Madrid, Espagne",
+        "quote": "¡Increíble! Notre chauffeur Ahmed était comme avoir un ami marocain nous faire visiter. Il a attendu patiemment pendant que nous explorions les souks de Fès, et ses histoires sur les traditions berbères pendant notre voyage dans le désert ont donné vie à tout. C'est comme ça qu'on découvre le vrai Maroc."
+      },
+      "david": {
+        "name": "David Thompson",
+        "title": "Londres, Royaume-Uni",
+        "quote": "Honnêtement, j'étais nerveux à l'idée de naviguer sur les routes du Maroc, mais ces gens ont rendu cela sans effort. Regarder le lever du soleil sur le Sahara depuis notre véhicule confortable pendant que notre chauffeur partageait des légendes touareg... ça ne peut pas être mieux. Ils savent comment révéler l'âme du Maroc."
+      },
+      "yuki": {
+        "name": "Yuki Tanaka",
+        "title": "Tokyo, Japon",
+        "quote": "Le Maroc a volé mon cœur, et ce service m'a aidée à tomber amoureuse de chaque moment. Des couleurs vibrantes de Chefchaouen à l'énergie bouillonnante de Jemaa el-Fnaa, notre chauffeur s'est assuré que nous ne manquions aucune opportunité photo. La chaleur de l'hospitalité marocaine transparaît dans tout ce qu'ils font."
+      },
+      "alexandra": {
+        "name": "Alexandra Dubois",
+        "title": "Paris, France",
+        "quote": "Voyager avec des enfants au Maroc semblait intimidant jusqu'à ce que nous rencontrions cette équipe incroyable. Ils avaient de l'eau fraîche prête pour les petits, connaissaient des restaurants adaptés aux enfants dans chaque médina, et nous ont même aidés à trouver les parfaites babouches aux marchés. Le Maroc est devenu la destination préférée de notre famille grâce à eux."
       }
+    },
+    "team": {
+      "title": "Rencontrez Notre Équipe Professionnelle",
+      "subtitle": "Les professionnels dévoués qui rendent votre voyage exceptionnel",
+      "professional": {
+        "title": "Chauffeurs Professionnels",
+        "description": "Expérimentés, licenciés et formés pour offrir un service exceptionnel avec la plus grande discrétion et professionnalisme."
+      },
+      "service": {
+        "title": "Excellence du Service Client",
+        "description": "Notre équipe dédiée au service client s'assure que chaque détail de votre voyage soit parfaitement coordonné."
+      },
+      "management": {
+        "title": "Gestion Experte",
+        "description": "Professionnels chevronnés supervisant les opérations pour maintenir nos hauts standards de luxe et de fiabilité."
+      }
+    },
+    "behindScenes": {
+      "title": "Dans les Coulisses",
+      "subtitle": "Découvrez comment nous livrons l'excellence dans chaque aspect de notre service",
+      "service": {
+        "title": "Excellence du Service",
+        "description": "Chaque interaction reflète notre engagement à fournir un transport de luxe de classe mondiale."
+      },
+      "preparation": {
+        "title": "Préparation Méticuleuse",
+        "description": "Notre équipe s'assure que chaque véhicule et détail soit parfait avant le début de votre voyage."
+      },
+      "quality": {
+        "title": "Assurance Qualité",
+        "description": "Des normes rigoureuses et des inspections régulières garantissent le plus haut niveau de qualité de service."
+      },
+      "experience": {
+        "title": "Expérience Client",
+        "description": "Créer des moments mémorables et dépasser les attentes dans chaque interaction client."
+      }
+    },
+    "globalTrust": {
+      "title": "Confiance Mondiale",
+      "subtitle": "Des clients du monde entier choisissent nos services de transport premium lors de leur visite au Maroc",
+      "morocco": "Maroc",
+      "destination": "Destination Premium",
+      "clients": "Clients Satisfaits"
     },
     "trustedBy": {
       "title": "Reconnus par les Établissements de Prestige",
@@ -536,279 +603,6 @@
     "subtitle": "Découvrez le luxe, le confort et la fiabilité avec nos services exclusifs de chauffeur",
     "cta": "Réserver Maintenant",
     "learnMore": "En Savoir Plus"
-  },
-  "services": {
-    "title": "Nos Services",
-    "subtitle": "Découvrez notre gamme de solutions de transport premium",
-    "backToHome": "Retour à l'Accueil",
-    "learnMore": "En Savoir Plus",
-    "bookThisService": "Réserver Ce Service",
-    "getQuote": "Obtenir un Devis",
-    "keyFeatures": "Caractéristiques Clés",
-    "additionalServicesTitle": "Services Supplémentaires",
-    "additionalServicesSubtitle": "Complétez votre expérience avec nos services complémentaires",
-    "whyChooseTitle": "Pourquoi Choisir Nos Services",
-    "whyChooseSubtitle": "Découvrez la différence avec nos solutions de transport premium",
-    "reliability": "Fiabilité",
-    "reliabilityDesc": "Service professionnel 24/7 sur lequel vous pouvez compter",
-    "excellence": "Excellence",
-    "excellenceDesc": "Véhicules de luxe et service client exceptionnel",
-    "professional": "Chauffeurs Professionnels",
-    "professionalDesc": "Chauffeurs expérimentés, licenciés et courtois",
-    "punctual": "Toujours à l'Heure",
-    "punctualDesc": "Ponctualité garantie pour tous vos rendez-vous",
-    
-    "menuBadge": "Menu des Services",
-    "menuTitle": "Notre Menu de",
-    "menuTitleAccent": "Services",
-    "menuSubtitle": "Choisissez parmi nos forfaits de transport soigneusement conçus pour chaque occasion",
-    "chooseCategory": "Choisissez Votre Catégorie de Service",
-    "popular": "Populaire",
-    "recommended": "Recommandé",
-    "bookNow": "Réserver Maintenant",
-    "contactUs": "Nous Contacter",
-    "claimOffer": "Réclamer l'Offre",
-    "limitedTime": "Temps Limité",
-    "specialOffers": "Offres Spéciales et Forfaits",
-    "specialOffersDescription": "Profitez de nos offres exclusives et économisez sur votre prochaine expérience de transport de luxe",
-    "readyToBook": "Prêt à Découvrir le Luxe ?",
-    "readyToBookDescription": "Réservez votre service de transport premium aujourd'hui et voyagez avec style et confort",
-
-    "categories": {
-      "premium": {
-        "name": "Services Premium",
-        "description": "Transport de luxe ultime avec véhicules premium et traitement VIP"
-      },
-      "business": {
-        "name": "Voyages d'Affaires",
-        "description": "Transport d'entreprise professionnel pour réunions et événements"
-      },
-      "special": {
-        "name": "Occasions Spéciales",
-        "description": "Transport mémorable pour mariages, célébrations et moments romantiques"
-      },
-      "standard": {
-        "name": "Services Standard",
-        "description": "Transport fiable et confortable pour les besoins quotidiens"
-      }
-    },
-
-    "packages": {
-      "premium": {
-        "airportVip": {
-          "name": "Transfert VIP Aéroport",
-          "description": "Transport de luxe vers l'aéroport avec véhicules premium, service d'accueil et accès salon VIP",
-          "tiers": {
-            "basic": {
-              "name": "VIP Basic",
-              "features": ["Véhicule premium", "Chauffeur professionnel", "Service d'accueil", "Suivi des vols", "Eau de courtoisie"]
-            },
-            "premium": {
-              "name": "VIP Premium", 
-              "features": ["Berline/SUV de luxe", "Accès salon VIP", "Gestion prioritaire des bagages", "Service de rafraîchissements", "Temps d'attente gratuit", "Wi-Fi disponible"]
-            },
-            "luxury": {
-              "name": "VIP Luxe",
-              "features": ["Limousine premium", "Service champagne", "Accès salon exécutif", "Concierge personnel", "Service tapis rouge", "Traitement VIP complet"]
-            }
-          }
-        },
-        "cityLuxury": {
-          "name": "Tours de Luxe en Ville",
-          "description": "Explorez la ville avec style lors de nos visites guidées premium en véhicules de luxe",
-          "tiers": {
-            "halfDay": {
-              "name": "Tour d'une Demi-Journée",
-              "features": ["Véhicule de luxe", "Guide professionnel", "Visite de 4 heures de la ville", "Arrêts photos", "Rafraîchissements inclus"]
-            },
-            "fullDay": {
-              "name": "Expérience d'une Journée Complète",
-              "features": ["SUV/Berline premium", "Guide local expert", "Visite complète de 8 heures", "Déjeuner inclus", "Multiples attractions", "Prise en charge/dépôt à l'hôtel"]
-            }
-          }
-        }
-      },
-      "business": {
-        "corporateTransfer": {
-          "name": "Transfert d'Entreprise",
-          "description": "Transport professionnel d'affaires pour cadres, réunions et événements d'entreprise",
-          "tiers": {
-            "standard": {
-              "name": "Standard Affaires",
-              "features": ["Véhicule professionnel", "Chauffeur en costume", "Garantie de ponctualité", "Équipements d'affaires", "Facture fournie"]
-            },
-            "executive": {
-              "name": "Service Exécutif",
-              "features": ["Véhicule d'affaires de luxe", "Chauffeur exécutif", "Coordination de réunions", "Wi-Fi et rechargement", "Horaire flexible", "Service prioritaire"]
-            }
-          }
-        },
-        "meetingShuttle": {
-          "name": "Navette de Réunion",
-          "description": "Transport pratique entre lieux, hôtels et sites d'affaires",
-          "tiers": {
-            "local": {
-              "name": "Navette Locale",
-              "features": ["Véhicule confortable", "Conducteur professionnel", "Couverture zone urbaine", "Arrêts multiples", "Suivi temps réel"]
-            },
-            "extended": {
-              "name": "Service Étendu",
-              "features": ["Véhicule premium", "Couverture zone étendue", "Destinations multiples", "Temps d'attente inclus", "Flexibilité d'horaire", "Équipements d'affaires"]
-            }
-          }
-        }
-      },
-      "special": {
-        "weddingLuxury": {
-          "name": "Forfait Mariage de Luxe",
-          "description": "Rendez votre jour spécial inoubliable avec nos services premium de transport de mariage",
-          "tiers": {
-            "ceremony": {
-              "name": "Forfait Cérémonie",
-              "features": ["Véhicule de luxe décoré", "Chauffeur professionnel", "Transport du cortège nuptial", "Support séance photo", "Service tapis rouge", "Toast au champagne"]
-            },
-            "fullDay": {
-              "name": "Expérience Mariage Complète",
-              "features": ["Véhicules de luxe multiples", "Service toute la journée", "Coordination des lieux", "Transport des invités", "Service de décoration", "Coordinateur de mariage", "Champagne et fleurs"]
-            }
-          }
-        },
-        "romanticTour": {
-          "name": "Soirée Romantique",
-          "description": "Créez des moments magiques avec nos forfaits de tour romantique et transport pour dîner",
-          "tiers": {
-            "sunset": {
-              "name": "Romance au Coucher du Soleil",
-              "features": ["Véhicule de luxe", "Tour route panoramique", "Arrêt coucher de soleil", "Service champagne", "Musique romantique"]
-            },
-            "weekend": {
-              "name": "Escapade de Week-end",
-              "features": ["SUV premium", "Tour multi-destinations", "Réservations restaurant", "Photographie panoramique", "Itinéraire personnalisé", "Équipements de luxe"]
-            }
-          }
-        }
-      },
-      "standard": {
-        "airportStandard": {
-          "name": "Transfert Aéroport",
-          "description": "Transport fiable et confortable vers l'aéroport avec service professionnel",
-          "tiers": {
-            "oneway": {
-              "name": "Transfert Aller Simple",
-              "features": ["Véhicule confortable", "Conducteur professionnel", "Suivi des vols", "Service d'accueil", "Assistance bagages"]
-            },
-            "roundtrip": {
-              "name": "Service Aller-Retour",
-              "features": ["Service aller-retour", "Horaire flexible", "Suivi des vols", "Temps d'attente gratuit", "Sièges confortables", "Prix compétitifs"]
-            }
-          }
-        },
-        "cityStandard": {
-          "name": "Transport en Ville",
-          "description": "Transport pratique et abordable en ville pour besoins quotidiens et trajets courts",
-          "tiers": {
-            "short": {
-              "name": "Courte Distance",
-              "features": ["Véhicule confortable", "Conducteur professionnel", "Couverture zone urbaine", "Route directe", "Prix abordables"]
-            },
-            "extended": {
-              "name": "Service Étendu",
-              "features": ["Arrêts multiples autorisés", "Couverture temps étendu", "Routage flexible", "Temps d'attente inclus", "Service professionnel", "Disponibilité toute la journée"]
-            }
-          }
-        }
-      }
-    },
-
-    "offer1": {
-      "title": "Premier Client",
-      "discount": "15% RÉDUCTION",
-      "description": "Les nouveaux clients reçoivent 15% de réduction sur leur première réservation. Valide pour tous les services premium."
-    },
-    "offer2": {
-      "title": "Réservation de Groupe",
-      "discount": "20% RÉDUCTION",
-      "description": "Réservez pour 5+ personnes et économisez 20%. Parfait pour événements d'entreprise et tours de groupe."
-    },
-
-    "airportTransfers": {
-      "name": "Transferts Aéroport",
-      "description": "Services professionnels de prise en charge et dépôt à l'aéroport avec suivi des vols et accueil.",
-      "duration": "1-2 heures",
-      "features": [
-        "Suivi et monitoring des vols",
-        "Service d'accueil",
-        "Assistance bagages",
-        "Véhicules confortables",
-        "Chauffeurs professionnels",
-        "Temps d'attente gratuit"
-      ]
-    },
-    "cityTours": {
-      "name": "Visites de la Ville",
-      "description": "Explorez les meilleures attractions de la ville avec nos guides experts et véhicules de luxe.",
-      "duration": "4-8 heures",
-      "features": [
-        "Guides locaux experts",
-        "Transport de luxe",
-        "Itinéraires flexibles",
-        "Opportunités photos",
-        "Rafraîchissements inclus",
-        "Prise en charge/dépôt hôtel"
-      ]
-    },
-    "corporateTravel": {
-      "name": "Voyages d'Entreprise",
-      "description": "Transport professionnel d'affaires pour cadres, réunions et événements d'entreprise.",
-      "duration": "Selon besoin",
-      "features": [
-        "Véhicules exécutifs",
-        "Chauffeurs professionnels",
-        "Garantie de ponctualité",
-        "Équipements d'affaires",
-        "Horaire flexible",
-        "Facture fournie"
-      ]
-    },
-    "weddingServices": {
-      "name": "Services de Mariage",
-      "description": "Rendez votre jour spécial mémorable avec nos forfaits de transport de luxe pour mariages.",
-      "duration": "4-12 heures",
-      "features": [
-        "Véhicules décorés",
-        "Service tapis rouge",
-        "Support photographique professionnel",
-        "Transport du cortège nuptial",
-        "Horaire flexible",
-        "Décorations spéciales"
-      ]
-    },
-    "vipTransportation": {
-      "name": "Transport VIP",
-      "description": "Expérience de luxe ultime avec véhicules premium et service personnalisé.",
-      "duration": "Personnalisable",
-      "features": [
-        "Véhicules de luxe premium",
-        "Traitement VIP",
-        "Concierge personnel",
-        "Service champagne",
-        "Réservation prioritaire",
-        "Équipements exclusifs"
-      ]
-    },
-    "longDistance": {
-      "name": "Voyages Longue Distance",
-      "description": "Transport confortable longue distance entre villes avec équipements de luxe.",
-      "duration": "4+ heures",
-      "features": [
-        "Confort longue distance",
-        "Arrêts repos inclus",
-        "Rafraîchissements fournis",
-        "Systèmes de divertissement",
-        "Conducteurs professionnels",
-        "Horaire flexible"
-      ]
-    }
   },
   "fleet": {
     "title": "Notre Flotte Premium",
