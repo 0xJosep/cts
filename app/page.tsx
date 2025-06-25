@@ -1,7 +1,10 @@
 'use client'
 
 import { useState, useEffect, lazy, Suspense, useMemo, useCallback } from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
 import { Sheet, SheetContent } from '@/components/ui/sheet'
+import ErrorBoundary from './components/ErrorBoundary'
 import { Menu, X, Sun, Moon, ChevronDown, Check } from 'lucide-react'
 import { useTheme } from './providers/ThemeProvider'
 import { useTranslation } from '@/lib/i18n/TranslationContext'
@@ -13,6 +16,7 @@ import LanguageSwitcher from './components/LanguageSwitcher'
 const Marquee = lazy(() => import('@/components/ui/marquee').then(module => ({ default: module.Marquee })))
 const WorldMap = lazy(() => import('@/src/components/ui/world-map'))
 const AnimatedTestimonials = lazy(() => import('@/src/components/ui/animated-testimonials').then(module => ({ default: module.AnimatedTestimonials })))
+const CircularGallery = lazy(() => import('@/components/ui/CircularGallery'))
 
 const languages = [
   { code: 'en', name: 'English', flag: '🇬🇧' },
@@ -127,15 +131,24 @@ export default function Example() {
     }
   }, [locale])
 
+  // Optimized scroll handler with throttling
   useEffect(() => {
+    let ticking = false
+    
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 10
-      if (isScrolled !== scrolled) {
-        setScrolled(isScrolled)
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const isScrolled = window.scrollY > 10
+          if (isScrolled !== scrolled) {
+            setScrolled(isScrolled)
+          }
+          ticking = false
+        })
+        ticking = true
       }
     }
 
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [scrolled])
 
@@ -183,27 +196,30 @@ export default function Example() {
       <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${scrolled ? 'bg-background/80 backdrop-blur-md shadow-sm' : 'bg-transparent'}`}>
         <nav className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8" aria-label="Global">
           <div className="flex lg:flex-1">
-            <a href="/" className="-m-1.5 p-1.5 flex items-center gap-2">
+            <Link href="/" className="-m-1.5 p-1.5 flex items-center gap-2">
               <span className="sr-only">CTS Luxury Transport</span>
-              <img
+              <Image
                 alt="CTS Logo"
                 src="/logo-cts-sharpened.png"
                 className="h-10 w-auto"
+                width={40}
+                height={40}
+                priority
               />
-            </a>
+            </Link>
           </div>
           
           {/* Desktop navigation */}
           <div className="hidden lg:flex lg:gap-x-8">
             {navigation.map((item) => (
-              <a
+              <Link
                 key={item.name}
                 href={item.href}
                 className="text-sm font-medium text-foreground hover:text-primary transition-colors relative group px-2 py-2"
               >
                 {item.name}
                 <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
-              </a>
+              </Link>
             ))}
           </div>
           
@@ -256,12 +272,12 @@ export default function Example() {
               </button>
             </div>
             
-            <a
+            <Link
               href="/booking"
               className="hidden lg:block rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
             >
               {t('common.booking')}
-            </a>
+            </Link>
             
             <div className="flex lg:hidden">
               <button
@@ -278,15 +294,18 @@ export default function Example() {
         
         {/* Mobile menu */}
         <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-          <SheetContent side="right" className="w-full overflow-y-auto bg-background px-6 py-6 sm:max-w-sm">
+          <SheetContent side="right" className="w-full overflow-y-auto bg-background px-6 py-6 sm:max-w-sm [&>button]:hidden">
             <div className="flex items-center justify-between">
-              <a href="/" className="-m-1.5 p-1.5 flex items-center gap-2">
-                <img
+              <Link href="/" className="-m-1.5 p-1.5 flex items-center gap-2">
+                <Image
                   alt="CTS Logo"
                   src="/logo-cts-sharpened.png"
                   className="h-8 w-auto"
+                  width={32}
+                  height={32}
+                  priority
                 />
-              </a>
+              </Link>
               <Button
                 variant="ghost"
                 size="icon"
@@ -301,13 +320,13 @@ export default function Example() {
               <div className="-my-6 divide-y divide-border">
                 <div className="space-y-2 py-6">
                   {navigation.map((item) => (
-                    <a
+                    <Link
                       key={item.name}
                       href={item.href}
                       className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-medium text-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
                     >
                       {item.name}
-                    </a>
+                    </Link>
                   ))}
                 </div>
                 <div className="py-6 space-y-3">
@@ -346,12 +365,12 @@ export default function Example() {
                     </button>
                   </div>
                   
-                  <a
+                  <Link
                     href="/booking"
                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
                   >
                     {t('common.booking')}
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -393,12 +412,12 @@ export default function Example() {
               {t('home.hero.subtitle')}
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6 animate-fade-up" style={{ animationDelay: '0.5s' }}>
-              <a
+              <Link
                 href="/booking"
                 className="rounded-md bg-gradient-to-r from-gold-dark via-gold to-gold-light px-4 py-3 text-sm font-semibold text-primary-foreground shadow-sm hover:shadow-md transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold clickable"
               >
                 {t('common.booking')}
-              </a>
+              </Link>
               <a href="#" className="text-sm/6 font-semibold text-foreground hover:text-primary transition-colors clickable">
                 {t('home.hero.learnMore')} <span aria-hidden="true">→</span>
               </a>
@@ -416,6 +435,78 @@ export default function Example() {
             }}
             className="relative left-[calc(50%+3rem)] aspect-1155/678 w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-primary to-secondary opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
           />
+        </div>
+      </div>
+
+      {/* Trusted By Section */}
+      <div className="py-8 bg-background/50 overflow-hidden">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-2xl font-semibold leading-8 text-gold">{t('home.trustedBy.title')}</h2>
+          </div>
+          <div className="relative mt-6">
+            <ErrorBoundary>
+              <Suspense fallback={
+                <div className="animate-pulse bg-muted rounded-lg h-16 mx-auto max-w-5xl flex items-center justify-center">
+                  <div className="text-muted-foreground">Loading partners...</div>
+                </div>
+              }>
+                <Marquee speed="normal" gap="6rem" className="mx-auto max-w-5xl">
+                <div className="flex items-center gap-24">
+                <Image
+                  className="h-12 w-auto object-contain grayscale opacity-90 hover:opacity-100 transition-all duration-300 dark:brightness-200 invert dark:invert-0 hover:[filter:brightness(0)_contrast(200%)_sepia(100%)_saturate(1000%)_hue-rotate(0deg)_brightness(100%)] clickable"
+                  src="https://mamounia.com/bundles/apiciuswebsite/images/logo-white.svg"
+                  alt="La Mamounia Marrakech"
+                  width={200}
+                  height={60}
+                />
+                <Image
+                  className="h-12 w-auto object-contain grayscale opacity-90 hover:opacity-100 transition-all duration-300 brightness-200 dark:brightness-200 invert dark:invert-0 hover:[filter:brightness(0)_contrast(200%)_sepia(100%)_saturate(1000%)_hue-rotate(0deg)_brightness(100%)] clickable"
+                  src="https://www.movenpickmarrakech.com/wp-content/themes/movenpick-template/images/logo/movenpick_logo.png"
+                  alt="Mövenpick Marrakech"
+                  width={158}
+                  height={48}
+                />
+                <Image
+                  className="h-16 w-auto object-contain grayscale opacity-90 hover:opacity-100 transition-all duration-300 dark:brightness-200 invert dark:invert-0 hover:[filter:brightness(0)_contrast(200%)_sepia(100%)_saturate(1000%)_hue-rotate(0deg)_brightness(100%)] clickable"
+                  src="https://www.essaadi.com/wp-content/themes/EsSaadi/img/logo.png.webp"
+                  alt="Es Saadi Marrakech"
+                  width={200}
+                  height={64}
+                />
+                <Image
+                  className="h-12 w-auto object-contain grayscale opacity-90 hover:opacity-100 transition-all duration-300 max-w-[100px] dark:brightness-[600%] dark:invert-0 [filter:brightness(0)_contrast(200%)] hover:[filter:brightness(0)_contrast(200%)_sepia(100%)_saturate(1000%)_hue-rotate(0deg)_brightness(100%)] clickable"
+                  src="https://sofitel.accor.com/content/dam/brands/sof/global-marketing/brand-identity/logos/Logo%20Header.svg"
+                  alt="Sofitel"
+                  width={100}
+                  height={48}
+                />
+                <Image
+                  className="h-12 w-auto object-contain grayscale opacity-90 hover:opacity-100 transition-all duration-300 dark:brightness-200 invert dark:invert-0 hover:[filter:brightness(0)_contrast(200%)_sepia(100%)_saturate(1000%)_hue-rotate(0deg)_brightness(100%)] clickable"
+                  src="https://agafaydesertluxurycamp.com/wp-content/uploads/2021/02/Agafay-luxury-camp-w.png"
+                  alt="Agafay Desert Luxury Camp"
+                  width={158}
+                  height={48}
+                />
+                <Image
+                  className="h-12 w-auto object-contain grayscale opacity-90 hover:opacity-100 transition-all duration-300 dark:brightness-200 invert dark:invert-0 hover:[filter:brightness(0)_contrast(200%)_sepia(100%)_saturate(1000%)_hue-rotate(0deg)_brightness(100%)] clickable"
+                  src="https://image-tc.galaxy.tf/wisvg-aomm7yv3rx17ub9jxv1zz636r/kenzimenarapalace.svg"
+                  alt="Kenzi Menara Palace"
+                  width={158}
+                  height={48}
+                />
+                <Image
+                  className="h-12 w-auto object-contain grayscale opacity-90 hover:opacity-100 transition-all duration-300 brightness-400 dark:brightness-[400%] invert dark:invert-0 hover:[filter:brightness(0)_contrast(200%)_sepia(100%)_saturate(1000%)_hue-rotate(0deg)_brightness(100%)] clickable"
+                  src="https://upload.wikimedia.org/wikipedia/fr/1/1d/Logo_Four_Seasons.svg"
+                  alt="Four Seasons Hotels"
+                  width={158}
+                  height={48}
+                />
+              </div>
+              </Marquee>
+              </Suspense>
+            </ErrorBoundary>
+          </div>
         </div>
       </div>
 
@@ -516,6 +607,51 @@ export default function Example() {
         </div>
       </div>
 
+      {/* Moroccan Destinations Gallery Section */}
+      <div className="relative py-24 bg-gradient-to-br from-background via-background/50 to-background overflow-hidden">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl relative inline-block">
+              {t('home.gallery.title')}
+              <span className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 h-0.5 w-16 gold-gradient"></span>
+            </h2>
+            <p className="mt-6 text-lg text-muted-foreground">
+              {t('home.gallery.subtitle')}
+            </p>
+          </div>
+          
+          <div className="mx-auto mt-8 h-[400px] sm:h-[500px] lg:h-[600px]">
+            <ErrorBoundary>
+              <Suspense fallback={
+                <div className="w-full h-full flex items-center justify-center">
+                  <div className="animate-pulse bg-muted rounded-lg w-full h-full flex items-center justify-center">
+                    <div className="text-muted-foreground">Loading Moroccan destinations...</div>
+                  </div>
+                </div>
+              }>
+                <CircularGallery
+                  items={[
+                    { image: '/circular-gallery/marrakech.jpg', text: 'Marrakech' },
+                    { image: '/circular-gallery/casablanca.jpg', text: 'Casablanca' },
+                    { image: '/circular-gallery/fes.jpg', text: 'Fès' },
+                    { image: '/circular-gallery/rabat.jpg', text: 'Rabat' },
+                    { image: '/circular-gallery/chefchaouen.jpg', text: 'Chefchaouen' },
+                    { image: '/circular-gallery/tanger.jpg', text: 'Tanger' },
+                    { image: '/circular-gallery/essaouira.jpg', text: 'Essaouira' },
+                    { image: '/circular-gallery/merzouga.jpg', text: 'Merzouga' },
+                    { image: '/circular-gallery/ouarzazate.jpg', text: 'Ouarzazate' }
+                  ]}
+                  bend={2}
+                  textColor="#D4AF37"
+                  borderRadius={0.1}
+                  font="bold 28px Figtree"
+                />
+              </Suspense>
+            </ErrorBoundary>
+          </div>
+        </div>
+      </div>
+
       {/* Social Proof Section */}
       <div className="relative py-8">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -589,78 +725,6 @@ export default function Example() {
                 />
               </Suspense>
             </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Trusted By Section */}
-      <div className="py-8 bg-background/50 overflow-hidden">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-base font-semibold leading-7 text-gold">{t('home.trustedBy.title')}</h2>
-            <p className="mt-1 text-lg font-medium text-muted-foreground">
-              {t('home.trustedBy.subtitle')}
-            </p>
-          </div>
-          <div className="relative mt-6">
-            <Suspense fallback={
-              <div className="animate-pulse bg-muted rounded-lg h-16 mx-auto max-w-5xl flex items-center justify-center">
-                <div className="text-muted-foreground">Loading partners...</div>
-              </div>
-            }>
-              <Marquee speed="normal" gap="6rem" className="mx-auto max-w-5xl">
-                <div className="flex items-center gap-24">
-                <img
-                  className="h-12 w-auto object-contain grayscale opacity-90 hover:opacity-100 transition-all duration-300 dark:brightness-200 invert dark:invert-0 hover:[filter:brightness(0)_contrast(200%)_sepia(100%)_saturate(1000%)_hue-rotate(0deg)_brightness(100%)] clickable"
-                  src="https://mamounia.com/bundles/apiciuswebsite/images/logo-white.svg"
-                  alt="La Mamounia Marrakech"
-                  width={200}
-                  height={60}
-                  loading="lazy"
-                />
-                <img
-                  className="h-12 w-auto object-contain grayscale opacity-90 hover:opacity-100 transition-all duration-300 dark:brightness-200 invert dark:invert-0 hover:[filter:brightness(0)_contrast(200%)_sepia(100%)_saturate(1000%)_hue-rotate(0deg)_brightness(100%)] clickable"
-                  src="https://www.movenpickmarrakech.com/wp-content/themes/movenpick-template/images/logo/movenpick_logo.png"
-                  alt="Mövenpick Marrakech"
-                  width={158}
-                  height={48}
-                  loading="lazy"
-                />
-                <img
-                  className="h-16 w-auto object-contain grayscale opacity-90 hover:opacity-100 transition-all duration-300 dark:brightness-200 invert dark:invert-0 hover:[filter:brightness(0)_contrast(200%)_sepia(100%)_saturate(1000%)_hue-rotate(0deg)_brightness(100%)] clickable"
-                  src="https://www.essaadi.com/wp-content/themes/EsSaadi/img/logo.png.webp"
-                  alt="Es Saadi Marrakech"
-                  width={200}
-                  height={64}
-                  loading="lazy"
-                />
-                <img
-                  className="h-12 w-auto object-contain grayscale opacity-90 hover:opacity-100 transition-all duration-300 max-w-[100px] dark:brightness-200 dark:invert-0 [filter:brightness(0)_contrast(200%)] hover:[filter:brightness(0)_contrast(200%)_sepia(100%)_saturate(1000%)_hue-rotate(0deg)_brightness(100%)] clickable"
-                  src="https://sofitel.accor.com/content/dam/brands/sof/global-marketing/brand-identity/logos/Logo%20Header.svg"
-                  alt="Sofitel"
-                  width={100}
-                  height={48}
-                  loading="lazy"
-                />
-                <img
-                  className="h-12 w-auto object-contain grayscale opacity-90 hover:opacity-100 transition-all duration-300 dark:brightness-200 invert dark:invert-0 hover:[filter:brightness(0)_contrast(200%)_sepia(100%)_saturate(1000%)_hue-rotate(0deg)_brightness(100%)] clickable"
-                  src="https://agafaydesertluxurycamp.com/wp-content/uploads/2021/02/Agafay-luxury-camp-w.png"
-                  alt="Agafay Desert Luxury Camp"
-                  width={158}
-                  height={48}
-                  loading="lazy"
-                />
-                <img
-                  className="h-12 w-auto object-contain grayscale opacity-90 hover:opacity-100 transition-all duration-300 dark:brightness-200 invert dark:invert-0 hover:[filter:brightness(0)_contrast(200%)_sepia(100%)_saturate(1000%)_hue-rotate(0deg)_brightness(100%)] clickable"
-                  src="https://image-tc.galaxy.tf/wisvg-aomm7yv3rx17ub9jxv1zz636r/kenzimenarapalace.svg"
-                  alt="Kenzi Menara Palace"
-                  width={158}
-                  height={48}
-                  loading="lazy"
-                />
-              </div>
-              </Marquee>
-            </Suspense>
           </div>
         </div>
       </div>
@@ -827,13 +891,12 @@ export default function Example() {
           <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
             <div className="flex flex-col items-center text-center">
               <div className="relative">
-                <img
+                <Image
                   className="h-32 w-32 rounded-full object-cover shadow-lg ring-4 ring-gold/20"
                   src="/WhatsApp Image 2025-06-21 at 23.39.18 (1).jpeg"
                   alt="Professional chauffeur"
-                  loading="lazy"
-                  width="128"
-                  height="128"
+                  width={128}
+                  height={128}
                 />
                 <div className="absolute -bottom-2 -right-2 h-8 w-8 rounded-full bg-primary flex items-center justify-center">
                   <svg className="h-4 w-4 text-primary-foreground" viewBox="0 0 20 20" fill="currentColor">
@@ -847,13 +910,12 @@ export default function Example() {
             
             <div className="flex flex-col items-center text-center">
               <div className="relative">
-                <img
+                <Image
                   className="h-32 w-32 rounded-full object-cover shadow-lg ring-4 ring-gold/20"
                   src="/WhatsApp Image 2025-06-22 at 00.48.58.jpeg"
                   alt="Customer service team"
-                  loading="lazy"
-                  width="128"
-                  height="128"
+                  width={128}
+                  height={128}
                 />
                 <div className="absolute -bottom-2 -right-2 h-8 w-8 rounded-full bg-primary flex items-center justify-center">
                   <svg className="h-4 w-4 text-primary-foreground" viewBox="0 0 20 20" fill="currentColor">
@@ -867,13 +929,12 @@ export default function Example() {
             
             <div className="flex flex-col items-center text-center">
               <div className="relative">
-                <img
+                <Image
                   className="h-32 w-32 rounded-full object-cover shadow-lg ring-4 ring-gold/20"
                   src="/WhatsApp Image 2025-06-22 at 06.37.17.jpeg"
                   alt="Management team"
-                  loading="lazy"
-                  width="128"
-                  height="128"
+                  width={128}
+                  height={128}
                 />
                 <div className="absolute -bottom-2 -right-2 h-8 w-8 rounded-full bg-primary flex items-center justify-center">
                   <svg className="h-4 w-4 text-primary-foreground" viewBox="0 0 20 20" fill="currentColor">
@@ -903,13 +964,12 @@ export default function Example() {
           
           <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-2">
             <div className="relative overflow-hidden rounded-2xl shadow-lg group">
-              <img
+              <Image
                 className="h-64 w-full object-cover group-hover:scale-105 transition-transform duration-300"
                 src="/WhatsApp Image 2025-06-22 at 06.37.17 (1).jpeg"
                 alt="Professional service in action"
-                loading="lazy"
-                width="400"
-                height="256"
+                width={400}
+                height={256}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               <div className="absolute bottom-6 left-6 text-white">
@@ -919,13 +979,12 @@ export default function Example() {
             </div>
             
             <div className="relative overflow-hidden rounded-2xl shadow-lg group">
-              <img
+              <Image
                 className="h-64 w-full object-cover group-hover:scale-105 transition-transform duration-300"
                 src="/WhatsApp Image 2025-06-22 at 06.37.17 (2).jpeg"
                 alt="Team preparation"
-                loading="lazy"
-                width="400"
-                height="256"
+                width={400}
+                height={256}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               <div className="absolute bottom-6 left-6 text-white">
@@ -935,13 +994,12 @@ export default function Example() {
             </div>
             
             <div className="relative overflow-hidden rounded-2xl shadow-lg group">
-              <img
+              <Image
                 className="h-64 w-full object-cover group-hover:scale-105 transition-transform duration-300"
                 src="/WhatsApp Image 2025-06-22 at 06.37.18.jpeg"
                 alt="Quality assurance"
-                loading="lazy"
-                width="400"
-                height="256"
+                width={400}
+                height={256}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               <div className="absolute bottom-6 left-6 text-white">
@@ -951,13 +1009,12 @@ export default function Example() {
             </div>
             
             <div className="relative overflow-hidden rounded-2xl shadow-lg group">
-              <img
+              <Image
                 className="h-64 w-full object-cover group-hover:scale-105 transition-transform duration-300"
                 src="/WhatsApp Image 2025-06-22 at 06.37.18 (1).jpeg"
                 alt="Customer experience"
-                loading="lazy"
-                width="400"
-                height="256"
+                width={400}
+                height={256}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               <div className="absolute bottom-6 left-6 text-white">
@@ -1007,8 +1064,8 @@ export default function Example() {
                 <h3 className="text-sm font-semibold text-foreground">{t('footer.company.title')}</h3>
                 <ul className="mt-4 space-y-4">
                   <li><a href="#" className="text-sm text-muted-foreground hover:text-foreground">{t('footer.company.about')}</a></li>
-                  <li><a href="/fleet" className="text-sm text-muted-foreground hover:text-foreground">{t('footer.company.fleet')}</a></li>
-                  <li><a href="/contact" className="text-sm text-muted-foreground hover:text-foreground">{t('footer.company.contact')}</a></li>
+                  <li><Link href="/fleet" className="text-sm text-muted-foreground hover:text-foreground">{t('footer.company.fleet')}</Link></li>
+                  <li><Link href="/contact" className="text-sm text-muted-foreground hover:text-foreground">{t('footer.company.contact')}</Link></li>
                   <li><a href="#" className="text-sm text-muted-foreground hover:text-foreground">{t('footer.company.careers')}</a></li>
                 </ul>
               </div>
