@@ -1,6 +1,6 @@
 'use client'
 
-import React, { createContext, useContext, useEffect, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState, useMemo, useCallback } from 'react'
 
 type ThemeProviderProps = {
   children: React.ReactNode
@@ -15,34 +15,46 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
 export function ThemeProvider({ children }: ThemeProviderProps) {
   const [darkMode, setDarkMode] = useState(false)
+  const [isInitialized, setIsInitialized] = useState(false)
 
-  // Initialize on mount, checking for system preference and stored preference
+  // Initialize theme only once on mount
   useEffect(() => {
-    // Check for stored preference first
     const storedDarkMode = localStorage.getItem('darkMode')
-    if (storedDarkMode !== null) {
-      setDarkMode(storedDarkMode === 'true')
-    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      // If no stored preference, check system preference
-      setDarkMode(true)
-    }
+    const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches
+    
+    const initialDarkMode = storedDarkMode !== null 
+      ? storedDarkMode === 'true' 
+      : prefersDark
 
-    // Apply theme
-    if (darkMode) {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-    }
-  }, [darkMode])
+    setDarkMode(initialDarkMode)
+    setIsInitialized(true)
+    
+    // Apply theme immediately
+    document.documentElement.classList.toggle('dark', initialDarkMode)
+  }, [])
 
-  const toggleDarkMode = () => {
-    const newValue = !darkMode
-    setDarkMode(newValue)
-    localStorage.setItem('darkMode', String(newValue))
-  }
+  // Apply theme changes
+  useEffect(() => {
+    if (isInitialized) {
+      document.documentElement.classList.toggle('dark', darkMode)
+    }
+  }, [darkMode, isInitialized])
+
+  const toggleDarkMode = useCallback(() => {
+    setDarkMode(prev => {
+      const newValue = !prev
+      localStorage.setItem('darkMode', String(newValue))
+      return newValue
+    })
+  }, [])
+
+  const contextValue = useMemo(() => ({
+    darkMode,
+    toggleDarkMode
+  }), [darkMode, toggleDarkMode])
 
   return (
-    <ThemeContext.Provider value={{ darkMode, toggleDarkMode }}>
+    <ThemeContext.Provider value={contextValue}>
       {children}
     </ThemeContext.Provider>
   )

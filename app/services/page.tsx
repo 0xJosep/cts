@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import Link from 'next/link'
 import { ArrowLeft, Sun, Moon, Car, Plane, Users, Clock, Shield, Star, CheckCircle, ArrowRight, MapPin, Calendar, Phone } from 'lucide-react'
 import { useTheme } from '../providers/ThemeProvider'
@@ -11,7 +11,15 @@ import { Badge } from '@/components/ui/badge'
 
 export default function ServicesPage() {
   const { darkMode, toggleDarkMode } = useTheme()
-  const { t } = useTranslation()
+  const { t, locale } = useTranslation()
+  const [isReady, setIsReady] = useState(false)
+
+  // Ensure translations are ready before rendering
+  useEffect(() => {
+    if (locale) {
+      setIsReady(true)
+    }
+  }, [locale])
 
   const getMainServices = () => [
     {
@@ -145,14 +153,22 @@ export default function ServicesPage() {
     }
   ]
 
-  const mainServices = getMainServices()
-  const additionalServices = getAdditionalServices()
-
+  const mainServices = useMemo(() => getMainServices(), [t])
+  const additionalServices = useMemo(() => getAdditionalServices(), [t])
   const [selectedService, setSelectedService] = useState(mainServices[0])
 
   useEffect(() => {
     setSelectedService(mainServices[0])
-  }, [t])
+  }, [mainServices])
+
+  // Show loading state until translations are ready
+  if (!isReady) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
+      </div>
+    )
+  }
 
   return (
     <div className="relative bg-background py-16 sm:py-24 pb-24 min-h-screen">
