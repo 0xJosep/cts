@@ -1,13 +1,5 @@
-import { useRef, useEffect } from "react";
-import {
-  Renderer,
-  Camera,
-  Transform,
-  Plane,
-  Mesh,
-  Program,
-  Texture,
-} from "ogl";
+import { Camera, Mesh, Plane, Program, Renderer, Texture, Transform } from "ogl";
+import { useEffect, useRef } from "react";
 
 type GL = Renderer["gl"];
 
@@ -41,48 +33,31 @@ function createTextTexture(
   gl: GL,
   text: string,
   font: string = "bold 30px monospace",
-  color: string = "black",
+  color: string = "black"
 ): { texture: Texture; width: number; height: number } {
   const canvas = document.createElement("canvas");
   const context = canvas.getContext("2d");
   if (!context) throw new Error("Could not get 2d context");
 
-  // Set high DPI for crisp text
-  const dpr = window.devicePixelRatio || 1;
-  
   context.font = font;
   const metrics = context.measureText(text);
   const textWidth = Math.ceil(metrics.width);
   const fontSize = getFontSize(font);
   const textHeight = Math.ceil(fontSize * 1.2);
 
-  // Scale canvas for high DPI
-  canvas.width = (textWidth + 20) * dpr;
-  canvas.height = (textHeight + 20) * dpr;
-  canvas.style.width = (textWidth + 20) + 'px';
-  canvas.style.height = (textHeight + 20) + 'px';
+  canvas.width = textWidth + 20;
+  canvas.height = textHeight + 20;
 
-  // Scale context and redraw
-  context.scale(dpr, dpr);
   context.font = font;
   context.fillStyle = color;
   context.textBaseline = "middle";
   context.textAlign = "center";
   context.clearRect(0, 0, canvas.width, canvas.height);
-  
-  // Enable font smoothing
-  context.imageSmoothingEnabled = true;
-  context.fillText(text, (textWidth + 20) / 2, (textHeight + 20) / 2);
+  context.fillText(text, canvas.width / 2, canvas.height / 2);
 
-  const texture = new Texture(gl, { 
-    generateMipmaps: true,
-    minFilter: gl.LINEAR_MIPMAP_LINEAR,
-    magFilter: gl.LINEAR,
-    wrapS: gl.CLAMP_TO_EDGE,
-    wrapT: gl.CLAMP_TO_EDGE
-  });
+  const texture = new Texture(gl, { generateMipmaps: false });
   texture.image = canvas;
-  return { texture, width: textWidth + 20, height: textHeight + 20 };
+  return { texture, width: canvas.width, height: canvas.height };
 }
 
 interface TitleProps {
@@ -103,14 +78,7 @@ class Title {
   font: string;
   mesh!: Mesh;
 
-  constructor({
-    gl,
-    plane,
-    renderer,
-    text,
-    textColor = "#545050",
-    font = "30px sans-serif",
-  }: TitleProps) {
+  constructor({ gl, plane, renderer, text, textColor = "#545050", font = "30px sans-serif" }: TitleProps) {
     autoBind(this);
     this.gl = gl;
     this.plane = plane;
@@ -122,12 +90,7 @@ class Title {
   }
 
   createMesh() {
-    const { texture, width, height } = createTextTexture(
-      this.gl,
-      this.text,
-      this.font,
-      this.textColor,
-    );
+    const { texture, width, height } = createTextTexture(this.gl, this.text, this.font, this.textColor);
     const geometry = new Plane(this.gl);
     const program = new Program(this.gl, {
       vertex: `
@@ -159,8 +122,7 @@ class Title {
     const textHeightScaled = this.plane.scale.y * 0.15;
     const textWidthScaled = textHeightScaled * aspect;
     this.mesh.scale.set(textWidthScaled, textHeightScaled, 1);
-    this.mesh.position.y =
-      -this.plane.scale.y * 0.5 - textHeightScaled * 0.5 - 0.05;
+    this.mesh.position.y = -this.plane.scale.y * 0.5 - textHeightScaled * 0.5 - 0.05;
     this.mesh.setParent(this.plane);
   }
 }
@@ -257,18 +219,12 @@ class Media {
   }
 
   createShader() {
-    const texture = new Texture(this.gl, { 
-      generateMipmaps: true,
-      minFilter: this.gl.LINEAR_MIPMAP_LINEAR,
-      magFilter: this.gl.LINEAR,
-      wrapS: this.gl.CLAMP_TO_EDGE,
-      wrapT: this.gl.CLAMP_TO_EDGE
-    });
+    const texture = new Texture(this.gl, { generateMipmaps: false });
     this.program = new Program(this.gl, {
       depthTest: false,
       depthWrite: false,
       vertex: `
-        precision mediump float;
+        precision highp float;
         attribute vec3 position;
         attribute vec2 uv;
         uniform mat4 modelViewMatrix;
@@ -279,8 +235,7 @@ class Media {
         void main() {
           vUv = uv;
           vec3 p = position;
-          // Simplified wave animation for better performance
-          p.z = sin(p.x * 2.0 + uTime) * (0.05 + uSpeed * 0.2);
+          p.z = (sin(p.x * 4.0 + uTime) * 1.5 + cos(p.y * 2.0 + uTime) * 1.5) * (0.1 + uSpeed * 0.5);
           gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0);
         }
       `,
@@ -330,17 +285,8 @@ class Media {
     img.crossOrigin = "anonymous";
     img.src = this.image;
     img.onload = () => {
-      // Wait for image to be fully loaded before setting texture
-      requestAnimationFrame(() => {
-        texture.image = img;
-        this.program.uniforms.uImageSizes.value = [
-          img.naturalWidth,
-          img.naturalHeight,
-        ];
-      });
-    };
-    img.onerror = () => {
-      console.error('Failed to load image:', this.image);
+      texture.image = img;
+      this.program.uniforms.uImageSizes.value = [img.naturalWidth, img.naturalHeight];
     };
   }
 
@@ -363,10 +309,7 @@ class Media {
     });
   }
 
-  update(
-    scroll: { current: number; last: number },
-    direction: "right" | "left",
-  ) {
+  update(scroll: { current: number; last: number }, direction: "right" | "left") {
     this.plane.position.x = this.x - scroll.current - this.extra;
 
     const x = this.plane.position.x;
@@ -391,9 +334,8 @@ class Media {
     }
 
     this.speed = scroll.current - scroll.last;
-    // Reduce animation intensity for better performance
-    this.program.uniforms.uTime.value += 0.02;
-    this.program.uniforms.uSpeed.value = this.speed * 0.5;
+    this.program.uniforms.uTime.value += 0.04;
+    this.program.uniforms.uSpeed.value = this.speed;
 
     const planeOffset = this.plane.scale.x / 2;
     const viewportOffset = this.viewport.width / 2;
@@ -409,29 +351,18 @@ class Media {
     }
   }
 
-  onResize({
-    screen,
-    viewport,
-  }: { screen?: ScreenSize; viewport?: Viewport } = {}) {
+  onResize({ screen, viewport }: { screen?: ScreenSize; viewport?: Viewport } = {}) {
     if (screen) this.screen = screen;
     if (viewport) {
       this.viewport = viewport;
       if (this.plane.program.uniforms.uViewportSizes) {
-        this.plane.program.uniforms.uViewportSizes.value = [
-          this.viewport.width,
-          this.viewport.height,
-        ];
+        this.plane.program.uniforms.uViewportSizes.value = [this.viewport.width, this.viewport.height];
       }
     }
     this.scale = this.screen.height / 1500;
-    this.plane.scale.y =
-      (this.viewport.height * (900 * this.scale)) / this.screen.height;
-    this.plane.scale.x =
-      (this.viewport.width * (700 * this.scale)) / this.screen.width;
-    this.plane.program.uniforms.uPlaneSizes.value = [
-      this.plane.scale.x,
-      this.plane.scale.y,
-    ];
+    this.plane.scale.y = (this.viewport.height * (900 * this.scale)) / this.screen.height;
+    this.plane.scale.x = (this.viewport.width * (700 * this.scale)) / this.screen.width;
+    this.plane.program.uniforms.uPlaneSizes.value = [this.plane.scale.x, this.plane.scale.y];
     this.padding = 2;
     this.width = this.plane.scale.x + this.padding;
     this.widthTotal = this.width * this.length;
@@ -445,10 +376,13 @@ interface AppConfig {
   textColor?: string;
   borderRadius?: number;
   font?: string;
+  scrollSpeed?: number;
+  scrollEase?: number;
 }
 
 class App {
   container: HTMLElement;
+  scrollSpeed: number;
   scroll: {
     ease: number;
     current: number;
@@ -467,10 +401,9 @@ class App {
   screen!: { width: number; height: number };
   viewport!: { width: number; height: number };
   raf: number = 0;
-  lastFrameTime: number = 0;
 
   boundOnResize!: () => void;
-  boundOnWheel!: () => void;
+  boundOnWheel!: (e: Event) => void;
   boundOnTouchDown!: (e: MouseEvent | TouchEvent) => void;
   boundOnTouchMove!: (e: MouseEvent | TouchEvent) => void;
   boundOnTouchUp!: () => void;
@@ -486,11 +419,14 @@ class App {
       textColor = "#ffffff",
       borderRadius = 0,
       font = "bold 30px Figtree",
-    }: AppConfig,
+      scrollSpeed = 2,
+      scrollEase = 0.05,
+    }: AppConfig
   ) {
     document.documentElement.classList.remove("no-js");
     this.container = container;
-    this.scroll = { ease: 0.035, current: 0, target: 0, last: 0 };
+    this.scrollSpeed = scrollSpeed;
+    this.scroll = { ease: scrollEase, current: 0, target: 0, last: 0 };
     this.onCheckDebounce = debounce(this.onCheck.bind(this), 200);
     this.createRenderer();
     this.createCamera();
@@ -521,8 +457,8 @@ class App {
 
   createGeometry() {
     this.planeGeometry = new Plane(this.gl, {
-      heightSegments: 16,
-      widthSegments: 16,
+      heightSegments: 50,
+      widthSegments: 100,
     });
   }
 
@@ -531,7 +467,7 @@ class App {
     bend: number = 1,
     textColor: string,
     borderRadius: number,
-    font: string,
+    font: string
   ) {
     const defaultItems = [
       {
@@ -614,7 +550,7 @@ class App {
   onTouchMove(e: MouseEvent | TouchEvent) {
     if (!this.isDown) return;
     const x = "touches" in e ? e.touches[0].clientX : e.clientX;
-    const distance = (this.start - x) * 0.035;
+    const distance = (this.start - x) * (this.scrollSpeed * 0.025);
     this.scroll.target = (this.scroll.position ?? 0) + distance;
   }
 
@@ -623,8 +559,10 @@ class App {
     this.onCheck();
   }
 
-  onWheel() {
-    this.scroll.target += 1.2;
+  onWheel(e: Event) {
+    const wheelEvent = e as WheelEvent;
+    const delta = wheelEvent.deltaY || (wheelEvent as any).wheelDelta || (wheelEvent as any).detail;
+    this.scroll.target += delta > 0 ? this.scrollSpeed : -this.scrollSpeed;
     this.onCheckDebounce();
   }
 
@@ -650,25 +588,12 @@ class App {
     const width = height * this.camera.aspect;
     this.viewport = { width, height };
     if (this.medias) {
-      this.medias.forEach((media) =>
-        media.onResize({ screen: this.screen, viewport: this.viewport }),
-      );
+      this.medias.forEach((media) => media.onResize({ screen: this.screen, viewport: this.viewport }));
     }
   }
 
   update() {
-    // Limit frame rate to 30fps for better performance
-    if (performance.now() - (this.lastFrameTime || 0) < 33) {
-      this.raf = window.requestAnimationFrame(this.update.bind(this));
-      return;
-    }
-    this.lastFrameTime = performance.now();
-
-    this.scroll.current = lerp(
-      this.scroll.current,
-      this.scroll.target,
-      this.scroll.ease,
-    );
+    this.scroll.current = lerp(this.scroll.current, this.scroll.target, this.scroll.ease);
     const direction = this.scroll.current > this.scroll.last ? "right" : "left";
     if (this.medias) {
       this.medias.forEach((media) => media.update(this.scroll, direction));
@@ -706,14 +631,8 @@ class App {
     window.removeEventListener("touchstart", this.boundOnTouchDown);
     window.removeEventListener("touchmove", this.boundOnTouchMove);
     window.removeEventListener("touchend", this.boundOnTouchUp);
-    if (
-      this.renderer &&
-      this.renderer.gl &&
-      this.renderer.gl.canvas.parentNode
-    ) {
-      this.renderer.gl.canvas.parentNode.removeChild(
-        this.renderer.gl.canvas as HTMLCanvasElement,
-      );
+    if (this.renderer && this.renderer.gl && this.renderer.gl.canvas.parentNode) {
+      this.renderer.gl.canvas.parentNode.removeChild(this.renderer.gl.canvas as HTMLCanvasElement);
     }
   }
 }
@@ -724,6 +643,8 @@ interface CircularGalleryProps {
   textColor?: string;
   borderRadius?: number;
   font?: string;
+  scrollSpeed?: number;
+  scrollEase?: number;
 }
 
 export default function CircularGallery({
@@ -732,6 +653,8 @@ export default function CircularGallery({
   textColor = "#ffffff",
   borderRadius = 0.05,
   font = "bold 30px Figtree",
+  scrollSpeed = 1,
+  scrollEase = 0.05,
 }: CircularGalleryProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -742,15 +665,12 @@ export default function CircularGallery({
       textColor,
       borderRadius,
       font,
+      scrollSpeed,
+      scrollEase,
     });
     return () => {
       app.destroy();
     };
-  }, [items, bend, textColor, borderRadius, font]);
-  return (
-    <div
-      className="w-full h-full overflow-hidden cursor-grab active:cursor-grabbing"
-      ref={containerRef}
-    />
-  );
+  }, [items, bend, textColor, borderRadius, font, scrollSpeed, scrollEase]);
+  return <div className="w-full h-full overflow-hidden cursor-grab active:cursor-grabbing" ref={containerRef} />;
 }
