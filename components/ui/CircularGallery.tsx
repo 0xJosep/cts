@@ -545,18 +545,36 @@ class App {
     this.isDown = true;
     this.scroll.position = this.scroll.current;
     this.start = "touches" in e ? e.touches[0].clientX : e.clientX;
+    
+    // Prevent default to avoid conflicts with native scrolling
+    if ("touches" in e) {
+      e.preventDefault();
+    }
   }
 
   onTouchMove(e: MouseEvent | TouchEvent) {
     if (!this.isDown) return;
+    
+    // Prevent default scrolling behavior on mobile
+    if ("touches" in e) {
+      e.preventDefault();
+    }
+    
     const x = "touches" in e ? e.touches[0].clientX : e.clientX;
-    const distance = (this.start - x) * (this.scrollSpeed * 0.025);
+    // Increase sensitivity for touch devices - use higher multiplier for mobile
+    const touchMultiplier = "touches" in e ? this.scrollSpeed * 0.1 : this.scrollSpeed * 0.025;
+    const distance = (this.start - x) * touchMultiplier;
     this.scroll.target = (this.scroll.position ?? 0) + distance;
   }
 
-  onTouchUp() {
+  onTouchUp(e?: Event) {
     this.isDown = false;
     this.onCheck();
+    
+    // Prevent default on touch end as well
+    if (e && "touches" in e) {
+      e.preventDefault();
+    }
   }
 
   onWheel(e: Event) {

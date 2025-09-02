@@ -172,6 +172,79 @@
       }
     }
   },
+  "about": {
+    "hero": {
+      "badge": "Since 2014",
+      "title": "About CTS Morocco",
+      "subtitle": "We are passionate about delivering exceptional luxury transportation experiences throughout Morocco. Our commitment to excellence, combined with deep local knowledge and premium service, has made us the trusted choice for discerning travelers.",
+      "contactUs": "Contact Us",
+      "ourServices": "Our Services"
+    },
+    "story": {
+      "title": "Our Story",
+      "paragraph1": "Founded in 2014, CTS Morocco began with a simple vision: to redefine luxury transportation in Morocco by combining world-class service with authentic Moroccan hospitality. What started as a small family business has grown into Morocco's premier chauffeur service.",
+      "paragraph2": "Over the years, we have had the privilege of serving thousands of clients from around the world, from business executives and celebrities to families discovering Morocco for the first time. Each journey has taught us something new about the art of exceptional service.",
+      "paragraph3": "Today, we continue to innovate while staying true to our core values of excellence, integrity, and genuine care for our clients. Every member of our team shares the same passion for creating unforgettable experiences that showcase the best of Morocco.",
+      "yearsExperience": "Years of Excellence"
+    },
+    "mission": {
+      "title": "Our Mission & Vision",
+      "subtitle": "Guided by our values and driven by our passion for excellence",
+      "ourMission": "Our Mission",
+      "missionText": "To provide exceptional luxury transportation services that exceed expectations while showcasing the beauty and culture of Morocco. We are committed to delivering safe, reliable, and memorable experiences for every client.",
+      "ourVision": "Our Vision",
+      "visionText": "To be recognized as Morocco's leading luxury transportation company, setting the standard for excellence in service, innovation, and cultural authenticity while contributing to sustainable tourism development."
+    },
+    "values": {
+      "title": "Our Core Values",
+      "subtitle": "The principles that guide everything we do",
+      "excellence": {
+        "title": "Excellence",
+        "description": "We strive for perfection in every detail, from our immaculate vehicles to our professional service standards."
+      },
+      "integrity": {
+        "title": "Integrity",
+        "description": "We build trust through transparency, honesty, and consistent delivery on our promises."
+      },
+      "innovation": {
+        "title": "Innovation",
+        "description": "We embrace new technologies and methods to enhance the client experience while respecting tradition."
+      },
+      "sustainability": {
+        "title": "Sustainability",
+        "description": "We are committed to responsible tourism and environmental stewardship for future generations."
+      }
+    },
+    "team": {
+      "title": "Meet Our Leadership Team",
+      "subtitle": "The experienced professionals who ensure your journey exceeds expectations",
+      "founder": {
+        "name": "Ahmed Benali",
+        "role": "Founder & CEO",
+        "description": "With over 20 years in luxury hospitality, Ahmed leads our team with passion for excellence and deep knowledge of Moroccan culture."
+      },
+      "operations": {
+        "name": "Fatima Al-Rashid",
+        "role": "Operations Director",
+        "description": "Fatima ensures seamless operations and quality control, bringing 15 years of transportation industry expertise."
+      },
+      "customer": {
+        "name": "Hassan Ouali",
+        "role": "Customer Experience Manager",
+        "description": "Hassan leads our customer service team, ensuring every client receives personalized attention and exceptional care."
+      }
+    },
+    "testimonials": {
+      "title": "What Our Clients Say",
+      "subtitle": "Hear from travelers who have experienced the CTS Morocco difference"
+    },
+    "cta": {
+      "title": "Ready to Experience Morocco in Luxury?",
+      "subtitle": "Join thousands of satisfied clients who have discovered the difference of traveling with CTS Morocco.",
+      "bookNow": "Book Your Journey",
+      "getInTouch": "Get in Touch"
+    }
+  },
   "services": {
     "backToHome": "Back to Home",
     "title": "Our Premium Services",

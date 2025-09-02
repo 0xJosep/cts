@@ -29,7 +29,7 @@ const useNavigation = (t: (key: string) => string) => useMemo(() => [
   { name: t('common.home'), href: '/' },
   { name: t('common.fleet'), href: '/fleet' },
   { name: t('common.services'), href: '/services' },
-  { name: t('common.about'), href: '#' },
+  { name: t('common.about'), href: '/about' },
   { name: t('common.contact'), href: '/contact' },
 ], [t])
 
@@ -653,49 +653,6 @@ export default function Example() {
       </div>
 
       {/* Social Proof Section */}
-      <div className="relative py-8">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-              {t('home.socialProof.title')}
-            </h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              {t('home.socialProof.subtitle')}
-            </p>
-          </div>
-          <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-            {/* Statistics */}
-            <div className="flex flex-col items-center justify-center rounded-2xl bg-card p-8 text-center shadow-sm ring-1 ring-border">
-              <div className="text-4xl font-bold text-gold">10+</div>
-              <div className="mt-2 text-lg font-medium text-foreground">{t('home.socialProof.yearsExperience')}</div>
-              <p className="mt-2 text-sm text-muted-foreground">{t('home.socialProof.yearsDesc')}</p>
-            </div>
-            <div className="flex flex-col items-center justify-center rounded-2xl bg-card p-8 text-center shadow-sm ring-1 ring-border">
-              <div className="text-4xl font-bold text-gold">50k+</div>
-              <div className="mt-2 text-lg font-medium text-foreground">{t('home.socialProof.clients')}</div>
-              <p className="mt-2 text-sm text-muted-foreground">{t('home.socialProof.clientsDesc')}</p>
-            </div>
-            <div className="flex flex-col items-center justify-center rounded-2xl bg-card p-8 text-center shadow-sm ring-1 ring-border">
-              <div className="text-4xl font-bold text-gold">4.9/5</div>
-              <div className="mt-2 text-lg font-medium text-foreground">{t('home.socialProof.rating')}</div>
-              <p className="mt-2 text-sm text-muted-foreground">{t('home.socialProof.ratingDesc')}</p>
-            </div>
-          </div>
-
-          {/* Animated Testimonials */}
-          <div className="mt-16">
-            <Suspense fallback={
-              <div className="animate-pulse bg-muted rounded-lg h-96 mx-auto max-w-4xl flex items-center justify-center">
-                <div className="text-muted-foreground">Loading testimonials...</div>
-              </div>
-            }>
-              <AnimatedTestimonials testimonials={testimonialsData} autoplay={true} />
-            </Suspense>
-          </div>
-        </div>
-      </div>
-
-      {/* Global Trust Section - NEW */}
       <div className="relative py-24 bg-gradient-to-br from-background via-background/50 to-background">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
@@ -728,7 +685,42 @@ export default function Example() {
           </div>
         </div>
       </div>
+      <div className="relative py-8">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
+          <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+            {/* Statistics */}
+            <div className="flex flex-col items-center justify-center rounded-2xl bg-card p-8 text-center shadow-sm ring-1 ring-border">
+              <div className="text-4xl font-bold text-gold">10+</div>
+              <div className="mt-2 text-lg font-medium text-foreground">{t('home.socialProof.yearsExperience')}</div>
+              <p className="mt-2 text-sm text-muted-foreground">{t('home.socialProof.yearsDesc')}</p>
+            </div>
+            <div className="flex flex-col items-center justify-center rounded-2xl bg-card p-8 text-center shadow-sm ring-1 ring-border">
+              <div className="text-4xl font-bold text-gold">50k+</div>
+              <div className="mt-2 text-lg font-medium text-foreground">{t('home.socialProof.clients')}</div>
+              <p className="mt-2 text-sm text-muted-foreground">{t('home.socialProof.clientsDesc')}</p>
+            </div>
+            <div className="flex flex-col items-center justify-center rounded-2xl bg-card p-8 text-center shadow-sm ring-1 ring-border">
+              <div className="text-4xl font-bold text-gold">4.9/5</div>
+              <div className="mt-2 text-lg font-medium text-foreground">{t('home.socialProof.rating')}</div>
+              <p className="mt-2 text-sm text-muted-foreground">{t('home.socialProof.ratingDesc')}</p>
+            </div>
+          </div>
+
+          {/* Animated Testimonials */}
+          <div className="mt-16">
+            <Suspense fallback={
+              <div className="animate-pulse bg-muted rounded-lg h-96 mx-auto max-w-4xl flex items-center justify-center">
+                <div className="text-muted-foreground">Loading testimonials...</div>
+              </div>
+            }>
+              <AnimatedTestimonials testimonials={testimonialsData} autoplay={true} />
+            </Suspense>
+          </div>
+        </div>
+      </div>
+
+      
       {/* CTA Section */}
       <div className="relative isolate mt-16">
         <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">

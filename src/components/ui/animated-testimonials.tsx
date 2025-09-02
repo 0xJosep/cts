@@ -1,8 +1,6 @@
 "use client";
 
-import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import { motion, AnimatePresence } from "framer-motion";
-
 import { useEffect, useState } from "react";
 
 type Testimonial = {
@@ -11,6 +9,40 @@ type Testimonial = {
   designation: string;
   src: string;
 };
+
+// Custom arrow components to match the luxury theme
+const ArrowLeft = ({ className }: { className?: string }) => (
+  <svg 
+    className={className}
+    width="20" 
+    height="20" 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="2" 
+    strokeLinecap="round" 
+    strokeLinejoin="round"
+  >
+    <path d="m15 18-6-6 6-6"/>
+  </svg>
+);
+
+const ArrowRight = ({ className }: { className?: string }) => (
+  <svg 
+    className={className}
+    width="20" 
+    height="20" 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="2" 
+    strokeLinecap="round" 
+    strokeLinejoin="round"
+  >
+    <path d="m9 18 6-6-6-6"/>
+  </svg>
+);
+
 export const AnimatedTestimonials = ({
   testimonials,
   autoplay = false,
@@ -42,6 +74,7 @@ export const AnimatedTestimonials = ({
   const randomRotateY = () => {
     return Math.floor(Math.random() * 21) - 10;
   };
+  
   return (
     <div className="mx-auto max-w-sm px-4 py-20 font-sans antialiased md:max-w-4xl md:px-8 lg:px-12">
       <div className="relative grid grid-cols-1 gap-20 md:grid-cols-2">
@@ -147,18 +180,21 @@ export const AnimatedTestimonials = ({
               ))}
             </motion.p>
           </motion.div>
-          <div className="flex gap-4 pt-12 md:pt-0">
+          <br/>
+          
+          {/* Navigation Controls - Centered for mobile, right-aligned for desktop */}
+          <div className="flex justify-center md:justify-start gap-3 pt-8 md:pt-0">
             <button
               onClick={handlePrev}
-              className="group/button flex h-7 w-7 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800"
+              className="group/button flex h-12 w-12 items-center justify-center rounded-full border-2 border-gold/20 bg-white/80 backdrop-blur-sm transition-all duration-300 hover:border-gold hover:bg-gold/10 hover:scale-105 active:scale-95 dark:bg-black/40 dark:border-gold/30 dark:hover:bg-gold/20"
             >
-              <IconArrowLeft className="h-5 w-5 text-black transition-transform duration-300 group-hover/button:rotate-12 dark:text-neutral-400" />
+              <ArrowLeft className="h-5 w-5 text-gold transition-all duration-300 group-hover/button:-translate-x-0.5 group-hover/button:text-gold-dark" />
             </button>
             <button
               onClick={handleNext}
-              className="group/button flex h-7 w-7 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800"
+              className="group/button flex h-12 w-12 items-center justify-center rounded-full border-2 border-gold/20 bg-white/80 backdrop-blur-sm transition-all duration-300 hover:border-gold hover:bg-gold/10 hover:scale-105 active:scale-95 dark:bg-black/40 dark:border-gold/30 dark:hover:bg-gold/20"
             >
-              <IconArrowRight className="h-5 w-5 text-black transition-transform duration-300 group-hover/button:-rotate-12 dark:text-neutral-400" />
+              <ArrowRight className="h-5 w-5 text-gold transition-all duration-300 group-hover/button:translate-x-0.5 group-hover/button:text-gold-dark" />
             </button>
           </div>
         </div>

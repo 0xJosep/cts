@@ -9,6 +9,79 @@
     "register": "S'inscrire",
     "fleet": "Flotte"
   },
+  "about": {
+    "hero": {
+      "badge": "Depuis 2014",
+      "title": "À Propos de CTS Maroc",
+      "subtitle": "Nous sommes passionnés par la fourniture d'expériences exceptionnelles de transport de luxe à travers le Maroc. Notre engagement envers l'excellence, combiné à une connaissance locale approfondie et un service premium, a fait de nous le choix de confiance des voyageurs exigeants.",
+      "contactUs": "Nous Contacter",
+      "ourServices": "Nos Services"
+    },
+    "story": {
+      "title": "Notre Histoire",
+      "paragraph1": "Fondée en 2014, CTS Maroc a commencé avec une vision simple : redéfinir le transport de luxe au Maroc en combinant un service de classe mondiale avec l'hospitalité marocaine authentique. Ce qui a commencé comme une petite entreprise familiale est devenu le service de chauffeur premier du Maroc.",
+      "paragraph2": "Au fil des années, nous avons eu le privilège de servir des milliers de clients du monde entier, des dirigeants d'entreprise et célébrités aux familles découvrant le Maroc pour la première fois. Chaque voyage nous a appris quelque chose de nouveau sur l'art du service exceptionnel.",
+      "paragraph3": "Aujourd'hui, nous continuons d'innover tout en restant fidèles à nos valeurs fondamentales d'excellence, d'intégrité et de véritable attention à nos clients. Chaque membre de notre équipe partage la même passion pour créer des expériences inoubliables qui mettent en valeur le meilleur du Maroc.",
+      "yearsExperience": "Années d'Excellence"
+    },
+    "mission": {
+      "title": "Notre Mission et Vision",
+      "subtitle": "Guidés par nos valeurs et animés par notre passion pour l'excellence",
+      "ourMission": "Notre Mission",
+      "missionText": "Fournir des services exceptionnels de transport de luxe qui dépassent les attentes tout en mettant en valeur la beauté et la culture du Maroc. Nous nous engageons à offrir des expériences sûres, fiables et mémorables pour chaque client.",
+      "ourVision": "Notre Vision",
+      "visionText": "Être reconnu comme la première entreprise de transport de luxe du Maroc, établissant la norme d'excellence en service, innovation et authenticité culturelle tout en contribuant au développement du tourisme durable."
+    },
+    "values": {
+      "title": "Nos Valeurs Fondamentales",
+      "subtitle": "Les principes qui guident tout ce que nous faisons",
+      "excellence": {
+        "title": "Excellence",
+        "description": "Nous visons la perfection dans chaque détail, de nos véhicules immaculés à nos normes de service professionnel."
+      },
+      "integrity": {
+        "title": "Intégrité",
+        "description": "Nous bâtissons la confiance grâce à la transparence, l'honnêteté et la livraison cohérente de nos promesses."
+      },
+      "innovation": {
+        "title": "Innovation",
+        "description": "Nous adoptons de nouvelles technologies et méthodes pour améliorer l'expérience client tout en respectant la tradition."
+      },
+      "sustainability": {
+        "title": "Durabilité",
+        "description": "Nous nous engageons envers le tourisme responsable et la gestion environnementale pour les générations futures."
+      }
+    },
+    "team": {
+      "title": "Rencontrez Notre Équipe Dirigeante",
+      "subtitle": "Les professionnels expérimentés qui s'assurent que votre voyage dépasse les attentes",
+      "founder": {
+        "name": "Ahmed Benali",
+        "role": "Fondateur et PDG",
+        "description": "Avec plus de 20 ans dans l'hospitalité de luxe, Ahmed dirige notre équipe avec passion pour l'excellence et une connaissance approfondie de la culture marocaine."
+      },
+      "operations": {
+        "name": "Fatima Al-Rashid",
+        "role": "Directrice des Opérations",
+        "description": "Fatima assure des opérations fluides et le contrôle qualité, apportant 15 ans d'expertise dans l'industrie du transport."
+      },
+      "customer": {
+        "name": "Hassan Ouali",
+        "role": "Responsable Expérience Client",
+        "description": "Hassan dirige notre équipe de service client, s'assurant que chaque client reçoive une attention personnalisée et des soins exceptionnels."
+      }
+    },
+    "testimonials": {
+      "title": "Ce Que Disent Nos Clients",
+      "subtitle": "Écoutez les voyageurs qui ont vécu la différence CTS Maroc"
+    },
+    "cta": {
+      "title": "Prêt à Découvrir le Maroc en Luxe ?",
+      "subtitle": "Rejoignez des milliers de clients satisfaits qui ont découvert la différence de voyager avec CTS Maroc.",
+      "bookNow": "Réservez Votre Voyage",
+      "getInTouch": "Prenez Contact"
+    }
+  },
   "home": {
     "hero": {
       "title": "L'Art du Voyage Exceptionnel",

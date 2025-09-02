@@ -9,6 +9,79 @@
     "register": "Registrarse",
     "fleet": "Flota"
   },
+  "about": {
+    "hero": {
+      "badge": "Desde 2014",
+      "title": "Acerca de CTS Marruecos",
+      "subtitle": "Nos apasiona brindar experiencias excepcionales de transporte de lujo en todo Marruecos. Nuestro compromiso con la excelencia, combinado con un profundo conocimiento local y servicio premium, nos ha convertido en la opción de confianza para viajeros exigentes.",
+      "contactUs": "Contáctanos",
+      "ourServices": "Nuestros Servicios"
+    },
+    "story": {
+      "title": "Nuestra Historia",
+      "paragraph1": "Fundada en 2014, CTS Marruecos comenzó con una visión simple: redefinir el transporte de lujo en Marruecos combinando servicio de clase mundial con auténtica hospitalidad marroquí. Lo que comenzó como un pequeño negocio familiar ha crecido hasta convertirse en el servicio de chófer premier de Marruecos.",
+      "paragraph2": "A lo largo de los años, hemos tenido el privilegio de servir a miles de clientes de todo el mundo, desde ejecutivos de negocios y celebridades hasta familias que descubren Marruecos por primera vez. Cada viaje nos ha enseñado algo nuevo sobre el arte del servicio excepcional.",
+      "paragraph3": "Hoy, continuamos innovando mientras nos mantenemos fieles a nuestros valores fundamentales de excelencia, integridad y cuidado genuino por nuestros clientes. Cada miembro de nuestro equipo comparte la misma pasión por crear experiencias inolvidables que muestran lo mejor de Marruecos.",
+      "yearsExperience": "Años de Excelencia"
+    },
+    "mission": {
+      "title": "Nuestra Misión y Visión",
+      "subtitle": "Guiados por nuestros valores e impulsados por nuestra pasión por la excelencia",
+      "ourMission": "Nuestra Misión",
+      "missionText": "Proporcionar servicios excepcionales de transporte de lujo que superen las expectativas mientras mostramos la belleza y cultura de Marruecos. Estamos comprometidos a brindar experiencias seguras, confiables y memorables para cada cliente.",
+      "ourVision": "Nuestra Visión",
+      "visionText": "Ser reconocidos como la empresa líder de transporte de lujo de Marruecos, estableciendo el estándar de excelencia en servicio, innovación y autenticidad cultural mientras contribuimos al desarrollo sostenible del turismo."
+    },
+    "values": {
+      "title": "Nuestros Valores Fundamentales",
+      "subtitle": "Los principios que guían todo lo que hacemos",
+      "excellence": {
+        "title": "Excelencia",
+        "description": "Nos esforzamos por la perfección en cada detalle, desde nuestros vehículos inmaculados hasta nuestros estándares de servicio profesional."
+      },
+      "integrity": {
+        "title": "Integridad",
+        "description": "Construimos confianza a través de la transparencia, honestidad y cumplimiento consistente de nuestras promesas."
+      },
+      "innovation": {
+        "title": "Innovación",
+        "description": "Adoptamos nuevas tecnologías y métodos para mejorar la experiencia del cliente mientras respetamos la tradición."
+      },
+      "sustainability": {
+        "title": "Sostenibilidad",
+        "description": "Estamos comprometidos con el turismo responsable y la administración ambiental para las futuras generaciones."
+      }
+    },
+    "team": {
+      "title": "Conoce a Nuestro Equipo Directivo",
+      "subtitle": "Los profesionales experimentados que aseguran que tu viaje supere las expectativas",
+      "founder": {
+        "name": "Ahmed Benali",
+        "role": "Fundador y CEO",
+        "description": "Con más de 20 años en hospitalidad de lujo, Ahmed lidera nuestro equipo con pasión por la excelencia y profundo conocimiento de la cultura marroquí."
+      },
+      "operations": {
+        "name": "Fatima Al-Rashid",
+        "role": "Directora de Operaciones",
+        "description": "Fatima asegura operaciones sin problemas y control de calidad, aportando 15 años de experiencia en la industria del transporte."
+      },
+      "customer": {
+        "name": "Hassan Ouali",
+        "role": "Gerente de Experiencia del Cliente",
+        "description": "Hassan lidera nuestro equipo de servicio al cliente, asegurando que cada cliente reciba atención personalizada y cuidado excepcional."
+      }
+    },
+    "testimonials": {
+      "title": "Lo Que Dicen Nuestros Clientes",
+      "subtitle": "Escucha a los viajeros que han experimentado la diferencia de CTS Marruecos"
+    },
+    "cta": {
+      "title": "¿Listo para Experimentar Marruecos en Lujo?",
+      "subtitle": "Únete a miles de clientes satisfechos que han descubierto la diferencia de viajar con CTS Marruecos.",
+      "bookNow": "Reserva tu Viaje",
+      "getInTouch": "Ponte en Contacto"
+    }
+  },
   "services": {
     "backToHome": "Volver al Inicio",
     "title": "Nuestros Servicios Premium",
